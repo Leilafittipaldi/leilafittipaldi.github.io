@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Bienvenido a LíderMente — Tu punto de partida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;800;900&family=Bebas+Neue&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#000; --surface:#0F1011; --surface-2:#17181A; --ink:#fff; --muted:#A0A3A8;
+    --line:#26282B; --accent:#2AFAD2; --fill:#2AFAD2; --fill-ink:#00201A; --bar-muted:#4A4D51; --track:#1C1E20;
+    --shadow:0 20px 55px rgba(0,0,0,.55);
+    --display:'League Spartan','Arial Black',system-ui,sans-serif;
+    --cond:'Bebas Neue','Oswald','Impact',system-ui,sans-serif;
+    --body:'Cabin',system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  @media (prefers-color-scheme:light){
+    :root{--bg:#fff;--surface:#fff;--surface-2:#F3F5F6;--ink:#0A0A0B;--muted:#565A5F;--line:#E6E8EA;--accent:#0AA88D;--fill:#2AFAD2;--fill-ink:#00201A;--bar-muted:#C6C9CC;--track:#EDEFF1;--shadow:0 16px 44px rgba(0,0,0,.10)}
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg)}
+  body{color:var(--ink);font-family:var(--body);font-size:1.18rem;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;
+    background:radial-gradient(130% 60% at 50% -8%, color-mix(in srgb,var(--accent) 14%, transparent), transparent 62%) fixed, var(--bg);}
+  .wrap{max-width:580px;margin:0 auto;padding:22px 18px 44px;min-height:100vh;display:flex;flex-direction:column}
+  .eyebrow{font-family:var(--cond);font-size:1.15rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 14px;display:flex;align-items:center;gap:9px}
+  .eyebrow::before{content:"★";font-size:.75em}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(2rem,7.5vw,2.7rem);line-height:1.03;letter-spacing:-.01em;margin:0 0 16px;text-wrap:balance}
+  h2{font-family:var(--display);font-weight:800;font-size:clamp(1.55rem,6vw,2rem);line-height:1.08;margin:0 0 6px;text-wrap:balance}
+  p{margin:0 0 16px}
+  .lead{color:var(--muted);font-size:1.25rem;line-height:1.5}
+  .sub{color:var(--muted);font-size:1.08rem;margin:-2px 0 20px}
+  .screen{flex:1;display:flex;flex-direction:column;justify-content:center;animation:fade .35s ease both}
+  .hidden{display:none!important}
+  .btn{appearance:none;border:0;cursor:pointer;font-family:var(--display);font-weight:800;font-size:1.2rem;
+    background:var(--fill);color:var(--fill-ink);border-radius:14px;padding:19px;width:100%;transition:transform .12s,filter .12s}
+  .btn:hover{filter:brightness(1.06)} .btn:active{transform:translateY(1px)}
+  .btn:disabled{opacity:.5;cursor:default}
+  .btn.ghost{background:none;color:var(--muted);font-family:var(--body);font-weight:600;font-size:1.05rem;padding:12px;width:auto;align-self:flex-start;margin-top:6px}
+  .btn:focus-visible,.rate b:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  .progress{height:8px;background:var(--track);border-radius:99px;overflow:hidden;margin-bottom:8px}
+  #bar{height:100%;width:0;background:var(--fill);border-radius:99px;transition:width .35s cubic-bezier(.4,0,.2,1)}
+  .step-count{font-family:var(--cond);font-size:1rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+  label{display:block;font-family:var(--cond);font-size:1.12rem;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+  .field{margin-bottom:18px}
+  .field .hint{font-family:var(--body);text-transform:none;letter-spacing:0;color:var(--muted);font-size:.95rem;font-weight:400;margin-top:-4px;margin-bottom:8px;display:block}
+  input,select,textarea{width:100%;font-family:var(--body);font-size:1.15rem;color:var(--ink);background:var(--surface-2);
+    border:2px solid var(--line);border-radius:13px;padding:16px 15px;transition:border-color .12s}
+  textarea{min-height:90px;resize:vertical;line-height:1.45}
+  input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:none}
+  input::placeholder,textarea::placeholder{color:var(--muted)}
+  select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 20px) center,calc(100% - 14px) center;background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:40px}
+  .err{border-color:#ff5a5a!important}
+  .errmsg{color:#ff7a7a;font-size:.95rem;margin-top:10px;min-height:1px}
+  /* rating de áreas */
+  .area{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+  .area:last-child{border-bottom:0;margin-bottom:6px}
+  .area .name{font-family:var(--display);font-weight:700;font-size:1.18rem;margin-bottom:3px;display:flex;align-items:center;gap:9px}
+  .area .desc{color:var(--muted);font-size:.98rem;margin-bottom:11px}
+  .rate{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .rate b{font-family:var(--display);font-weight:800;font-size:1.15rem;cursor:pointer;text-align:center;
+    background:var(--surface-2);border:2px solid var(--line);border-radius:11px;padding:13px 0;color:var(--ink);transition:all .12s}
+  .rate b:hover{border-color:var(--accent)}
+  .rate b.on{background:var(--fill);border-color:var(--fill);color:var(--fill-ink)}
+  .scalekey{display:flex;justify-content:space-between;color:var(--muted);font-size:.9rem;margin:16px 2px 20px}
+  .info{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-size:1.02rem;color:var(--muted);margin:2px 0 22px;line-height:1.5}
+  .info b{color:var(--ink)}
+  .rico{font-size:3.2rem;line-height:1;margin-bottom:8px}
+  .gift{background:var(--surface-2);border:1px dashed var(--accent);border-radius:14px;padding:18px;margin:22px 0 6px;font-size:1.08rem}
+  .gift b{color:var(--accent)}
+  footer{margin-top:28px;text-align:center;color:var(--muted);font-family:var(--cond);letter-spacing:.06em;text-transform:uppercase;font-size:.95rem}
+  footer b{color:var(--ink)}
+  .wabtn{display:block;text-align:center;text-decoration:none;font-family:var(--display);font-weight:800;font-size:1.15rem;
+    background:var(--fill);color:var(--fill-ink);border-radius:14px;padding:18px;margin-top:8px}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- Formulario oculto para que Netlify lo detecte en el deploy -->
+<form name="bienvenida-lidermente" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="bot-field" /><input name="nombre" /><input name="whatsapp" /><input name="email" />
+  <input name="negocio" /><input name="giro" /><input name="antiguedad" /><input name="equipo" />
+  <input name="facturacion" /><input name="horas" /><input name="dependencia" />
+  <input name="area_estrategia" /><input name="area_ejecucion" /><input name="area_marketing" />
+  <input name="area_ventas" /><input name="area_ia" /><input name="area_admin" />
+  <input name="objetivo90" /><input name="obstaculo" /><input name="expectativa" />
+</form>
+
+<div class="wrap">
+
+  <div id="track" class="hidden">
+    <div class="progress"><div id="bar"></div></div>
+    <div class="step-count" id="count"></div>
+  </div>
+
+  <!-- 0 · BIENVENIDA -->
+  <section id="s-intro" class="screen">
+    <p class="eyebrow">Bienvenida a bordo</p>
+    <h1>Bienvenido/a a <span style="color:var(--accent)">LíderMente</span> 🎉</h1>
+    <p class="lead">Antes de tu primera sesión quiero conocer tu punto de partida: dónde estás hoy con tu negocio.</p>
+    <div class="info">🎯 Esto es tu <b>línea base</b>. En unos meses vamos a mirar atrás y ver cuánto avanzaste. Sé honesto/a: nadie más lo ve, es para trabajar juntos sobre lo real.</div>
+    <button class="btn" id="start">Empezar (2 minutos) →</button>
+    <footer>Solo para miembros de <b>LíderMente</b> · Leila Fittipaldi</footer>
+  </section>
+
+  <!-- 1 · DATOS -->
+  <section id="s-datos" class="screen hidden">
+    <h2>Tus datos</h2>
+    <p class="sub">Para tenerte identificado/a en el grupo.</p>
+    <div class="field"><label>Nombre y apellido</label><input id="nombre" type="text" autocomplete="name" placeholder="Tu nombre completo" /></div>
+    <div class="field"><label>WhatsApp</label><input id="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="Con lada, ej. 998 123 4567" /></div>
+    <div class="field"><label>Correo</label><input id="email" type="email" autocomplete="email" placeholder="tucorreo@ejemplo.com" /></div>
+    <div class="errmsg" id="e-datos"></div>
+    <button class="btn nav" data-next>Continuar →</button>
+    <button class="btn ghost" data-back>← Atrás</button>
+  </section>
+
+  <!-- 2 · NEGOCIO -->
+  <section id="s-negocio" class="screen hidden">
+    <h2>Tu negocio</h2>
+    <p class="sub">Cuéntame qué haces hoy.</p>
+    <div class="field"><label>Nombre del negocio</label><input id="negocio" type="text" placeholder="Cómo se llama tu negocio o marca" /></div>
+    <div class="field"><label>¿Qué vendes?</label><span class="hint">Producto o servicio principal, en una frase.</span><textarea id="giro" placeholder="Ej. Vendo tortas artesanales por encargo / Doy consultoría contable a pymes…"></textarea></div>
+    <div class="field"><label>¿Hace cuánto operas?</label>
+      <select id="antiguedad">
+        <option value="">Elige una opción…</option>
+        <option>Estoy por abrir / es una idea</option>
+        <option>Menos de 1 año</option>
+        <option>Entre 1 y 3 años</option>
+        <option>Más de 3 años</option>
+      </select>
+    </div>
+    <div class="field"><label>Tu equipo</label>
+      <select id="equipo">
+        <option value="">Elige una opción…</option>
+        <option>Trabajo solo/a</option>
+        <option>1 colaborador</option>
+        <option>2 a 5 personas</option>
+        <option>Más de 6 personas</option>
+      </select>
+    </div>
+    <div class="errmsg" id="e-negocio"></div>
+    <button class="btn nav" data-next>Continuar →</button>
+    <button class="btn ghost" data-back>← Atrás</button>
+  </section>
+
+  <!-- 3 · NÚMEROS -->
+  <section id="s-numeros" class="screen hidden">
+    <h2>Tus números hoy</h2>
+    <p class="sub">Para medir tu avance necesito el punto de arranque.</p>
+    <div class="field"><label>Facturación mensual aprox.</label>
+      <select id="facturacion">
+        <option value="">Elige un rango…</option>
+        <option>Aún no facturo</option>
+        <option>Menos de $20,000 MXN</option>
+        <option>$20,000 – $50,000 MXN</option>
+        <option>$50,000 – $100,000 MXN</option>
+        <option>$100,000 – $300,000 MXN</option>
+        <option>Más de $300,000 MXN</option>
+      </select>
+    </div>
+    <div class="field"><label>¿Cuántas horas trabajas al día?</label>
+      <select id="horas">
+        <option value="">Elige una opción…</option>
+        <option>Menos de 4</option>
+        <option>4 a 6</option>
+        <option>6 a 8</option>
+        <option>8 a 10</option>
+        <option>Más de 10</option>
+      </select>
+    </div>
+    <div class="field"><label>Si te vas un mes sin trabajar, ¿qué pasa?</label>
+      <select id="dependencia">
+        <option value="">Elige la más honesta…</option>
+        <option>El negocio se frena por completo</option>
+        <option>Sigue a medias, con problemas</option>
+        <option>Funciona pero baja bastante</option>
+        <option>Funciona casi igual sin mí</option>
+      </select>
+    </div>
+    <div class="errmsg" id="e-numeros"></div>
+    <button class="btn nav" data-next>Continuar →</button>
+    <button class="btn ghost" data-back>← Atrás</button>
+  </section>
+
+  <!-- 4 · ÁREAS -->
+  <section id="s-areas" class="screen hidden">
+    <h2>¿Cómo estás en cada área?</h2>
+    <p class="sub">Las 6 áreas que trabajamos en LíderMente. Califícate del 1 al 5.</p>
+    <div class="scalekey"><span>1 · Apenas empiezo</span><span>5 · Lo domino</span></div>
+    <div id="areas"></div>
+    <div class="errmsg" id="e-areas"></div>
+    <button class="btn nav" data-next>Continuar →</button>
+    <button class="btn ghost" data-back>← Atrás</button>
+  </section>
+
+  <!-- 5 · NORTE -->
+  <section id="s-norte" class="screen hidden">
+    <h2>Tu norte</h2>
+    <p class="sub">Lo más importante: hacia dónde vamos.</p>
+    <div class="field"><label>Tu objetivo #1 a 90 días</label><span class="hint">¿Qué quieres lograr en los próximos 3 meses?</span><textarea id="objetivo90" placeholder="Ej. Facturar $80k al mes / dejar de atender yo a los clientes / lanzar mi tienda online…"></textarea></div>
+    <div class="field"><label>Tu mayor obstáculo hoy</label><span class="hint">¿Qué es lo que más te está frenando?</span><textarea id="obstaculo" placeholder="Ej. No delego, no me alcanza el tiempo, no sé vender por redes…"></textarea></div>
+    <div class="field"><label>¿Qué esperas de LíderMente?</label><textarea id="expectativa" placeholder="Con que salgas con esto, valió la pena…"></textarea></div>
+    <div class="errmsg" id="e-norte"></div>
+    <button class="btn nav" data-next id="submit">Enviar mi punto de partida ✅</button>
+    <button class="btn ghost" data-back>← Atrás</button>
+  </section>
+
+  <!-- 6 · GRACIAS -->
+  <section id="s-gracias" class="screen hidden">
+    <div class="rico">🎉</div>
+    <h1>¡Listo, <span id="gname" style="color:var(--accent)">crack</span>!</h1>
+    <p class="lead">Ya tengo tu punto de partida. Esto es solo el comienzo.</p>
+    <div class="gift">📅 <b>Tu primera sesión:</b> miércoles 7:00–9:00 pm · Huayacán, Cancún. Llega 10 min antes.</div>
+    <p class="sub" style="text-align:center;margin-bottom:14px">Entra al grupo para recibir los recordatorios y confirmar tu asistencia 👇</p>
+    <a class="wabtn" id="wa" href="https://chat.whatsapp.com/H4GXLbo5VQQ59QpiAjtaXI" target="_blank" rel="noopener">Entrar al grupo de WhatsApp 💬</a>
+    <footer>Nos vemos pronto · <b>LíderMente</b></footer>
+  </section>
+
+</div>
+
+<script>
+  // --- Áreas (6 de LíderMente) ---
+  var AREAS = [
+    {key:"area_estrategia", ico:"🧭", name:"Estrategia y Liderazgo", desc:"Rumbo claro, decisiones y liderar a tu equipo."},
+    {key:"area_ejecucion",  ico:"⚙️", name:"Ejecución y Sistemas",   desc:"Procesos para que el negocio funcione sin ti."},
+    {key:"area_marketing",  ico:"📣", name:"Comunicación y Marketing",desc:"Que te conozcan y te elijan."},
+    {key:"area_ventas",     ico:"🤝", name:"Prospección y Ventas",    desc:"Conseguir clientes de forma constante."},
+    {key:"area_ia",         ico:"🤖", name:"Tecnología e IA",         desc:"Usar herramientas e IA para hacer más con menos."},
+    {key:"area_admin",      ico:"📊", name:"Administración y Finanzas",desc:"Números claros, orden y control del dinero."}
+  ];
+  var scores = {};
+  (function buildAreas(){
+    var box = document.getElementById("areas");
+    AREAS.forEach(function(a){
+      var wrap = document.createElement("div"); wrap.className="area";
+      var n = document.createElement("div"); n.className="name"; n.innerHTML = a.ico+" <span>"+a.name+"</span>";
+      var d = document.createElement("div"); d.className="desc"; d.textContent = a.desc;
+      var rate = document.createElement("div"); rate.className="rate";
+      for(var i=1;i<=5;i++){
+        var b=document.createElement("b"); b.textContent=i; b.tabIndex=0;
+        b.dataset.k=a.key; b.dataset.v=i;
+        b.addEventListener("click", pick); b.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){e.preventDefault();pick.call(this,e);} });
+        rate.appendChild(b);
+      }
+      wrap.appendChild(n); wrap.appendChild(d); wrap.appendChild(rate);
+      box.appendChild(wrap);
+    });
+  })();
+  function pick(){
+    var k=this.dataset.k, v=this.dataset.v;
+    scores[k]=v;
+    var sibs=this.parentNode.querySelectorAll("b");
+    sibs.forEach(function(s){ s.classList.toggle("on", s.dataset.v===v); });
+    document.getElementById("e-areas").textContent="";
+  }
+
+  // --- Navegación de pasos ---
+  var STEPS = ["s-datos","s-negocio","s-numeros","s-areas","s-norte"];
+  var idx = 0;
+  function val(id){ var el=document.getElementById(id); return el?el.value.trim():""; }
+  function show(id){
+    document.querySelectorAll(".screen").forEach(function(s){ s.classList.add("hidden"); });
+    document.getElementById(id).classList.remove("hidden");
+    window.scrollTo(0,0);
+  }
+  function renderProgress(){
+    document.getElementById("track").classList.remove("hidden");
+    var pct = Math.round(((idx)/STEPS.length)*100);
+    document.getElementById("bar").style.width = pct+"%";
+    document.getElementById("count").textContent = "Paso "+(idx+1)+" de "+STEPS.length;
+  }
+  document.getElementById("start").addEventListener("click", function(){ idx=0; show(STEPS[0]); renderProgress(); });
+
+  document.querySelectorAll("[data-back]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      if(idx===0){ show("s-intro"); document.getElementById("track").classList.add("hidden"); return; }
+      idx--; show(STEPS[idx]); renderProgress();
+    });
+  });
+
+  function validateStep(step){
+    var e = document.getElementById("e-"+step.replace("s-",""));
+    e.textContent="";
+    document.querySelectorAll("#"+step+" .err").forEach(function(x){x.classList.remove("err");});
+    var missing=[];
+    function need(id,label){ var el=document.getElementById(id); if(el && !el.value.trim()){ el.classList.add("err"); missing.push(label);} }
+    if(step==="s-datos"){
+      need("nombre","tu nombre");
+      var w=document.getElementById("whatsapp"); if(!w.value.trim()){w.classList.add("err");missing.push("tu WhatsApp");}
+      var em=document.getElementById("email"); if(em.value.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value.trim())){em.classList.add("err");missing.push("un correo válido");}
+      if(!em.value.trim()){em.classList.add("err");missing.push("tu correo");}
+    }
+    if(step==="s-negocio"){ need("negocio","el nombre del negocio"); need("giro","qué vendes"); need("antiguedad","hace cuánto operas"); need("equipo","tu equipo"); }
+    if(step==="s-numeros"){ need("facturacion","tu facturación"); need("horas","tus horas"); need("dependencia","la última pregunta"); }
+    if(step==="s-areas"){
+      var falt = AREAS.filter(function(a){ return !scores[a.key]; }).length;
+      if(falt>0) missing.push("califica las "+falt+" área"+(falt>1?"s":"")+" que faltan");
+    }
+    if(step==="s-norte"){ need("objetivo90","tu objetivo"); need("obstaculo","tu obstáculo"); }
+    if(missing.length){ e.textContent = "Falta: "+missing.join(", ")+"."; return false; }
+    return true;
+  }
+
+  document.querySelectorAll("[data-next]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var step = STEPS[idx];
+      if(!validateStep(step)) return;
+      if(idx < STEPS.length-1){ idx++; show(STEPS[idx]); renderProgress(); }
+      else submit();
+    });
+  });
+
+  // --- Envío a Netlify Forms ---
+  function encode(data){
+    return Object.keys(data).map(function(k){ return encodeURIComponent(k)+"="+encodeURIComponent(data[k]); }).join("&");
+  }
+  function submit(){
+    var btn = document.getElementById("submit");
+    btn.disabled = true; btn.textContent = "Enviando…";
+    var data = {
+      "form-name":"bienvenida-lidermente",
+      nombre:val("nombre"), whatsapp:val("whatsapp"), email:val("email"),
+      negocio:val("negocio"), giro:val("giro"), antiguedad:val("antiguedad"), equipo:val("equipo"),
+      facturacion:val("facturacion"), horas:val("horas"), dependencia:val("dependencia"),
+      area_estrategia:scores.area_estrategia||"", area_ejecucion:scores.area_ejecucion||"", area_marketing:scores.area_marketing||"",
+      area_ventas:scores.area_ventas||"", area_ia:scores.area_ia||"", area_admin:scores.area_admin||"",
+      objetivo90:val("objetivo90"), obstaculo:val("obstaculo"), expectativa:val("expectativa")
+    };
+    // Envío directo a Google Sheet (Apps Script) — captura principal
+    fetch("https://script.google.com/macros/s/AKfycbwVwgzIQYuPcs17PvccHZnMmgA0glv4uZLZ1KI7YzNizxIcJ6VurjYVEPhMirce8rc6/exec", {method:"POST", mode:"no-cors", body:JSON.stringify(data)}).catch(function(){});
+    // Respaldo en Netlify Forms (si el sitio lo tiene activo)
+    fetch("/", {method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body:encode(data)})
+      .then(finish).catch(finish);
+
+    function finish(){
+      var first = (data.nombre.split(" ")[0]||"crack");
+      document.getElementById("gname").textContent = first;
+      document.getElementById("track").classList.add("hidden");
+      show("s-gracias");
+    }
+  }
+</script>
+</body>
+</html>
