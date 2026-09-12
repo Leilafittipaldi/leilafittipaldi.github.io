@@ -460,5 +460,500 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
   </div>
 </footer>
 
+<!-- ═══ MaKo Pixel + Clarity ═══ -->
+<script>
+(function () {
+  var ENDPOINT = 'https://hola-mako.com/api/track/vsl';
+  var TOKEN = 'mko_f5111dea4cc7e855055ab5d704c688f7';
+  var SV = 16;
+  function getCookie(n) {
+    var m = document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]*)'));
+    return m ? decodeURIComponent(m[1]) : null;
+  }
+  var visitorId = getCookie('nqe_visitor_id');
+  if (!visitorId) {
+    visitorId = (window.crypto && crypto.randomUUID)
+      ? crypto.randomUUID()
+      : String(Date.now()) + '-' + Math.random().toString(36).slice(2);
+    document.cookie = 'nqe_visitor_id=' + visitorId + '; max-age=31536000; path=/; SameSite=Lax';
+  }
+  var leadToken = new URLSearchParams(location.search).get('l') || null;
+  var prueba = null;
+  try {
+    prueba = new URLSearchParams(location.search).get('mko_test');
+    if (prueba) sessionStorage.setItem('mko_test', prueba);
+    else prueba = sessionStorage.getItem('mko_test');
+  } catch (e) {}
+
+  function enviar(data) {
+    data.t = TOKEN;
+    data.sv = SV;
+    data.visitor_id = visitorId;
+    if (data.landing_url == null) data.landing_url = location.href;
+    if (prueba) data.prueba = prueba;
+    if (leadToken) data.l = leadToken;
+    try {
+      fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+        keepalive: true
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
+  enviar({ tipo_evento: 'pageview', landing_url: location.href, referrer: document.referrer || null });
+
+  function tituloVsl(id) {
+    var f = document.querySelectorAll('iframe');
+    for (var i = 0; i < f.length; i++) if (id && (f[i].src || '').indexOf(id) !== -1 && f[i].title) return f[i].title;
+    var MP = 'panda' + 'video';
+    for (var j = 0; j < f.length; j++) if ((f[j].src || '').indexOf(MP) !== -1 && f[j].title) return f[j].title;
+    return null;
+  }
+  var huboInteraccion = false;
+  ['pointerdown', 'keydown', 'touchstart', 'wheel'].forEach(function (n) {
+    try { window.addEventListener(n, function () { huboInteraccion = true; }, { once: true, passive: true, capture: true }); } catch (e) {}
+  });
+
+  var V = {};
+  function est(id) {
+    var k = id || '_';
+    if (!V[k]) V[k] = { play: false, hitos: {}, seg: {}, pct: 0, dur: 0, segs: 0, tit: null };
+    return V[k];
+  }
+  function quien(d, src) {
+    if (d.video || d.videoId) return d.video || d.videoId;
+    var f = document.querySelectorAll('iframe');
+    for (var i = 0; i < f.length; i++) if (f[i].contentWindow === src) return 'iframe' + i;
+    return null;
+  }
+  var ESCALERA = [3, 5, 8, 12, 15, 20, 30, 45, 60, 90, 120, 180, 300, 420, 600, 900, 1200, 1800, 2400];
+
+  function idDeVideo(el, i) {
+    var src = el.currentSrc || el.getAttribute('src') || '';
+    if (!src) { var f = el.querySelector && el.querySelector('source'); if (f) src = f.getAttribute('src') || ''; }
+    if (el.id) return 'v:' + el.id;
+    if (src) return 'v:' + src.split('/').pop().split('?')[0].slice(0, 80);
+    return 'v:pos' + i;
+  }
+  var WN = 'wis' + 'tia';
+  function esDeW(el) {
+    var w = 'wis' + 'tia';
+    if (String((el && el.id) || '').indexOf(w + '_') === 0) return true;
+    for (var p = el && el.parentNode, i = 0; p && i < 15; p = p.parentNode, i++) {
+      if (typeof p.className === 'string' && p.className.indexOf(w + '_embed') !== -1) return true;
+    }
+    return false;
+  }
+  function engancharNativos() {
+    var vs = document.querySelectorAll('video');
+    for (var i = 0; i < vs.length; i++) {
+      var el = vs[i];
+      if (el.__mko) continue;
+      if (esDeW(el)) { el.__mko = true; continue; }
+      el.__mko = true;
+      for (var pa = el.parentNode; pa && pa.nodeType === 1 && !pa.__mkoH; pa = pa.parentNode) {}
+      if (pa && pa.nodeType === 1) continue;
+      (function (el, i) {
+        var id = idDeVideo(el, i);
+        var e = est(id);
+        e.tit = e.tit || el.getAttribute('title') || el.getAttribute('aria-label') || null;
+        el.addEventListener('pause', function () {
+          if (el.ended || !e.play) return;
+          enviar({ tipo_evento: 'pausa', porcentaje: e.dur > 0 ? e.pct : null, segundos: e.segs, video_id: id, vsl_titulo: e.tit });
+        });
+        el.addEventListener('ended', function () {
+          enviar({ tipo_evento: 'fin', porcentaje: 100, segundos: e.segs, video_id: id, vsl_titulo: e.tit });
+        });
+        el.addEventListener('play', function () {
+          if (e.play) {
+            enviar({ tipo_evento: 'retoma', porcentaje: e.dur > 0 ? e.pct : null, segundos: e.segs, video_id: id, vsl_titulo: e.tit });
+            return;
+          }
+          e.play = true;
+          enviar({ tipo_evento: 'play', porcentaje: 0, segundos: 0, video_id: id, vsl_titulo: e.tit, auto: !huboInteraccion, detalle: (el.currentSrc || el.getAttribute('src') || '').slice(0, 300) });
+        });
+        el.addEventListener('timeupdate', function () {
+          e.segs = el.currentTime || 0;
+          if (el.duration > 0 && isFinite(el.duration)) {
+            e.dur = el.duration;
+            e.pct = Math.min(100, Math.round((e.segs / e.dur) * 100));
+            var h = Math.floor(e.pct / 5) * 5;
+            if (h >= 5 && !e.hitos[h]) {
+              e.hitos[h] = true;
+              enviar({ tipo_evento: 'p' + h, porcentaje: e.pct, segundos: e.segs, video_id: id, vsl_titulo: e.tit });
+            }
+            return;
+          }
+          for (var k = 0; k < ESCALERA.length; k++) {
+            var s = ESCALERA[k];
+            if (e.segs >= s && !e.seg[s]) {
+              e.seg[s] = true;
+              enviar({ tipo_evento: 's' + s, segundos: e.segs, video_id: id, vsl_titulo: e.tit });
+            }
+          }
+        });
+      })(el, i);
+    }
+  }
+  engancharNativos();
+  try {
+    new MutationObserver(engancharNativos).observe(document.documentElement, { childList: true, subtree: true });
+  } catch (e) {}
+
+  // YouTube tracking
+  var YTS = [];
+  var YT_EMBED = /^https?:\/\/(www\.)?youtube(-nocookie)?\.com\/embed\/([A-Za-z0-9_-]{6,20})/;
+  var YT_ORIGEN = /^https:\/\/(www\.)?youtube(-nocookie)?\.com$/;
+  var YT_ID = 'mko-yt';
+  var ytTemprano = !(window.performance && performance.now) || performance.now() < 10000;
+
+  function ytOir(y) {
+    if (y.pasivo) return;
+    if (y.timer) clearInterval(y.timer);
+    y.vivo = false;
+    var intentos = 0;
+    y.timer = setInterval(function () {
+      if (y.vivo || ++intentos > 60) { clearInterval(y.timer); y.timer = null; return; }
+      try { y.f.contentWindow.postMessage('{"event":"listening","id":"' + YT_ID + '","channel":"widget"}', '*'); } catch (err) {}
+    }, 250);
+  }
+  function ytCeder(y) {
+    if (y.pasivo) return;
+    y.pasivo = true;
+    if (y.timer) { clearInterval(y.timer); y.timer = null; }
+    if (y.recargado || y.estado === 1) return;
+    y.recargado = true;
+    try { y.f.src = y.f.src; } catch (err) {}
+  }
+  function ytRevisar(f, puedeParchar) {
+    var src = f.src || '';
+    var m = YT_EMBED.exec(src);
+    if (!m) return;
+    var tiene = /[?&]enablejsapi=1(&|#|$)/.test(src);
+    var y = f.__mkoY;
+    if (!y) {
+      y = f.__mkoY = { f: f, estado: null, cual: null, vivo: false, timer: null, pasivo: tiene, recargado: false };
+      YTS.push(y);
+    }
+    y.vid = m[3] === 'videoseries' ? null : m[3];
+    if (!tiene) {
+      if (!puedeParchar) return;
+      var i = src.indexOf('#');
+      var base = i >= 0 ? src.slice(0, i) : src;
+      base = base.replace(/([?&])enablejsapi=[^&]*(&|$)/, '$1').replace(/[?&]$/, '');
+      y.pasivo = false;
+      f.src = base + (base.indexOf('?') >= 0 ? '&' : '?') + 'enablejsapi=1' + (i >= 0 ? src.slice(i) : '');
+      return;
+    }
+    ytOir(y);
+  }
+  function ytEnganchar(f, puedeParchar) {
+    if (f.__mkoI) return;
+    f.__mkoI = true;
+    try { new MutationObserver(function () { ytRevisar(f, true); }).observe(f, { attributes: true, attributeFilter: ['src'] }); } catch (err) {}
+    try { f.addEventListener('load', function () { if (f.__mkoY && YT_EMBED.test(f.src || '')) ytOir(f.__mkoY); }); } catch (err) {}
+    ytRevisar(f, puedeParchar);
+  }
+  function ytBuscar(nodo) {
+    if (!nodo) return;
+    if (nodo.nodeName === 'IFRAME') { ytEnganchar(nodo, true); return; }
+    if (!nodo.getElementsByTagName) return;
+    var l = nodo.getElementsByTagName('iframe');
+    for (var i = 0; i < l.length; i++) ytEnganchar(l[i], true);
+  }
+  function ytAvance(e, id) {
+    if (e.dur > 0) {
+      e.pct = Math.min(100, Math.round((e.segs / e.dur) * 100));
+      var h = Math.floor(e.pct / 5) * 5;
+      if (h >= 5 && !e.hitos[h]) {
+        e.hitos[h] = true;
+        enviar({ tipo_evento: 'p' + h, porcentaje: e.pct, segundos: e.segs, video_id: id, vsl_titulo: e.tit });
+      }
+    }
+    for (var k = 0; k < ESCALERA.length; k++) {
+      var s = ESCALERA[k];
+      if (e.segs >= s && !e.seg[s]) {
+        e.seg[s] = true;
+        enviar({ tipo_evento: 's' + s, segundos: e.segs, video_id: id, vsl_titulo: e.tit });
+      }
+    }
+  }
+  function ytEstado(e, id, s) {
+    if (s === 1) {
+      if (!e.play) {
+        e.play = true; e.pausado = false;
+        enviar({ tipo_evento: 'play', porcentaje: 0, segundos: 0, video_id: id, vsl_titulo: e.tit, auto: !huboInteraccion, detalle: 'https://www.youtube.com/watch?v=' + id.slice(3) });
+      } else if (e.pausado) {
+        e.pausado = false;
+        enviar({ tipo_evento: 'retoma', porcentaje: e.dur > 0 ? e.pct : null, segundos: e.segs, video_id: id, vsl_titulo: e.tit });
+      }
+      return;
+    }
+    if (!e.play) return;
+    if (s === 2 && !e.pausado) {
+      e.pausado = true;
+      enviar({ tipo_evento: 'pausa', porcentaje: e.dur > 0 ? e.pct : null, segundos: e.segs, video_id: id, vsl_titulo: e.tit });
+    } else if (s === 0) {
+      e.pausado = true;
+      if (e.dur > 0 && !e.hitos[100]) {
+        e.hitos[100] = true; e.pct = 100;
+        enviar({ tipo_evento: 'p100', porcentaje: 100, segundos: e.segs, video_id: id, vsl_titulo: e.tit });
+      }
+      enviar({ tipo_evento: 'fin', porcentaje: 100, segundos: e.segs, video_id: id, vsl_titulo: e.tit });
+    }
+  }
+  function ytInfo(y, info) {
+    var vd = info.videoData;
+    var vid = (vd && vd.video_id) || y.vid;
+    if (!vid) return;
+    if (vid !== y.cual) { y.cual = vid; y.estado = null; }
+    var id = 'yt:' + vid, e = est(id);
+    if (vd && vd.title) e.tit = String(vd.title).slice(0, 200);
+    else if (!e.tit) e.tit = y.f.getAttribute('title') || null;
+    if (info.duration > 0) e.dur = info.duration;
+    var hayTiempo = typeof info.currentTime === 'number';
+    if (hayTiempo) e.segs = info.currentTime;
+    var st = typeof info.playerState === 'number' && info.playerState !== y.estado ? info.playerState : null;
+    if (st !== null) y.estado = st;
+    if (st === 1) ytEstado(e, id, st);
+    if (hayTiempo && e.play) ytAvance(e, id);
+    if (st !== null && st !== 1) ytEstado(e, id, st);
+  }
+  window.addEventListener('message', function (ev) {
+    if (!YTS.length || typeof ev.data !== 'string' || !YT_ORIGEN.test(ev.origin || '')) return;
+    var y = null;
+    for (var i = 0; i < YTS.length; i++) if (YTS[i].f.contentWindow === ev.source) { y = YTS[i]; break; }
+    if (!y) return;
+    var d;
+    try { d = JSON.parse(ev.data); } catch (err) { return; }
+    if (!d || !d.event) return;
+    y.vivo = true;
+    if (d.id && d.id !== YT_ID) ytCeder(y);
+    if ((d.event === 'initialDelivery' || d.event === 'infoDelivery') && d.info && typeof d.info === 'object') ytInfo(y, d.info);
+  });
+  window.addEventListener('blur', function () {
+    try { var a = document.activeElement; if (a && a.tagName === 'IFRAME') huboInteraccion = true; } catch (err) {}
+  });
+  (function () {
+    var l = document.getElementsByTagName('iframe');
+    for (var i = 0; i < l.length; i++) ytEnganchar(l[i], ytTemprano && document.activeElement !== l[i]);
+  })();
+  try {
+    new MutationObserver(function (recs) {
+      for (var r = 0; r < recs.length; r++) for (var a = 0; a < recs[r].addedNodes.length; a++) ytBuscar(recs[r].addedNodes[a]);
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  } catch (err) {}
+
+  // Panda Video tracking
+  window.addEventListener('message', function (ev) {
+    var d = ev.data;
+    if (!d || typeof d !== 'object' || String(d.message || '').indexOf('panda_') !== 0) return;
+    var vid = quien(d, ev.source);
+    var e = est(vid);
+    if (!e.tit) e.tit = tituloVsl(vid);
+    if (d.message === 'panda_allData' && d.playerData && d.playerData.duration > 0) {
+      e.dur = d.playerData.duration;
+    }
+    if (d.message === 'panda_play' && !e.play) {
+      e.play = true;
+      var src = '';
+      try {
+        var ifr = document.querySelectorAll('iframe');
+        for (var q = 0; q < ifr.length; q++) if (vid && (ifr[q].src || '').indexOf(vid) !== -1) { src = ifr[q].src; break; }
+      } catch (err) {}
+      enviar({ tipo_evento: 'play', porcentaje: 0, segundos: 0, video_id: vid, vsl_titulo: e.tit, auto: !huboInteraccion, detalle: src.slice(0, 300) });
+    }
+    if (d.message === 'panda_pause' && e.play) {
+      enviar({ tipo_evento: 'pausa', porcentaje: e.dur > 0 ? e.pct : null, segundos: e.segs, video_id: vid, vsl_titulo: e.tit });
+    }
+    if (d.message === 'panda_play' && e.play && e.pausado) {
+      e.pausado = false;
+      enviar({ tipo_evento: 'retoma', porcentaje: e.dur > 0 ? e.pct : null, segundos: e.segs, video_id: vid, vsl_titulo: e.tit });
+    }
+    if (d.message === 'panda_pause') e.pausado = true;
+    if (d.message === 'panda_ended' && e.play && !e.fin) {
+      e.fin = true;
+      enviar({ tipo_evento: 'fin', porcentaje: 100, segundos: e.segs, video_id: vid, vsl_titulo: e.tit });
+    }
+    if (d.message === 'panda_timeupdate' && d.currentTime != null) {
+      e.segs = d.currentTime;
+      if (e.dur > 0) {
+        e.pct = Math.min(100, Math.round((e.segs / e.dur) * 100));
+        var h = Math.floor(e.pct / 5) * 5;
+        if (h >= 5 && !e.hitos[h]) {
+          e.hitos[h] = true;
+          enviar({ tipo_evento: 'p' + h, porcentaje: e.pct, segundos: e.segs, video_id: vid, vsl_titulo: e.tit });
+        }
+      }
+      for (var i = 0; i < ESCALERA.length; i++) {
+        var s = ESCALERA[i];
+        if (e.segs >= s && !e.seg[s]) {
+          e.seg[s] = true;
+          enviar({ tipo_evento: 's' + s, segundos: e.segs, video_id: vid, vsl_titulo: e.tit });
+        }
+      }
+    }
+  });
+
+  // Exit tracking
+  var exitEnviado = false;
+  function alSalir() {
+    if (exitEnviado) return;
+    exitEnviado = true;
+    for (var k in V) {
+      if (!Object.prototype.hasOwnProperty.call(V, k)) continue;
+      var e = V[k];
+      if (!e.play) continue;
+      enviar({ tipo_evento: 'exit', porcentaje: e.dur > 0 ? e.pct : null, segundos: e.segs, video_id: k === '_' ? null : k, vsl_titulo: e.tit });
+    }
+  }
+
+  // Click tracking
+  var CLICKS = 0;
+  document.addEventListener('click', function (ev) {
+    try {
+      if (CLICKS >= 40) return;
+      var el = ev.target;
+      for (var i = 0; el && i < 5; i++) {
+        var t = (el.tagName || '').toUpperCase();
+        if (t === 'A' || t === 'BUTTON' || el.getAttribute && el.getAttribute('role') === 'button') break;
+        el = el.parentElement;
+      }
+      if (!el || !el.tagName) return;
+      var tag = el.tagName.toUpperCase();
+      if (tag !== 'A' && tag !== 'BUTTON' && el.getAttribute('role') !== 'button') return;
+      if (esDeW(el)) return;
+      var href = el.getAttribute ? (el.getAttribute('href') || '') : '';
+      var texto = (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 80);
+      var detalle = href ? (href.indexOf('#') === 0 ? 'ancla ' + href : href) : ('boton: ' + texto);
+      if (!detalle) return;
+      CLICKS++;
+      enviar({ tipo_evento: 'click', detalle: detalle.slice(0, 300) + (texto && href ? ' — ' + texto : '') });
+    } catch (e) {}
+  }, true);
+
+  // Clarity
+  try {
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y3dwgikuul");
+    window.clarity("identify", visitorId);
+    window.clarity("set", "mko_pixel", String(SV));
+    if (prueba) window.clarity("set", "mko_prueba", prueba);
+  } catch (e) {}
+
+  // Agenda tracking
+  var AGENDADOS = {};
+  window.addEventListener('message', function (ev) {
+    try {
+      var d = ev.data;
+      if (!d) return;
+      var e = typeof d === 'string' ? d : d.event;
+      if (typeof e === 'string' && e.indexOf('calendly.') === 0) {
+        if (e !== 'calendly.event_scheduled') return;
+        enviar({ tipo_evento: 'agendo', detalle: 'calendly' });
+        return;
+      }
+      if (d.originator !== 'CAL') return;
+      var t = String(d.type || d.fullType || '');
+      if (t.indexOf('bookingSuccessful') === -1) return;
+      var pAgenda = d.data || {};
+      var bAgenda = pAgenda.booking || pAgenda;
+      var uidAgenda = String(bAgenda.uid || bAgenda.id || 'sin-uid');
+      if (AGENDADOS[uidAgenda]) return;
+      AGENDADOS[uidAgenda] = true;
+      enviar({ tipo_evento: 'agendo', detalle: 'agenda-cal' });
+      var a = (bAgenda.attendees && bAgenda.attendees[0]) || pAgenda.attendee || {};
+      mandarOptin({
+        nombre: a.name || bAgenda.name || null,
+        email: a.email || bAgenda.email || null,
+        telefono: (a.phoneNumber || a.phone || null),
+        origen: 'agenda'
+      });
+    } catch (err) {}
+  });
+
+  window.addEventListener('pagehide', alSalir);
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') alSalir();
+  });
+
+  // Page visibility tracking
+  var CAMBIOS = 0;
+  var afuera = 0;
+  var arranquePagina = Date.now();
+  document.addEventListener('visibilitychange', function () {
+    try {
+      if (CAMBIOS >= 10) return;
+      if (document.visibilityState === 'hidden') {
+        afuera = Date.now();
+        CAMBIOS++;
+        enviar({ tipo_evento: 'salio', segundos: Math.round((Date.now() - arranquePagina) / 1000) });
+      } else if (afuera) {
+        enviar({ tipo_evento: 'volvio', segundos: Math.round((Date.now() - afuera) / 1000) });
+        afuera = 0;
+      }
+    } catch (e) {}
+  });
+  var cerrado = false;
+  window.addEventListener('pagehide', function () {
+    if (cerrado) return;
+    cerrado = true;
+    try { enviar({ tipo_evento: 'cierre', segundos: Math.round((Date.now() - arranquePagina) / 1000) }); } catch (e) {}
+  });
+
+  // Opt-in capture
+  var OPTIN = 'https://hola-mako.com/api/track/optin';
+  function mandarOptin(d) {
+    try {
+      if (!d || (!d.email && !d.telefono)) return;
+      fetch(OPTIN, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token: TOKEN, visitor_id: visitorId,
+          nombre: d.nombre || null, email: d.email || null,
+          telefono: d.telefono || null, empresa: d.empresa || null,
+          origen_captura: d.origen || 'formulario',
+          pagina: location.href, prueba: prueba
+        }),
+        keepalive: true
+      }).catch(function () {});
+    } catch (e) {}
+  }
+  function campo(form, pats, types) {
+    var els = form.querySelectorAll('input, textarea, select');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (!el.value || !String(el.value).trim()) continue;
+      if (types && types.indexOf(el.type) !== -1) return String(el.value).trim();
+      var pistas = [el.name, el.id, el.getAttribute('autocomplete'), el.placeholder, el.getAttribute('aria-label')].join(' ').toLowerCase();
+      for (var j = 0; j < pats.length; j++) if (pistas.indexOf(pats[j]) !== -1) return String(el.value).trim();
+    }
+    return null;
+  }
+  document.addEventListener('submit', function (ev) {
+    try {
+      var form = ev.target;
+      if (!form || form.tagName !== 'FORM') return;
+      var email = campo(form, ['email', 'correo', 'mail'], ['email']);
+      var telefono = campo(form, ['tel', 'phone', 'whats', 'celular', 'movil', 'móvil'], ['tel']);
+      if (!email && !telefono) return;
+      mandarOptin({
+        nombre: campo(form, ['nombre', 'name', 'first', 'apellido']),
+        email: email,
+        telefono: telefono,
+        empresa: campo(form, ['empresa', 'company', 'negocio']),
+        origen: 'formulario'
+      });
+    } catch (e) {}
+  }, true);
+})();
+</script>
+
 </body>
 </html>
