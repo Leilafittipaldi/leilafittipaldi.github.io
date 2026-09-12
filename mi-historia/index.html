@@ -3,12 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="google-site-verification" content="pydqf5AXEdzvWruoZ5-YwXcrnpEOJUHxP6Zj42HcPSU" />
-<title>Leila Fittipaldi | Coach y Mentora de Dueños de Negocio</title>
-<meta name="description" content="Ayudo a dueños de negocio a dejar de ser el cuello de botella de su empresa. +500 coaches formados en 27 países. Formando líderes desde 2013. Fundadora de LíderMente en Cancún.">
-<meta property="og:title" content="Leila Fittipaldi | Coach y Mentora de Dueños de Negocio">
-<meta property="og:description" content="Ayudo a dueños de negocio a dejar de ser el cuello de botella de su empresa. Formando líderes desde 2013.">
-<meta property="og:type" content="website">
+<title>Mi Historia | Leila Fittipaldi</title>
+<meta name="description" content="De construir una inmobiliaria top 5 en Argentina a formar líderes en 27 países. La historia de Leila Fittipaldi, coach y mentora de dueños de negocio.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,22 +36,9 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
 .nav-cta:hover{opacity:.9;transform:translateY(-1px)}
 .hamburger{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer}
 
-/* ─── HERO ─── */
-.hero{padding:120px 0 80px;background:linear-gradient(135deg,var(--black) 0%,#050f0d 50%,var(--black) 100%);position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(42,250,210,.06) 0%,transparent 70%);pointer-events:none}
-.hero .container{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.hero-text{max-width:540px}
-.hero-eyebrow{font-family:var(--cond);font-size:1.3rem;color:var(--turquoise);letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px}
-.hero h1{font-family:var(--display);font-size:clamp(2.2rem,5vw,3.4rem);font-weight:900;line-height:1.05;letter-spacing:-.03em;margin-bottom:20px}
-.hero h1 em{font-style:normal;color:var(--turquoise)}
-.hero-sub{font-size:1.1rem;color:var(--gray);line-height:1.7;margin-bottom:32px}
-.hero-sub strong{color:var(--white)}
-.hero-badges{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
-.badge{background:var(--dark3);border:1px solid rgba(42,250,210,.2);padding:6px 14px;border-radius:999px;font-size:.8rem;color:var(--turquoise);font-weight:600;letter-spacing:.03em}
-.btn-primary{display:inline-block;background:var(--turquoise);color:var(--black);padding:14px 32px;border-radius:8px;font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:.02em;text-transform:uppercase;transition:transform .2s,box-shadow .2s}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(42,250,210,.25);opacity:1}
-.hero-img{position:relative;display:flex;justify-content:center}
-.hero-img img{max-height:520px;width:auto;border-radius:16px;filter:drop-shadow(0 24px 48px rgba(0,0,0,.5))}
+/* ─── PAGE HEADER ─── */
+.page-header{padding:120px 0 60px;background:linear-gradient(135deg,var(--black) 0%,#050f0d 50%,var(--black) 100%);position:relative;overflow:hidden;text-align:center}
+.page-header::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(42,250,210,.06) 0%,transparent 70%);pointer-events:none}
 
 /* ─── SECTION UTILITIES ─── */
 section{padding:80px 0}
@@ -64,41 +47,40 @@ section{padding:80px 0}
 .section-eyebrow{font-family:var(--cond);font-size:1.1rem;color:var(--turquoise);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px}
 .section-title{font-family:var(--display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px;text-wrap:balance}
 .section-sub{color:var(--gray);font-size:1.05rem;max-width:640px;line-height:1.7}
-.btn-link{display:inline-block;font-family:var(--display);font-weight:800;font-size:.95rem;color:var(--turquoise);letter-spacing:.02em;text-transform:uppercase;padding:10px 0;border-bottom:2px solid var(--turquoise);transition:padding-left .2s}
-.btn-link:hover{padding-left:8px;opacity:1}
 
-/* ─── NÚMEROS (barra compacta) ─── */
-.numeros{border-top:1px solid rgba(42,250,210,.08);border-bottom:1px solid rgba(42,250,210,.08);padding:48px 0}
-.numeros-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
-.numero-item .num{font-family:var(--display);font-size:clamp(2.2rem,4vw,3rem);font-weight:900;color:var(--turquoise);line-height:1}
-.numero-item .num-label{font-size:.85rem;color:var(--gray);margin-top:6px;line-height:1.4}
+/* ─── HISTORIA ─── */
+.historia{border-top:1px solid rgba(42,250,210,.08)}
+.historia-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:40px;align-items:start}
+.historia-text{font-size:1.05rem;line-height:1.8;color:rgba(255,255,255,.85)}
+.historia-text p{margin-bottom:20px}
+.historia-text strong{color:var(--turquoise)}
+.historia-text .highlight{border-left:3px solid var(--turquoise);padding-left:20px;margin:28px 0;font-size:1.1rem;font-style:italic;color:var(--white)}
+.historia-sidebar{position:sticky;top:88px}
+.credential{background:var(--dark3);border:1px solid rgba(42,250,210,.1);border-radius:12px;padding:20px;margin-bottom:16px}
+.credential-label{font-family:var(--cond);font-size:.85rem;color:var(--turquoise);letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}
+.credential-value{font-family:var(--display);font-size:1.4rem;font-weight:800;line-height:1.2}
 
-/* ─── TEASER CARDS ─── */
-.teasers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
-.teaser-card{background:var(--dark3);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:32px 28px;transition:border-color .3s,transform .3s}
-.teaser-card:hover{border-color:rgba(42,250,210,.3);transform:translateY(-4px)}
-.teaser-icon{font-size:2rem;margin-bottom:16px}
-.teaser-card h3{font-family:var(--display);font-size:1.15rem;font-weight:800;line-height:1.2;margin-bottom:8px}
-.teaser-card p{font-size:.9rem;color:var(--gray);line-height:1.6;margin-bottom:20px}
+/* ─── PERSONALIDADES ─── */
+.personalidades{border-top:1px solid rgba(42,250,210,.08)}
+.pers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:40px}
+.pers-card{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:3/4;cursor:default}
+.pers-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.pers-card:hover img{transform:scale(1.04)}
+.pers-card .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,transparent 50%);display:flex;align-items:flex-end;padding:16px}
+.pers-card .pers-name{font-family:var(--display);font-size:1rem;font-weight:800;letter-spacing:-.01em}
+.pers-card .pers-role{font-size:.75rem;color:var(--turquoise);margin-top:2px}
 
-/* ─── LIDERMENTE HIGHLIGHT ─── */
-.lm-highlight{background:linear-gradient(135deg,#050f0d 0%,var(--black) 50%,#0a0d0c 100%);border-top:2px solid var(--turquoise);position:relative;padding:80px 0}
-.lm-highlight .container{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.lm-highlight-text p{color:var(--gray);font-size:1.05rem;line-height:1.7;margin-bottom:24px}
-.lm-highlight-text p strong{color:var(--white)}
-.lm-details-mini{background:var(--dark3);border-radius:12px;padding:28px;border:1px solid rgba(42,250,210,.15)}
-.lm-detail-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
-.lm-detail-row:last-child{border-bottom:none}
-.lm-detail-icon{font-size:1.3rem;flex-shrink:0}
-.lm-detail-text{font-size:.95rem;line-height:1.5}
-.lm-detail-text strong{color:var(--turquoise)}
-.lm-price{font-family:var(--display);font-size:2rem;font-weight:900;color:var(--turquoise)}
+/* ─── NÚMEROS ─── */
+.numeros{border-top:1px solid rgba(42,250,210,.08)}
+.numeros-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:40px;text-align:center}
+.numero-item .num{font-family:var(--display);font-size:clamp(2.5rem,5vw,3.5rem);font-weight:900;color:var(--turquoise);line-height:1}
+.numero-item .num-label{font-size:.9rem;color:var(--gray);margin-top:8px;line-height:1.4}
 
-/* ─── DIAGNÓSTICO CTA ─── */
-.diagnostico{background:var(--turquoise);color:var(--black);text-align:center;padding:64px 0}
-.diagnostico .section-eyebrow{color:rgba(0,0,0,.5)}
-.diagnostico .section-title{color:var(--black)}
-.diagnostico .section-sub{color:rgba(0,0,0,.7);margin:0 auto 32px}
+/* ─── CTA ─── */
+.cta-section{background:var(--turquoise);color:var(--black);text-align:center;padding:64px 0}
+.cta-section .section-eyebrow{color:rgba(0,0,0,.5)}
+.cta-section .section-title{color:var(--black)}
+.cta-section .section-sub{color:rgba(0,0,0,.7);margin:0 auto 32px}
 .btn-dark{display:inline-block;background:var(--black);color:var(--turquoise);padding:14px 32px;border-radius:8px;font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:.02em;text-transform:uppercase;transition:transform .2s,box-shadow .2s}
 .btn-dark:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.25);opacity:1}
 
@@ -117,13 +99,9 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:900px){
-  .hero .container{grid-template-columns:1fr;text-align:center}
-  .hero-text{max-width:100%}
-  .hero-badges{justify-content:center}
-  .hero-img img{max-height:400px}
-  .teasers{grid-template-columns:1fr}
+  .historia-grid{grid-template-columns:1fr}
+  .historia-sidebar{position:static}
   .numeros-grid{grid-template-columns:repeat(2,1fr)}
-  .lm-highlight .container{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr;text-align:center}
   .footer-desc{max-width:100%;margin:0 auto}
   .footer-bottom{flex-direction:column;gap:12px}
@@ -131,6 +109,7 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
 @media(max-width:640px){
   .nav-links{display:none}
   .hamburger{display:block}
+  .pers-grid{grid-template-columns:repeat(2,1fr)}
   .numeros-grid{gap:20px}
   section{padding:60px 0}
 }
@@ -143,7 +122,7 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
   <div class="container">
     <a href="/" class="nav-logo">LEILA <span>FITTIPALDI</span></a>
     <ul class="nav-links">
-      <li><a href="/mi-historia/">Mi Historia</a></li>
+      <li><a href="/mi-historia/" class="active">Mi Historia</a></li>
       <li><a href="/casos/">Casos de Éxito</a></li>
       <li><a href="/lidermente/">LíderMente</a></li>
       <li><a href="/sobre-mi/">Sobre Mí</a></li>
@@ -153,22 +132,98 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
   </div>
 </nav>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero">
+<!-- ═══ PAGE HEADER ═══ -->
+<section class="page-header">
   <div class="container">
-    <div class="hero-text">
-      <p class="hero-eyebrow">Coach y Mentora de Dueños de Negocio</p>
-      <h1>Tu negocio no necesita más horas tuyas.<br>Necesita que <em>tú crezcas.</em></h1>
-      <p class="hero-sub">Ayudo a dueños de negocio a dejar de ser el <strong>cuello de botella</strong> de su propia empresa. Formando líderes desde 2013.</p>
-      <div class="hero-badges">
-        <span class="badge">+500 coaches formados</span>
-        <span class="badge">27 países</span>
-        <span class="badge">+30K personas impactadas</span>
+    <p class="section-eyebrow">Mi historia</p>
+    <h1 class="section-title">De construir una inmobiliaria top 5<br>a formar líderes en 27 países</h1>
+  </div>
+</section>
+
+<!-- ═══ HISTORIA ═══ -->
+<section class="historia section-dark">
+  <div class="container">
+    <div class="historia-grid">
+      <div class="historia-text">
+        <p>Construí una inmobiliaria en Mar del Plata, Argentina. En menos de 3 años llegó al <strong>top 5 de la ciudad</strong>, vendiendo más de 15 propiedades al mes con un marketing disruptivo y un equipo de 9 colaboradores.</p>
+        <p>Pero yo era el motor — y cuando paraba, todo se frenaba.</p>
+        <p>Esa experiencia me llevó a formarme como coach, fundar <strong>La Academia del Coach</strong> y formar a más de 500 coaches en 27 países. Fui socia de Mauricio Benoist. Compartí escenario con Juan Diego Gómez y Jürgen Klaric. Navegué con Diego Dreyfus y César Lozano. Me entrevistaron Jorge Serratos y Titto Gálvez.</p>
+        <div class="highlight">Hoy soy Directora de Capacitación y Alianzas de Sindemex, y todo lo que aprendí lo aplico en un solo lugar: <strong>LíderMente</strong>.</div>
+        <p>Pero nada de eso importa si tú sigues abriendo y cerrando tu negocio todos los días.</p>
       </div>
-      <a href="/diagnostico/" class="btn-primary">Descubre tu cuello de botella →</a>
+      <div class="historia-sidebar">
+        <div class="credential">
+          <p class="credential-label">Fundadora</p>
+          <p class="credential-value">La Academia del Coach</p>
+        </div>
+        <div class="credential">
+          <p class="credential-label">Directora de Capacitación y Alianzas</p>
+          <p class="credential-value">Sindemex</p>
+        </div>
+        <div class="credential">
+          <p class="credential-label">Socia</p>
+          <p class="credential-value">Mauricio Benoist · It's Workshop</p>
+        </div>
+        <div class="credential">
+          <p class="credential-label">Formando líderes desde</p>
+          <p class="credential-value">2013</p>
+        </div>
+      </div>
     </div>
-    <div class="hero-img">
-      <img src="img/leila-hero.jpg" alt="Leila Fittipaldi — Coach y Mentora de Dueños de Negocio" width="400" height="600" loading="eager">
+  </div>
+</section>
+
+<!-- ═══ PERSONALIDADES ═══ -->
+<section class="personalidades section-darker">
+  <div class="container">
+    <p class="section-eyebrow">Trayectoria</p>
+    <h2 class="section-title">Ha compartido escenario con</h2>
+    <div class="pers-grid">
+      <div class="pers-card">
+        <img src="/img/personalidades/jurgen-klaric.jpg" alt="Leila Fittipaldi con Jürgen Klaric" loading="lazy">
+        <div class="overlay">
+          <div>
+            <p class="pers-name">Jürgen Klaric</p>
+            <p class="pers-role">Experto en Neuroventas</p>
+          </div>
+        </div>
+      </div>
+      <div class="pers-card">
+        <img src="/img/personalidades/juan-diego-gomez.jpg" alt="Leila Fittipaldi con Juan Diego Gómez" loading="lazy">
+        <div class="overlay">
+          <div>
+            <p class="pers-name">Juan Diego Gómez</p>
+            <p class="pers-role">Educador Financiero</p>
+          </div>
+        </div>
+      </div>
+      <div class="pers-card">
+        <img src="/img/personalidades/titto-galvez.jpg" alt="Leila Fittipaldi con Titto Gálvez" loading="lazy">
+        <div class="overlay">
+          <div>
+            <p class="pers-name">Titto Gálvez</p>
+            <p class="pers-role">Speaker Internacional</p>
+          </div>
+        </div>
+      </div>
+      <div class="pers-card">
+        <img src="/img/personalidades/mauricio-benoist-legendarios.jpg" alt="Leila Fittipaldi con Mauricio Benoist — Personas Legendarias 2024" loading="lazy">
+        <div class="overlay">
+          <div>
+            <p class="pers-name">Mauricio Benoist</p>
+            <p class="pers-role">Personas Legendarias 2024</p>
+          </div>
+        </div>
+      </div>
+      <div class="pers-card">
+        <img src="/img/personalidades/crucero-dreyfus-lozano.jpg" alt="Leila Fittipaldi con Diego Dreyfus y César Lozano" loading="lazy">
+        <div class="overlay">
+          <div>
+            <p class="pers-name">Diego Dreyfus · César Lozano</p>
+            <p class="pers-role">Crucero de Líderes</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -197,73 +252,12 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
   </div>
 </section>
 
-<!-- ═══ EXPLORA ═══ -->
-<section class="section-darker">
+<!-- ═══ CTA ═══ -->
+<section class="cta-section">
   <div class="container">
-    <p class="section-eyebrow">Conoce más</p>
-    <h2 class="section-title">Todo lo que necesitas en un solo lugar</h2>
-    <div class="teasers">
-      <a href="/mi-historia/" class="teaser-card" style="color:inherit;text-decoration:none">
-        <div class="teaser-icon">📖</div>
-        <h3>Mi Historia</h3>
-        <p>De construir una inmobiliaria top 5 en Argentina a formar líderes en 27 países. Una trayectoria junto a Jürgen Klaric, Juan Diego Gómez y más.</p>
-        <span class="btn-link">Conocer mi historia →</span>
-      </a>
-      <a href="/casos/" class="teaser-card" style="color:inherit;text-decoration:none">
-        <div class="teaser-icon">🎬</div>
-        <h3>Casos de Éxito</h3>
-        <p>Dueños de negocio reales que cambiaron su forma de liderar. Resultados en video, sin guión y sin filtro.</p>
-        <span class="btn-link">Ver los casos →</span>
-      </a>
-      <a href="/lidermente/" class="teaser-card" style="color:inherit;text-decoration:none">
-        <div class="teaser-icon">🧠</div>
-        <h3>LíderMente</h3>
-        <p>La membresía presencial en Cancún donde dueños de negocio entrenan lo que nadie les enseñó. Cada miércoles.</p>
-        <span class="btn-link">Conocer LíderMente →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ LIDERMENTE HIGHLIGHT ═══ -->
-<section class="lm-highlight">
-  <div class="container">
-    <div class="lm-highlight-text">
-      <p class="section-eyebrow">Membresía de entrenamiento</p>
-      <h2 class="section-title">LíderMente</h2>
-      <p>Cada miércoles, un grupo de máximo <strong>20 dueños de negocio</strong> se reúne en Cancún para trabajar las 6 áreas que mueven una empresa: estrategia, ejecución, marketing, ventas, tecnología e IA, y administración.</p>
-      <p><strong>1ª sesión sin cargo</strong> — ven a conocernos.</p>
-      <a href="/lidermente/" class="btn-primary">Ver todos los detalles →</a>
-    </div>
-    <div class="lm-details-mini">
-      <div class="lm-detail-row">
-        <span class="lm-detail-icon">📍</span>
-        <p class="lm-detail-text">Gnius Cancún, <strong>Av. Fonatur 12</strong></p>
-      </div>
-      <div class="lm-detail-row">
-        <span class="lm-detail-icon">🕢</span>
-        <p class="lm-detail-text">Miércoles <strong>7:30 – 9:30 pm</strong></p>
-      </div>
-      <div class="lm-detail-row">
-        <span class="lm-detail-icon">👥</span>
-        <p class="lm-detail-text">Cupo máximo: <strong>20 personas</strong></p>
-      </div>
-      <div class="lm-detail-row" style="flex-direction:column;align-items:flex-start;gap:4px">
-        <p class="lm-price">$800 MXN<span style="font-size:.9rem;font-weight:400;color:var(--gray);font-family:var(--body)"> / mes</span></p>
-      </div>
-      <div style="margin-top:20px">
-        <a href="https://wa.me/522211229846?text=Hola%20Leila%2C%20quiero%20información%20de%20LIDERMENTE" class="btn-primary" style="display:block;text-align:center;width:100%">Escríbeme LIDERMENTE →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ DIAGNÓSTICO ═══ -->
-<section class="diagnostico">
-  <div class="container">
-    <p class="section-eyebrow">Herramienta gratuita</p>
+    <p class="section-eyebrow">Siguiente paso</p>
     <h2 class="section-title">¿Eres el cuello de botella de tu negocio?</h2>
-    <p class="section-sub">Responde 7 preguntas y descubre qué área de tu negocio te tiene atrapado. Sin costo, sin compromiso.</p>
+    <p class="section-sub">Responde 7 preguntas y descubre qué área te tiene atrapado. Sin costo, sin compromiso.</p>
     <a href="/diagnostico/" class="btn-dark">Hacer mi diagnóstico gratis →</a>
   </div>
 </section>
@@ -303,7 +297,7 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
   </div>
 </footer>
 
-<!-- MaKo Pixel + Clarity (compacto — sin video tracking en home) -->
+<!-- MaKo Pixel + Clarity -->
 <script>
 (function(){
   var E='https://hola-mako.com/api/track/vsl',T='mko_f5111dea4cc7e855055ab5d704c688f7',SV=16;
