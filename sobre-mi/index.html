@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sobre Mí | Leila Fittipaldi</title>
+<meta name="description" content="Conoce a Leila Fittipaldi: de construir una inmobiliaria top 5 en Argentina a formar líderes en 27 países. Coach y mentora de dueños de negocio en Cancún.">
+<meta property="og:title" content="Sobre Mí | Leila Fittipaldi">
+<meta property="og:description" content="Coach y Mentora de Dueños de Negocio. +500 coaches formados en 27 países. Fundadora de La Academia del Coach. Directora de Capacitación de Sindemex.">
+<meta property="og:type" content="profile">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cabin:ital,wght@0,400;0,600;0,700;1,400&family=League+Spartan:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#000;--white:#fff;--turquoise:#2AFAD2;--gray:#808285;--dark:#0a0a0a;--dark2:#111;--dark3:#1a1a1a;
+  --display:'League Spartan','Arial Black',system-ui,sans-serif;
+  --cond:'Bebas Neue','Oswald','Impact',system-ui,sans-serif;
+  --body:'Cabin',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--white);background:var(--black);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--turquoise);text-decoration:none;transition:opacity .2s}
+a:hover{opacity:.85}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(42,250,210,.12)}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-family:var(--display);font-weight:800;font-size:1.15rem;color:var(--white);letter-spacing:-.02em}
+.nav-logo span{color:var(--turquoise)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--gray);font-size:.875rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--turquoise);opacity:1}
+.nav-cta{background:var(--turquoise);color:var(--black);padding:8px 20px;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:.03em;text-transform:uppercase}
+.nav-cta:hover{opacity:.9;transform:translateY(-1px)}
+.hamburger{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer}
+
+/* ─── SECTION UTILITIES ─── */
+section{padding:80px 0}
+.section-dark{background:var(--dark)}
+.section-darker{background:var(--dark2)}
+.section-eyebrow{font-family:var(--cond);font-size:1.1rem;color:var(--turquoise);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px}
+.section-title{font-family:var(--display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px;text-wrap:balance}
+.section-sub{color:var(--gray);font-size:1.05rem;max-width:640px;line-height:1.7}
+
+/* ─── HERO SOBRE MÍ ─── */
+.about-hero{padding:120px 0 80px;background:linear-gradient(135deg,var(--black) 0%,#050f0d 50%,var(--black) 100%);position:relative;overflow:hidden}
+.about-hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(42,250,210,.06) 0%,transparent 70%);pointer-events:none}
+.about-hero .container{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:center}
+.about-photo{position:relative;display:flex;justify-content:center}
+.about-photo img{max-height:520px;width:auto;border-radius:16px;filter:drop-shadow(0 24px 48px rgba(0,0,0,.5))}
+.about-intro h1{font-family:var(--display);font-size:clamp(2rem,4.5vw,3rem);font-weight:900;line-height:1.05;letter-spacing:-.03em;margin-bottom:20px}
+.about-intro h1 em{font-style:normal;color:var(--turquoise)}
+.about-intro p{font-size:1.05rem;color:rgba(255,255,255,.85);line-height:1.8;margin-bottom:16px}
+.about-intro p strong{color:var(--turquoise)}
+.about-intro .highlight{border-left:3px solid var(--turquoise);padding-left:20px;margin:24px 0;font-size:1.1rem;font-style:italic;color:var(--white)}
+
+/* ─── TIMELINE ─── */
+.timeline{list-style:none;position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--turquoise),rgba(42,250,210,.2))}
+.timeline li{position:relative;margin-bottom:32px;padding-left:20px}
+.timeline li::before{content:'';position:absolute;left:-28px;top:8px;width:14px;height:14px;background:var(--turquoise);border-radius:50%;border:3px solid var(--black)}
+.timeline .year{font-family:var(--cond);font-size:1rem;color:var(--turquoise);letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}
+.timeline h3{font-family:var(--display);font-size:1.1rem;font-weight:800;margin-bottom:4px}
+.timeline p{font-size:.95rem;color:var(--gray);line-height:1.6}
+
+/* ─── CREDENCIALES ─── */
+.credentials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.credential-card{background:var(--dark3);border:1px solid rgba(42,250,210,.1);border-radius:12px;padding:24px;text-align:center;transition:border-color .3s,transform .3s}
+.credential-card:hover{border-color:rgba(42,250,210,.3);transform:translateY(-4px)}
+.credential-icon{font-size:2rem;margin-bottom:12px}
+.credential-card h3{font-family:var(--display);font-size:1rem;font-weight:800;margin-bottom:4px}
+.credential-card p{font-size:.85rem;color:var(--gray);line-height:1.5}
+
+/* ─── VALORES ─── */
+.valores-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:40px}
+.valor{background:var(--dark3);border:1px solid rgba(42,250,210,.08);border-radius:12px;padding:28px;transition:border-color .3s}
+.valor:hover{border-color:rgba(42,250,210,.25)}
+.valor h3{font-family:var(--display);font-size:1.05rem;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.valor h3 span{color:var(--turquoise)}
+.valor p{font-size:.95rem;color:var(--gray);line-height:1.7}
+
+/* ─── CTA ─── */
+.cta-section{background:var(--turquoise);color:var(--black);text-align:center;padding:64px 0}
+.cta-section .section-eyebrow{color:rgba(0,0,0,.5)}
+.cta-section .section-title{color:var(--black)}
+.cta-section .section-sub{color:rgba(0,0,0,.7);margin:0 auto 32px}
+.btn-dark{display:inline-block;background:var(--black);color:var(--turquoise);padding:14px 32px;border-radius:8px;font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:.02em;text-transform:uppercase;transition:transform .2s,box-shadow .2s}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.25);opacity:1}
+.btn-primary{display:inline-block;background:var(--turquoise);color:var(--black);padding:14px 32px;border-radius:8px;font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:.02em;text-transform:uppercase;transition:transform .2s,box-shadow .2s;margin-top:8px}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(42,250,210,.25);opacity:1}
+
+/* ─── FOOTER ─── */
+footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:48px 0 32px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:32px}
+.footer-brand{font-family:var(--display);font-size:1.2rem;font-weight:800;margin-bottom:8px}
+.footer-brand span{color:var(--turquoise)}
+.footer-desc{font-size:.9rem;color:var(--gray);line-height:1.6;max-width:320px}
+.footer-heading{font-family:var(--cond);font-size:.95rem;color:var(--turquoise);letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:8px}
+.footer-links a{color:var(--gray);font-size:.9rem;transition:color .2s}
+.footer-links a:hover{color:var(--turquoise)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:20px;display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:rgba(255,255,255,.3)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .about-hero .container{grid-template-columns:1fr;text-align:center}
+  .about-photo{order:-1}
+  .about-photo img{max-height:380px}
+  .about-intro .highlight{text-align:left}
+  .credentials-grid{grid-template-columns:1fr}
+  .valores-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;text-align:center}
+  .footer-desc{max-width:100%;margin:0 auto}
+  .footer-bottom{flex-direction:column;gap:12px}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .hamburger{display:block}
+  section{padding:60px 0}
+  .timeline{padding-left:28px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav>
+  <div class="container">
+    <a href="/" class="nav-logo">LEILA <span>FITTIPALDI</span></a>
+    <ul class="nav-links">
+      <li><a href="/mi-historia/">Mi Historia</a></li>
+      <li><a href="/casos/">Casos de Éxito</a></li>
+      <li><a href="/lidermente/">LíderMente</a></li>
+      <li><a href="/sobre-mi/" class="active">Sobre Mí</a></li>
+    </ul>
+    <a href="https://wa.me/522211229846?text=Hola%20Leila%2C%20quiero%20información%20de%20LIDERMENTE" class="nav-cta">Escríbeme</a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menú">☰</button>
+  </div>
+</nav>
+
+<!-- ═══ HERO — SOBRE MÍ ═══ -->
+<section class="about-hero">
+  <div class="container">
+    <div class="about-photo">
+      <img src="/img/leila-hero.jpg" alt="Leila Fittipaldi — Coach y Mentora de Dueños de Negocio" width="400" height="600" loading="eager">
+    </div>
+    <div class="about-intro">
+      <p class="section-eyebrow">Sobre mí</p>
+      <h1>Soy <em>Leila Fittipaldi</em></h1>
+      <p>Coach y Mentora de Dueños de Negocio. Argentina de nacimiento, cancunense por elección.</p>
+      <p>Construí una inmobiliaria que llegó al <strong>top 5 de Mar del Plata</strong> en menos de 3 años — 15 propiedades al mes, marketing disruptivo, 9 colaboradores. Pero yo era el motor. Y cuando paraba, todo se frenaba.</p>
+      <p>Esa experiencia me cambió la forma de ver los negocios. <strong>El problema nunca era el negocio. Era yo.</strong></p>
+      <div class="highlight">"Si tu negocio depende 100% de ti, no tienes un negocio. Tienes un empleo que tú misma te creaste."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TRAYECTORIA ═══ -->
+<section class="section-dark">
+  <div class="container">
+    <p class="section-eyebrow">Trayectoria</p>
+    <h2 class="section-title">Lo que me trajo hasta aquí</h2>
+    <ul class="timeline">
+      <li>
+        <p class="year">2013</p>
+        <h3>Comienza la formación de líderes</h3>
+        <p>Tras la experiencia con la inmobiliaria, inicio mi camino como coach profesional. Desde el primer día supe que lo mío era ayudar a dueños de negocio a dejar de ser el cuello de botella de su empresa.</p>
+      </li>
+      <li>
+        <p class="year">2015</p>
+        <h3>Fundación de La Academia del Coach</h3>
+        <p>Nace La Academia del Coach. A lo largo de los años formamos a más de 500 coaches en 27 países. No enseñábamos teoría: enseñábamos cómo transformar personas y equipos.</p>
+      </li>
+      <li>
+        <p class="year">2018</p>
+        <h3>Sociedad con Mauricio Benoist</h3>
+        <p>Me asocio con Mauricio Benoist en It's Workshop. Juntos compartimos escenario y desarrollamos programas de liderazgo. En 2024 seríamos reconocidos como Personas Legendarias.</p>
+      </li>
+      <li>
+        <p class="year">2022</p>
+        <h3>Directora de Capacitación — Sindemex</h3>
+        <p>Asumo la Dirección de Capacitación y Alianzas de Sindemex, llevando la mentalidad de liderazgo y la inteligencia artificial al sector empresarial de México.</p>
+      </li>
+      <li>
+        <p class="year">2025</p>
+        <h3>Nace LíderMente en Cancún</h3>
+        <p>Todo lo aprendido en un solo lugar: una membresía presencial donde dueños de negocio entrenan las 6 áreas que mueven una empresa. Cada miércoles, en Cancún.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ CREDENCIALES ═══ -->
+<section class="section-darker">
+  <div class="container">
+    <p class="section-eyebrow">En números</p>
+    <h2 class="section-title">Lo que respalda el trabajo</h2>
+    <div class="credentials-grid">
+      <div class="credential-card">
+        <div class="credential-icon">🎓</div>
+        <h3>500+ coaches formados</h3>
+        <p>A través de La Academia del Coach, en 27 países de habla hispana.</p>
+      </div>
+      <div class="credential-card">
+        <div class="credential-icon">🌎</div>
+        <h3>27 países</h3>
+        <p>Alcance internacional formando líderes en toda Latinoamérica y España.</p>
+      </div>
+      <div class="credential-card">
+        <div class="credential-icon">👥</div>
+        <h3>30K+ personas impactadas</h3>
+        <p>Entre conferencias, talleres, mentoría y coaching en vivo.</p>
+      </div>
+      <div class="credential-card">
+        <div class="credential-icon">🏢</div>
+        <h3>Sindemex</h3>
+        <p>Directora de Capacitación y Alianzas del sindicato empresarial de México.</p>
+      </div>
+      <div class="credential-card">
+        <div class="credential-icon">🏆</div>
+        <h3>Personas Legendarias 2024</h3>
+        <p>Reconocimiento junto a Mauricio Benoist por trayectoria en liderazgo.</p>
+      </div>
+      <div class="credential-card">
+        <div class="credential-icon">🧠</div>
+        <h3>LíderMente</h3>
+        <p>Membresía presencial en Cancún para dueños de negocio. 6 áreas, cada miércoles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LO QUE CREO ═══ -->
+<section class="section-dark">
+  <div class="container">
+    <p class="section-eyebrow">Mi filosofía</p>
+    <h2 class="section-title">Lo que creo sobre los negocios</h2>
+    <div class="valores-grid">
+      <div class="valor">
+        <h3><span>01</span> El dueño es el cuello de botella</h3>
+        <p>La mayoría de los problemas de un negocio no son de estrategia ni de mercado. Son del dueño que no sabe delegar, que no sabe liderar, o que no se atreve a soltar el control.</p>
+      </div>
+      <div class="valor">
+        <h3><span>02</span> Crecer duele — y está bien</h3>
+        <p>Nadie escala un negocio sin transformarse como persona primero. La mentalidad no es un lujo, es la base. Si tú no creces, tu negocio tampoco.</p>
+      </div>
+      <div class="valor">
+        <h3><span>03</span> La IA no es el futuro, es el presente</h3>
+        <p>La inteligencia artificial es el carril libre que la mayoría de los dueños de negocio ignoran. Quien la adopte primero, gana. Así de simple.</p>
+      </div>
+      <div class="valor">
+        <h3><span>04</span> Comunidad mata soledad</h3>
+        <p>Ser dueño de negocio es solitario. No tienes con quién hablar de lo que sientes. LíderMente existe para que ya no estés solo en esto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section">
+  <div class="container">
+    <p class="section-eyebrow">Siguiente paso</p>
+    <h2 class="section-title">¿Quieres trabajar conmigo?</h2>
+    <p class="section-sub">Empieza con un diagnóstico gratuito para descubrir qué área de tu negocio te tiene atrapado — o escríbeme directo por WhatsApp.</p>
+    <a href="/diagnostico/" class="btn-dark">Hacer mi diagnóstico gratis →</a>
+    <br>
+    <a href="https://wa.me/522211229846?text=Hola%20Leila%2C%20quiero%20información%20de%20LIDERMENTE" class="btn-primary" style="margin-top:16px">Escríbeme por WhatsApp →</a>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">LEILA <span>FITTIPALDI</span></p>
+        <p class="footer-desc">Coach y Mentora de Dueños de Negocio. Formando líderes desde 2013. Fundadora de La Academia del Coach.</p>
+        <p class="footer-desc" style="margin-top:8px">📍 Cancún, México</p>
+      </div>
+      <div>
+        <p class="footer-heading">Navegación</p>
+        <ul class="footer-links">
+          <li><a href="/mi-historia/">Mi Historia</a></li>
+          <li><a href="/casos/">Casos de Éxito</a></li>
+          <li><a href="/lidermente/">LíderMente</a></li>
+          <li><a href="/sobre-mi/">Sobre Mí</a></li>
+          <li><a href="/diagnostico/">Diagnóstico</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-heading">Contacto</p>
+        <ul class="footer-links">
+          <li><a href="https://wa.me/522211229846?text=Hola%20Leila" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/leilafittipaldiok/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.youtube.com/@LaAcademiaDelCoach" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="mailto:hola@leilafittipaldi.com">hola@leilafittipaldi.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Leila Fittipaldi. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- MaKo Pixel + Clarity -->
+<script>
+(function(){
+  var E='https://hola-mako.com/api/track/vsl',T='mko_f5111dea4cc7e855055ab5d704c688f7',SV=16;
+  function gc(n){var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)'));return m?decodeURIComponent(m[1]):null}
+  var vi=gc('nqe_visitor_id');
+  if(!vi){vi=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2);document.cookie='nqe_visitor_id='+vi+'; max-age=31536000; path=/; SameSite=Lax'}
+  var lt=new URLSearchParams(location.search).get('l')||null;
+  var pr=null;try{pr=new URLSearchParams(location.search).get('mko_test');if(pr)sessionStorage.setItem('mko_test',pr);else pr=sessionStorage.getItem('mko_test')}catch(e){}
+  function env(d){d.t=T;d.sv=SV;d.visitor_id=vi;if(d.landing_url==null)d.landing_url=location.href;if(pr)d.prueba=pr;if(lt)d.l=lt;try{fetch(E,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),keepalive:true}).catch(function(){})}catch(e){}}
+  env({tipo_evento:'pageview',landing_url:location.href,referrer:document.referrer||null});
+  var CL=0;document.addEventListener('click',function(ev){try{if(CL>=40)return;var el=ev.target;for(var i=0;el&&i<5;i++){var t=(el.tagName||'').toUpperCase();if(t==='A'||t==='BUTTON'||el.getAttribute&&el.getAttribute('role')==='button')break;el=el.parentElement}if(!el||!el.tagName)return;var tag=el.tagName.toUpperCase();if(tag!=='A'&&tag!=='BUTTON'&&el.getAttribute('role')!=='button')return;var href=el.getAttribute?(el.getAttribute('href')||''):'';var txt=(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim().slice(0,80);var det=href?(href.indexOf('#')===0?'ancla '+href:href):('boton: '+txt);if(!det)return;CL++;env({tipo_evento:'click',detalle:det.slice(0,300)+(txt&&href?' — '+txt:'')})}catch(e){}},true);
+  var OP='https://hola-mako.com/api/track/optin';
+  function mop(d){try{if(!d||(!d.email&&!d.telefono))return;fetch(OP,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:T,visitor_id:vi,nombre:d.nombre||null,email:d.email||null,telefono:d.telefono||null,empresa:d.empresa||null,origen_captura:d.origen||'formulario',pagina:location.href,prueba:pr}),keepalive:true}).catch(function(){})}catch(e){}}
+  function cf(form,pats,types){var els=form.querySelectorAll('input,textarea,select');for(var i=0;i<els.length;i++){var el=els[i];if(!el.value||!String(el.value).trim())continue;if(types&&types.indexOf(el.type)!==-1)return String(el.value).trim();var p=[el.name,el.id,el.getAttribute('autocomplete'),el.placeholder,el.getAttribute('aria-label')].join(' ').toLowerCase();for(var j=0;j<pats.length;j++)if(p.indexOf(pats[j])!==-1)return String(el.value).trim()}return null}
+  document.addEventListener('submit',function(ev){try{var form=ev.target;if(!form||form.tagName!=='FORM')return;var email=cf(form,['email','correo','mail'],['email']);var tel=cf(form,['tel','phone','whats','celular','movil','móvil'],['tel']);if(!email&&!tel)return;mop({nombre:cf(form,['nombre','name','first','apellido']),email:email,telefono:tel,empresa:cf(form,['empresa','company','negocio']),origen:'formulario'})}catch(e){}},true);
+  var ap=Date.now(),cerr=false;
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')env({tipo_evento:'salio',segundos:Math.round((Date.now()-ap)/1000)})});
+  window.addEventListener('pagehide',function(){if(cerr)return;cerr=true;try{env({tipo_evento:'cierre',segundos:Math.round((Date.now()-ap)/1000)})}catch(e){}});
+  try{(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","y3dwgikuul");window.clarity("identify",vi);window.clarity("set","mko_pixel",String(SV));if(pr)window.clarity("set","mko_prueba",pr)}catch(e){}
+})();
+</script>
+</body>
+</html>
