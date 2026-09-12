@@ -79,15 +79,7 @@
 </head>
 <body>
 
-<!-- Formulario oculto para que Netlify lo detecte en el deploy -->
-<form name="bienvenida-lidermente" data-netlify="true" netlify-honeypot="bot-field" hidden>
-  <input name="bot-field" /><input name="nombre" /><input name="whatsapp" /><input name="email" />
-  <input name="negocio" /><input name="giro" /><input name="antiguedad" /><input name="equipo" />
-  <input name="facturacion" /><input name="horas" /><input name="dependencia" />
-  <input name="area_estrategia" /><input name="area_ejecucion" /><input name="area_marketing" />
-  <input name="area_ventas" /><input name="area_ia" /><input name="area_admin" />
-  <input name="objetivo90" /><input name="obstaculo" /><input name="expectativa" />
-</form>
+<!-- Formularios capturan en Google Sheets vía Apps Script (Netlify Forms no aplica en GitHub Pages) -->
 
 <div class="wrap">
 
@@ -314,15 +306,11 @@
     });
   });
 
-  // --- Envío a Netlify Forms ---
-  function encode(data){
-    return Object.keys(data).map(function(k){ return encodeURIComponent(k)+"="+encodeURIComponent(data[k]); }).join("&");
-  }
+  // --- Envío a Google Sheets (Apps Script) ---
   function submit(){
     var btn = document.getElementById("submit");
     btn.disabled = true; btn.textContent = "Enviando…";
     var data = {
-      "form-name":"bienvenida-lidermente",
       nombre:val("nombre"), whatsapp:val("whatsapp"), email:val("email"),
       negocio:val("negocio"), giro:val("giro"), antiguedad:val("antiguedad"), equipo:val("equipo"),
       facturacion:val("facturacion"), horas:val("horas"), dependencia:val("dependencia"),
@@ -330,10 +318,7 @@
       area_ventas:scores.area_ventas||"", area_ia:scores.area_ia||"", area_admin:scores.area_admin||"",
       objetivo90:val("objetivo90"), obstaculo:val("obstaculo"), expectativa:val("expectativa")
     };
-    // Envío directo a Google Sheet (Apps Script) — captura principal
-    fetch("https://script.google.com/macros/s/AKfycbwVwgzIQYuPcs17PvccHZnMmgA0glv4uZLZ1KI7YzNizxIcJ6VurjYVEPhMirce8rc6/exec", {method:"POST", mode:"no-cors", body:JSON.stringify(data)}).catch(function(){});
-    // Respaldo en Netlify Forms (si el sitio lo tiene activo)
-    fetch("/", {method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body:encode(data)})
+    fetch("https://script.google.com/macros/s/AKfycbwVwgzIQYuPcs17PvccHZnMmgA0glv4uZLZ1KI7YzNizxIcJ6VurjYVEPhMirce8rc6/exec", {method:"POST", mode:"no-cors", body:JSON.stringify(data)})
       .then(finish).catch(finish);
 
     function finish(){
@@ -343,6 +328,28 @@
       show("s-gracias");
     }
   }
+</script>
+<!-- MaKo Pixel + Clarity -->
+<script>
+(function(){
+  var E='https://hola-mako.com/api/track/vsl',T='mko_f5111dea4cc7e855055ab5d704c688f7',SV=16;
+  function gc(n){var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)'));return m?decodeURIComponent(m[1]):null}
+  var vi=gc('nqe_visitor_id');
+  if(!vi){vi=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2);document.cookie='nqe_visitor_id='+vi+'; max-age=31536000; path=/; SameSite=Lax'}
+  var lt=new URLSearchParams(location.search).get('l')||null;
+  var pr=null;try{pr=new URLSearchParams(location.search).get('mko_test');if(pr)sessionStorage.setItem('mko_test',pr);else pr=sessionStorage.getItem('mko_test')}catch(e){}
+  function env(d){d.t=T;d.sv=SV;d.visitor_id=vi;if(d.landing_url==null)d.landing_url=location.href;if(pr)d.prueba=pr;if(lt)d.l=lt;try{fetch(E,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),keepalive:true}).catch(function(){})}catch(e){}}
+  env({tipo_evento:'pageview',landing_url:location.href,referrer:document.referrer||null});
+  var CL=0;document.addEventListener('click',function(ev){try{if(CL>=40)return;var el=ev.target;for(var i=0;el&&i<5;i++){var t=(el.tagName||'').toUpperCase();if(t==='A'||t==='BUTTON'||el.getAttribute&&el.getAttribute('role')==='button')break;el=el.parentElement}if(!el||!el.tagName)return;var tag=el.tagName.toUpperCase();if(tag!=='A'&&tag!=='BUTTON'&&el.getAttribute('role')!=='button')return;var href=el.getAttribute?(el.getAttribute('href')||''):'';var txt=(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim().slice(0,80);var det=href?(href.indexOf('#')===0?'ancla '+href:href):('boton: '+txt);if(!det)return;CL++;env({tipo_evento:'click',detalle:det.slice(0,300)+(txt&&href?' — '+txt:'')})}catch(e){}},true);
+  var OP='https://hola-mako.com/api/track/optin';
+  function mop(d){try{if(!d||(!d.email&&!d.telefono))return;fetch(OP,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:T,visitor_id:vi,nombre:d.nombre||null,email:d.email||null,telefono:d.telefono||null,empresa:d.empresa||null,origen_captura:d.origen||'formulario',pagina:location.href,prueba:pr}),keepalive:true}).catch(function(){})}catch(e){}}
+  function cf(form,pats,types){var els=form.querySelectorAll('input,textarea,select');for(var i=0;i<els.length;i++){var el=els[i];if(!el.value||!String(el.value).trim())continue;if(types&&types.indexOf(el.type)!==-1)return String(el.value).trim();var p=[el.name,el.id,el.getAttribute('autocomplete'),el.placeholder,el.getAttribute('aria-label')].join(' ').toLowerCase();for(var j=0;j<pats.length;j++)if(p.indexOf(pats[j])!==-1)return String(el.value).trim()}return null}
+  document.addEventListener('submit',function(ev){try{var form=ev.target;if(!form||form.tagName!=='FORM')return;var email=cf(form,['email','correo','mail'],['email']);var tel=cf(form,['tel','phone','whats','celular','movil','móvil'],['tel']);if(!email&&!tel)return;mop({nombre:cf(form,['nombre','name','first','apellido']),email:email,telefono:tel,empresa:cf(form,['empresa','company','negocio']),origen:'formulario'})}catch(e){}},true);
+  var ap=Date.now(),cerr=false;
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')env({tipo_evento:'salio',segundos:Math.round((Date.now()-ap)/1000)})});
+  window.addEventListener('pagehide',function(){if(cerr)return;cerr=true;try{env({tipo_evento:'cierre',segundos:Math.round((Date.now()-ap)/1000)})}catch(e){}});
+  try{(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","y3dwgikuul");window.clarity("identify",vi);window.clarity("set","mko_pixel",String(SV));if(pr)window.clarity("set","mko_prueba",pr)}catch(e){}
+})();
 </script>
 </body>
 </html>
