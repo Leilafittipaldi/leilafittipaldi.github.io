@@ -5,6 +5,11 @@ Allow: /
 # Sitemap
 Sitemap: https://leilafittipaldi.com/sitemap.xml
 
+# LLM context (for AI assistants and generative search)
+# See https://llmstxt.org for the standard
+# llms.txt: https://leilafittipaldi.com/llms.txt
+# llms-full.txt: https://leilafittipaldi.com/llms-full.txt
+
 # No indexar página de bienvenida (post-opt-in)
 Disallow: /bienvenida/
 Disallow: /lidermente/
