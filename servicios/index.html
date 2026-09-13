@@ -160,6 +160,13 @@ section{padding:80px 0}
 .testimonio-info strong{font-family:var(--display);font-size:.85rem;font-weight:800;display:block;line-height:1.2}
 .testimonio-info span{font-size:.78rem;color:var(--gray)}
 
+/* ─── VIDEO TESTIMONIOS ─── */
+.video-testimonios-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px}
+.video-testimonio{border-radius:12px;overflow:hidden;border:1px solid rgba(42,250,210,.12);background:var(--dark3);transition:border-color .3s}
+.video-testimonio:hover{border-color:rgba(42,250,210,.3)}
+.video-testimonio .video-embed{margin-top:0;border:0;border-radius:0}
+.video-testimonio-caption{padding:14px 18px;font-family:var(--display);font-size:.85rem;font-weight:800;color:var(--white);line-height:1.3}
+
 /* ─── CTA BANDS ─── */
 .cta-band{background:var(--turquoise);color:var(--black);text-align:center;padding:64px 0}
 .cta-band .section-eyebrow{color:rgba(0,0,0,.5)}
@@ -196,6 +203,7 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
   .channels{grid-template-columns:1fr}
   .soluciones-grid{grid-template-columns:repeat(2,1fr)}
   .testimonios-grid{grid-template-columns:1fr}
+  .video-testimonios-grid{grid-template-columns:1fr}
   .split,.split-reverse{grid-template-columns:1fr}
   .split-reverse{direction:ltr}
   .footer-grid{grid-template-columns:1fr;text-align:center}
@@ -769,6 +777,48 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
         </div>
       </div>
     </div>
+
+    <h3 style="font-family:var(--display);font-size:1.4rem;font-weight:800;margin-top:56px;text-align:center">🎥 Escúchalos en su propia voz</h3>
+    <p style="text-align:center;color:var(--gray);font-size:.95rem;margin-bottom:8px">Testimonios reales en video — sin editar, sin guion.</p>
+
+    <div class="video-testimonios-grid">
+      <div class="video-testimonio">
+        <div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/B2quNSlEABo" title="Esto es lo que Fernando logró con el SER" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-testimonio-caption">Esto es lo que Fernando logró con el SER</div>
+      </div>
+      <div class="video-testimonio">
+        <div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/0pNbok-d92w" title="De asesora de seguros a Coach financiera — Flor Núñez" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-testimonio-caption">De asesora de seguros a Coach financiera — Flor Núñez</div>
+      </div>
+      <div class="video-testimonio">
+        <div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/8gVt6Nn11hk" title="¿Qué cambió en Amalia Samuel después del Gim Emocional?" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-testimonio-caption">¿Qué cambió en Amalia Samuel? 🇩🇴 Rep. Dominicana</div>
+      </div>
+      <div class="video-testimonio">
+        <div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/HgD_CdsRS3E" title="¿Cómo Cristian Canteros se convirtió en Coach JR exitoso?" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-testimonio-caption">De Argentina a Coach JR. Exitoso — Cristian Canteros 🇦🇷</div>
+      </div>
+      <div class="video-testimonio">
+        <div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/3mZbTvGParY" title="¿Qué hizo Marcelo Nuñez para crear un negocio escalable?" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-testimonio-caption">¿Qué hizo Marcelo Nuñez para crear un negocio escalable?</div>
+      </div>
+      <div class="video-testimonio">
+        <div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/8KGFvwGOUUM" title="Así escaló su negocio desde cero un exprofesor" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-testimonio-caption">Así escaló su negocio desde cero un exprofesor</div>
+      </div>
+      <div class="video-testimonio">
+        <div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/tzokpVE7GH8" title="¿Qué hizo diferente Roberta Ercolano para triunfar?" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-testimonio-caption">¿Qué hizo diferente Roberta Ercolano para triunfar? 🇧🇷</div>
+      </div>
+      <div class="video-testimonio">
+        <div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/zcQLYJTl_es" title="Cindy Caravalles: Mente Fuerte, Negocios Rentables" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-testimonio-caption">Cindy Caravalles: Mente Fuerte, Negocios Rentables 🇬🇹</div>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:24px">
+      <a href="https://www.youtube.com/playlist?list=PLkTkVtRLCYOMwZw7l9Od70cspDIJc-7st" target="_blank" rel="noopener" style="color:var(--turquoise);font-family:var(--display);font-size:.9rem;font-weight:800;text-decoration:none">Ver los 70+ testimonios en YouTube →</a>
+    </p>
   </div>
 </section>
 
