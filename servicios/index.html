@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="pydqf5AXEdzvWruoZ5-YwXcrnpEOJUHxP6Zj42HcPSU" />
+<title>Servicios | Leila Fittipaldi</title>
+<meta name="description" content="Formación, mentoría, conferencias empresariales, estrategia digital y marca personal. Destrabo expertos, líderes y organizaciones para convertir conocimiento en influencia y negocio.">
+<meta property="og:title" content="Servicios | Leila Fittipaldi">
+<meta property="og:description" content="Formación, mentoría, conferencias, estrategia digital y marca personal. Conocimiento → influencia → negocio.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cabin:ital,wght@0,400;0,600;0,700;1,400&family=League+Spartan:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#000;--white:#fff;--turquoise:#2AFAD2;--gray:#808285;--dark:#0a0a0a;--dark2:#111;--dark3:#1a1a1a;
+  --display:'League Spartan','Arial Black',system-ui,sans-serif;
+  --cond:'Bebas Neue','Oswald','Impact',system-ui,sans-serif;
+  --body:'Cabin',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--white);background:var(--black);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--turquoise);text-decoration:none;transition:opacity .2s}
+a:hover{opacity:.85}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(42,250,210,.12)}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-family:var(--display);font-weight:800;font-size:1.15rem;color:var(--white);letter-spacing:-.02em}
+.nav-logo span{color:var(--turquoise)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--gray);font-size:.875rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--turquoise);opacity:1}
+.nav-cta{background:var(--turquoise);color:var(--black);padding:8px 20px;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:.03em;text-transform:uppercase}
+.nav-cta:hover{opacity:.9;transform:translateY(-1px)}
+.hamburger{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer}
+@media(max-width:640px){
+  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:rgba(0,0,0,.96);flex-direction:column;padding:24px;gap:20px;border-bottom:1px solid rgba(42,250,210,.12)}
+  .nav-links.show{display:flex}
+  .hamburger{display:block}
+}
+
+/* ─── PAGE HERO ─── */
+.page-hero{padding:120px 0 64px;text-align:center;background:linear-gradient(180deg,#050f0d 0%,var(--black) 100%);position:relative}
+.page-hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(42,250,210,.07) 0%,transparent 70%);pointer-events:none}
+.page-hero .section-eyebrow{font-family:var(--cond);font-size:1.2rem;color:var(--turquoise);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+.page-hero h1{font-family:var(--display);font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.08;letter-spacing:-.03em;margin-bottom:20px;text-wrap:balance}
+.page-hero h1 em{font-style:normal;color:var(--turquoise)}
+.page-hero p{color:var(--gray);font-size:1.1rem;max-width:680px;margin:0 auto;line-height:1.7}
+
+/* ─── SECTIONS ─── */
+section{padding:80px 0}
+.section-dark{background:var(--dark)}
+.section-darker{background:var(--dark2)}
+.section-eyebrow{font-family:var(--cond);font-size:1.05rem;color:var(--turquoise);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px}
+.section-title{font-family:var(--display);font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px;text-wrap:balance}
+.section-sub{color:var(--gray);font-size:1.02rem;max-width:700px;line-height:1.7;margin-bottom:40px}
+
+/* ─── 3 PILARES ─── */
+.pilares{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.pilar{background:var(--dark3);border:1px solid rgba(42,250,210,.15);border-radius:12px;padding:32px 24px;text-align:center;transition:border-color .3s,transform .3s}
+.pilar:hover{border-color:rgba(42,250,210,.4);transform:translateY(-4px)}
+.pilar-num{font-family:var(--display);font-size:2.5rem;font-weight:900;color:var(--turquoise);line-height:1}
+.pilar h3{font-family:var(--display);font-size:1.2rem;font-weight:800;margin-top:8px;text-transform:uppercase;letter-spacing:.03em}
+.pilar p{font-size:.9rem;color:var(--gray);margin-top:8px;line-height:1.5}
+
+/* ─── NÚMEROS ─── */
+.numeros{border-top:1px solid rgba(42,250,210,.08);border-bottom:1px solid rgba(42,250,210,.08);padding:48px 0}
+.numeros-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+.numero-item .num{font-family:var(--display);font-size:clamp(2.2rem,4vw,3rem);font-weight:900;color:var(--turquoise);line-height:1}
+.numero-item .num-label{font-size:.85rem;color:var(--gray);margin-top:6px;line-height:1.4}
+
+/* ─── FLOW / PROCESO ─── */
+.flow{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:32px}
+.flow-step{background:var(--turquoise);color:var(--black);padding:10px 22px;border-radius:8px;font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:.02em;text-transform:uppercase}
+.flow-arrow{color:var(--turquoise);font-size:1.4rem;font-weight:700}
+
+/* ─── CARDS GRID ─── */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:32px}
+.card{background:var(--dark3);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:28px 24px;transition:border-color .3s,transform .3s}
+.card:hover{border-color:rgba(42,250,210,.3);transform:translateY(-3px)}
+.card-icon{font-size:1.8rem;margin-bottom:12px}
+.card h3{font-family:var(--display);font-size:1.05rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.card p{font-size:.9rem;color:var(--gray);line-height:1.6}
+
+/* ─── NUMBERED LIST ─── */
+.numbered-list{counter-reset:item;margin-top:32px}
+.numbered-item{display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.numbered-item:last-child{border-bottom:none}
+.numbered-item::before{counter-increment:item;content:counter(item);font-family:var(--display);font-size:2.2rem;font-weight:900;color:var(--turquoise);line-height:1;flex-shrink:0;width:48px;text-align:center}
+.numbered-item h3{font-family:var(--display);font-size:1.05rem;font-weight:800;margin-bottom:4px}
+.numbered-item p{font-size:.92rem;color:var(--gray);line-height:1.6}
+
+/* ─── BLOQUEO TAGS ─── */
+.tags{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;margin-bottom:32px}
+.tag{background:var(--dark3);border:1px solid rgba(42,250,210,.2);padding:8px 18px;border-radius:999px;font-size:.85rem;color:var(--turquoise);font-weight:600;letter-spacing:.03em}
+
+/* ─── PROGRAMAS ─── */
+.programa{background:var(--dark3);border:1px solid rgba(42,250,210,.12);border-radius:12px;padding:28px 24px;margin-bottom:16px;display:flex;gap:16px;align-items:flex-start;transition:border-color .3s}
+.programa:hover{border-color:rgba(42,250,210,.35)}
+.programa-icon{font-size:1.6rem;flex-shrink:0;margin-top:2px}
+.programa h3{font-family:var(--display);font-size:1.05rem;font-weight:800;margin-bottom:4px}
+.programa h3 em{font-style:normal;color:var(--turquoise)}
+.programa p{font-size:.9rem;color:var(--gray);line-height:1.6}
+
+/* ─── SOLUCIONES GRID ─── */
+.soluciones-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:32px}
+.solucion{background:var(--dark3);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:24px 20px;text-align:center;transition:border-color .3s}
+.solucion:hover{border-color:rgba(42,250,210,.3)}
+.solucion-icon{font-size:1.6rem;margin-bottom:10px}
+.solucion h4{font-family:var(--display);font-size:.95rem;font-weight:800;line-height:1.2;margin-bottom:6px;text-transform:uppercase}
+.solucion p{font-size:.82rem;color:var(--gray);line-height:1.5}
+
+/* ─── INHOUSE HIGHLIGHT ─── */
+.inhouse{background:linear-gradient(135deg,#050f0d 0%,var(--black) 50%,#0a0d0c 100%);border-top:2px solid var(--turquoise);padding:80px 0}
+.inhouse .container{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.inhouse-benefits{list-style:none}
+.inhouse-benefits li{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.95rem;display:flex;align-items:center;gap:12px}
+.inhouse-benefits li::before{content:'✓';color:var(--turquoise);font-weight:700;font-size:1.1rem;flex-shrink:0}
+.inhouse-quote{background:var(--dark3);border-radius:12px;padding:32px;border-left:4px solid var(--turquoise);margin-top:24px}
+.inhouse-quote p{font-size:1.1rem;font-style:italic;color:var(--white);line-height:1.6}
+
+/* ─── ONLINE / OFFLINE ─── */
+.channels{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:32px 0}
+.channel{background:var(--dark3);border:1px solid rgba(42,250,210,.15);border-radius:12px;padding:24px}
+.channel h3{font-family:var(--display);font-size:1rem;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.channel p{font-size:.9rem;color:var(--gray);line-height:1.6}
+
+/* ─── CTA BANDS ─── */
+.cta-band{background:var(--turquoise);color:var(--black);text-align:center;padding:64px 0}
+.cta-band .section-eyebrow{color:rgba(0,0,0,.5)}
+.cta-band .section-title{color:var(--black)}
+.cta-band .section-sub{color:rgba(0,0,0,.7);margin:0 auto 32px}
+.btn-primary{display:inline-block;background:var(--turquoise);color:var(--black);padding:14px 32px;border-radius:8px;font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:.02em;text-transform:uppercase;transition:transform .2s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(42,250,210,.25);opacity:1}
+.btn-dark{display:inline-block;background:var(--black);color:var(--turquoise);padding:14px 32px;border-radius:8px;font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:.02em;text-transform:uppercase;transition:transform .2s,box-shadow .2s}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.25);opacity:1}
+.btn-wa{display:inline-block;background:#25d366;color:var(--white);padding:14px 32px;border-radius:8px;font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:.02em;text-transform:uppercase;transition:transform .2s,box-shadow .2s}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(37,211,102,.3);opacity:1}
+.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+/* ─── FOOTER ─── */
+footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:48px 0 32px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:32px}
+.footer-brand{font-family:var(--display);font-size:1.2rem;font-weight:800;margin-bottom:8px}
+.footer-brand span{color:var(--turquoise)}
+.footer-desc{font-size:.9rem;color:var(--gray);line-height:1.6;max-width:320px}
+.footer-heading{font-family:var(--cond);font-size:.95rem;color:var(--turquoise);letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:8px}
+.footer-links a{color:var(--gray);font-size:.9rem;transition:color .2s}
+.footer-links a:hover{color:var(--turquoise)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:20px;display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:rgba(255,255,255,.3)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .pilares{grid-template-columns:1fr}
+  .numeros-grid{grid-template-columns:repeat(2,1fr)}
+  .inhouse .container{grid-template-columns:1fr}
+  .channels{grid-template-columns:1fr}
+  .soluciones-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr;text-align:center}
+  .footer-desc{max-width:100%;margin:0 auto}
+  .footer-bottom{flex-direction:column;gap:12px}
+}
+@media(max-width:640px){
+  section{padding:60px 0}
+  .soluciones-grid{grid-template-columns:1fr}
+  .numeros-grid{gap:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav>
+  <div class="container">
+    <a href="/" class="nav-logo">LEILA <span>FITTIPALDI</span></a>
+    <ul class="nav-links">
+      <li><a href="/mi-historia/">Mi Historia</a></li>
+      <li><a href="/casos/">Casos de Éxito</a></li>
+      <li><a href="/lidermente/">LíderMente</a></li>
+      <li><a href="/sobre-mi/">Sobre Mí</a></li>
+      <li><a href="/servicios/" class="active">Servicios</a></li>
+    </ul>
+    <a href="https://wa.me/522211229846?text=Hola%20Leila%2C%20quiero%20información%20sobre%20tus%20servicios" class="nav-cta">Escríbeme</a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menú">☰</button>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="page-hero">
+  <p class="section-eyebrow">Coach · Mentora · Conferencista</p>
+  <h1>Destrabo expertos, líderes y organizaciones para convertir su conocimiento en <em>influencia, comunidad y negocio</em></h1>
+  <p>Tres pilares, un sistema. Todo lo que hago empieza en el punto donde identidad, liderazgo, comunicación y resultados se atoran.</p>
+</section>
+
+<!-- ═══ 3 PILARES ═══ -->
+<section class="section-dark">
+  <div class="container">
+    <div class="pilares">
+      <div class="pilar">
+        <p class="pilar-num">1</p>
+        <h3>Liderar</h3>
+        <p>Activar el liderazgo personal y profesional que mueve equipos, decisiones y resultados.</p>
+      </div>
+      <div class="pilar">
+        <p class="pilar-num">2</p>
+        <h3>Influenciar</h3>
+        <p>Comunicar con poder para posicionarte como referente y conectar con tu audiencia.</p>
+      </div>
+      <div class="pilar">
+        <p class="pilar-num">3</p>
+        <h3>Conectar</h3>
+        <p>Construir comunidad, networking estratégico y relaciones que multiplican oportunidades.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NÚMEROS ═══ -->
+<section class="numeros">
+  <div class="container">
+    <div class="numeros-grid">
+      <div class="numero-item">
+        <p class="num">27+</p>
+        <p class="num-label">Países con presencia</p>
+      </div>
+      <div class="numero-item">
+        <p class="num">30K+</p>
+        <p class="num-label">Personas impactadas</p>
+      </div>
+      <div class="numero-item">
+        <p class="num">500+</p>
+        <p class="num-label">Coaches formados</p>
+      </div>
+      <div class="numero-item">
+        <p class="num">80K+</p>
+        <p class="num-label">Seguidores en redes</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROPÓSITO ═══ -->
+<section class="section-darker">
+  <div class="container">
+    <p class="section-eyebrow">Mi Propósito</p>
+    <h2 class="section-title">Que cada persona pueda destrabarse y crear su vida poderosa</h2>
+    <p class="section-sub">Mi objetivo es destrabar la forma en que personas, líderes y organizaciones piensan, comunican y actúan, para generar más claridad, influencia, oportunidades y vidas poderosas.</p>
+    <div class="cards-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="card" style="text-align:center">
+        <p class="card-icon">⚡</p>
+        <h3>Energía</h3>
+      </div>
+      <div class="card" style="text-align:center">
+        <p class="card-icon">🧠</p>
+        <h3>Mentalidad</h3>
+      </div>
+      <div class="card" style="text-align:center">
+        <p class="card-icon">🎯</p>
+        <h3>Estrategia</h3>
+      </div>
+      <div class="card" style="text-align:center">
+        <p class="card-icon">🚀</p>
+        <h3>Acción</h3>
+      </div>
+    </div>
+    <p style="color:var(--gray);font-size:.95rem;margin-top:32px;line-height:1.7;max-width:720px"><strong style="color:var(--white)">Mi misión:</strong> que cada jefe, líder, docente y padre sea un coach y llegar hasta la escuela primaria — para un mundo de mentes fuertes, emociones sanas y <strong style="color:var(--turquoise)">VIDAS PODEROSAS.</strong></p>
+  </div>
+</section>
+
+<!-- ═══ EL VERDADERO BLOQUEO ═══ -->
+<section>
+  <div class="container">
+    <p class="section-eyebrow">El Diagnóstico</p>
+    <h2 class="section-title">El verdadero bloqueo no siempre es falta de talento</h2>
+    <p class="section-sub">Muchas veces el problema no es conocimiento, experiencia ni capacidad. El problema es que la persona, el líder o la empresa están frenados por falta de claridad, autoliderazgo débil, dificultad para comunicar con poder, dispersión o falta de dirección comercial.</p>
+    <div class="tags">
+      <span class="tag">Claridad</span>
+      <span class="tag">Autoliderazgo</span>
+      <span class="tag">Comunicación</span>
+      <span class="tag">Dirección</span>
+      <span class="tag">Monetización</span>
+    </div>
+    <p style="color:var(--gray);font-size:.95rem;line-height:1.7;margin-bottom:32px">Eso termina afectando influencia, posicionamiento, comunidad y negocio. Por eso mi trabajo no empieza en herramientas. Empieza en el punto donde identidad, liderazgo, comunicación y resultados se atoran.</p>
+    <div class="flow">
+      <span class="flow-step">Destrabar</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">Clarificar</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">Posicionar</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">Convertir</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 5 FORMAS DE DESTRABAR ═══ -->
+<section class="section-dark">
+  <div class="container">
+    <p class="section-eyebrow">El Sistema</p>
+    <h2 class="section-title">Las 5 formas en que esta marca destraba crecimiento</h2>
+    <p class="section-sub">Cinco brazos del mismo sistema. Cinco formas de convertir claridad, liderazgo y conocimiento en influencia, comunidad y negocio.</p>
+    <div class="numbered-list">
+      <div class="numbered-item">
+        <div>
+          <h3>Formación y Mentoría</h3>
+          <p>Para activar liderazgo, claridad y transformación personal y profesional.</p>
+        </div>
+      </div>
+      <div class="numbered-item">
+        <div>
+          <h3>Conferencias y Talleres Empresariales</h3>
+          <p>Para destrabar comunicación, cultura, liderazgo y desempeño en equipos.</p>
+        </div>
+      </div>
+      <div class="numbered-item">
+        <div>
+          <h3>Estrategia Digital y Marca Personal</h3>
+          <p>Para traducir experiencia y conocimiento en posicionamiento e influencia.</p>
+        </div>
+      </div>
+      <div class="numbered-item">
+        <div>
+          <h3>Contenido, Podcast y UGC</h3>
+          <p>Para convertir voz e historia en autoridad, conexión y comunidad.</p>
+        </div>
+      </div>
+      <div class="numbered-item">
+        <div>
+          <h3>Networking Estratégico</h3>
+          <p>Para multiplicar oportunidades, relaciones y expansión.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROGRAMAS ═══ -->
+<section>
+  <div class="container">
+    <p class="section-eyebrow">Programas</p>
+    <h2 class="section-title">Programas de transformación y expansión</h2>
+    <p class="section-sub">Cada programa tiene una función específica dentro del proceso de destrabarte, clarificarte, posicionarte y convertir.</p>
+
+    <div class="programa">
+      <span class="programa-icon">🎓</span>
+      <div>
+        <h3>Lunes de Liderazgo</h3>
+        <p>Espacio abierto para entrenar conversaciones, liderazgo y visión. Tu punto de entrada a esta comunidad.</p>
+      </div>
+    </div>
+    <div class="programa">
+      <span class="programa-icon">⚡</span>
+      <div>
+        <h3>Procesos de <em>Vida Poderosa</em></h3>
+        <p>Proceso profundo para destrabar identidad, dirección y resultados personales y profesionales.</p>
+      </div>
+    </div>
+    <div class="programa">
+      <span class="programa-icon">💰</span>
+      <div>
+        <h3>Mentoría para emprendedores: <em>LíderMente</em></h3>
+        <p>Membresía semanal presencial para apoyar a emprendedores a estructurar su estrategia, comunicación, marketing, prospección, ventas, finanzas, tecnología y talento humano.</p>
+      </div>
+    </div>
+    <div class="programa">
+      <span class="programa-icon">🏆</span>
+      <div>
+        <h3>Formación de Coach Experto</h3>
+        <p>Programa para quienes quieren llevar liderazgo, comunicación e influencia a un nivel de alto impacto. Habilidades humanas y organizacionales.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOLUCIONES ORGANIZACIONALES ═══ -->
+<section class="section-darker">
+  <div class="container">
+    <p class="section-eyebrow">Para Organizaciones</p>
+    <h2 class="section-title">Soluciones para organizaciones que necesitan destrabar liderazgo y resultados</h2>
+    <p class="section-sub">Cuando una empresa tiene talento pero no logra conversaciones difíciles, coordinación, influencia o cultura, el problema muchas veces es liderazgo.</p>
+    <div class="soluciones-grid">
+      <div class="solucion">
+        <p class="solucion-icon">👤</p>
+        <h4>Marca Personal y Liderazgo</h4>
+        <p>Liderazgo y mentalidad de crecimiento.</p>
+      </div>
+      <div class="solucion">
+        <p class="solucion-icon">🎤</p>
+        <h4>Oratoriamente</h4>
+        <p>Comunicación de alto impacto.</p>
+      </div>
+      <div class="solucion">
+        <p class="solucion-icon">📹</p>
+        <h4>Hablar en Cámara</h4>
+        <p>Entrenamiento para voceros y equipos.</p>
+      </div>
+      <div class="solucion">
+        <p class="solucion-icon">🤖</p>
+        <h4>Neuroventamente con IA</h4>
+        <p>Ventas con influencia y conexión.</p>
+      </div>
+      <div class="solucion">
+        <p class="solucion-icon">🤝</p>
+        <h4>Integración de Equipos</h4>
+        <p>Confianza, comunicación y colaboración.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LÍDER COACH IN-HOUSE ═══ -->
+<section class="inhouse">
+  <div class="container">
+    <div>
+      <p class="section-eyebrow">Programa Especial</p>
+      <h2 class="section-title">Formación de Líder Coach In-House</h2>
+      <p style="color:var(--gray);font-size:1rem;line-height:1.7;margin-bottom:24px">Nuestras intervenciones trabajan sobre los puntos donde liderazgo, comunicación y cultura frenan resultados dentro del equipo.</p>
+      <ul class="inhouse-benefits">
+        <li>Disminuir rotación de personal</li>
+        <li>Sostener conversaciones difíciles</li>
+        <li>Fortalecer cultura organizacional</li>
+        <li>Aumentar productividad</li>
+        <li>Mejorar toma de decisiones</li>
+        <li>Desarrollar talento dentro del equipo</li>
+      </ul>
+    </div>
+    <div>
+      <div class="inhouse-quote">
+        <p>"Un líder no solo dirige tareas. Desarrolla personas."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ARQUITECTURA DE INFLUENCIA ═══ -->
+<section class="section-dark">
+  <div class="container">
+    <p class="section-eyebrow">Ecosistema</p>
+    <h2 class="section-title">Arquitectura de influencia y crecimiento</h2>
+    <p class="section-sub">No se trata solo de redes sociales. Se trata de construir un ecosistema donde liderazgo, mensaje, contenido, automatización y seguimiento comercial trabajen juntos para generar visibilidad con dirección y convertir influencia en oportunidad.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <p class="card-icon">🪪</p>
+        <h3>Marca Personal</h3>
+        <p>Construye una identidad clara, auténtica y diferenciada que te posicione como referente en tu sector.</p>
+      </div>
+      <div class="card">
+        <p class="card-icon">📖</p>
+        <h3>Storytelling</h3>
+        <p>Aprende a comunicar tu historia y propuesta de valor de manera que conecte, persuada y genere acción.</p>
+      </div>
+      <div class="card">
+        <p class="card-icon">📊</p>
+        <h3>Posicionamiento Comercial</h3>
+        <p>Estructura tu oferta, define tu diferencial y escala con claridad estratégica.</p>
+      </div>
+      <div class="card">
+        <p class="card-icon">✍️</p>
+        <h3>Creación de Contenido Estratégico</h3>
+        <p>Contenido que comunica tu valor diferencial, construye autoridad y convierte audiencia en comunidad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ESTRATEGIA DIGITAL ═══ -->
+<section>
+  <div class="container">
+    <p class="section-eyebrow">Estrategia Digital</p>
+    <h2 class="section-title">Herramientas que convierten visibilidad en conversión</h2>
+    <p class="section-sub">Combinamos estrategia de contenido, presencia digital y activaciones presenciales para que cada pieza trabaje a favor de tu posicionamiento y negocio.</p>
+    <div class="channels">
+      <div class="channel">
+        <h3>🌐 Online</h3>
+        <p>Contenido estratégico, storytelling de marca y posicionamiento digital.</p>
+      </div>
+      <div class="channel">
+        <h3>🤝 Offline</h3>
+        <p>Activaciones presenciales, influencer, networking y comunidad.</p>
+      </div>
+    </div>
+    <div class="soluciones-grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+      <div class="solucion">
+        <h4>Creación de Contenido</h4>
+      </div>
+      <div class="solucion">
+        <h4>Storytelling de Marca</h4>
+      </div>
+      <div class="solucion">
+        <h4>Activaciones Presenciales</h4>
+      </div>
+      <div class="solucion">
+        <h4>Networking y Comunidad</h4>
+      </div>
+      <div class="solucion">
+        <h4>Posicionamiento Digital</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AUTOMATIZACIÓN E IA ═══ -->
+<section class="section-darker">
+  <div class="container">
+    <p class="section-eyebrow">Tecnología</p>
+    <h2 class="section-title">Automatización e Inteligencia Artificial</h2>
+    <p class="section-sub">Integración de herramientas digitales para escalar procesos comerciales. Convertir visibilidad en conversión y crecimiento.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <p class="card-icon">⚙️</p>
+        <h3>Automatización de Leads</h3>
+        <p>Sistemas para captar y nutrir prospectos de manera automática y eficiente.</p>
+      </div>
+      <div class="card">
+        <p class="card-icon">📋</p>
+        <h3>CRM y Seguimiento Comercial</h3>
+        <p>Gestión inteligente de clientes y oportunidades de negocio en tiempo real.</p>
+      </div>
+      <div class="card">
+        <p class="card-icon">🤖</p>
+        <h3>IA Aplicada al Marketing</h3>
+        <p>Uso de inteligencia artificial para crear contenido, analizar datos y optimizar campañas.</p>
+      </div>
+      <div class="card">
+        <p class="card-icon">📈</p>
+        <h3>Optimización de Ventas</h3>
+        <p>Mejora continua de procesos comerciales para maximizar conversión y rentabilidad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTENIDO QUE POSICIONA ═══ -->
+<section class="section-dark">
+  <div class="container">
+    <p class="section-eyebrow">Contenido</p>
+    <h2 class="section-title">Contenido que posiciona, humaniza y convoca</h2>
+    <p class="section-sub">El contenido no es solo exposición. Es una herramienta para traducir visión, experiencia y valores en autoridad, conexión y comunidad.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <p class="card-icon">📖</p>
+        <h3>Storytelling Empresarial</h3>
+        <p>Narrativas que humanizan marcas y conectan emocionalmente con el público. Sacamos tus valores, tu historia, tu ADN para que tu historia no pase desapercibida.</p>
+      </div>
+      <div class="card">
+        <p class="card-icon">🎙️</p>
+        <h3>Podcast</h3>
+        <p>Series de audio y video que posicionan tu autoridad y expanden tu audiencia.</p>
+      </div>
+      <div class="card">
+        <p class="card-icon">🎥</p>
+        <h3>Entrevistas</h3>
+        <p>Formato conversacional para amplificar mensajes y conectar con nuevas comunidades.</p>
+      </div>
+      <div class="card">
+        <p class="card-icon">📱</p>
+        <h3>Contenido UGC</h3>
+        <p>Contenido auténtico generado por usuarios que genera confianza y viralidad.</p>
+      </div>
+      <div class="card">
+        <p class="card-icon">📲</p>
+        <h3>Contenido para Redes</h3>
+        <p>Piezas estratégicas y visuales que generan engagement y visibilidad constante.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-band">
+  <div class="container">
+    <p class="section-eyebrow">Da el primer paso</p>
+    <h2 class="section-title">¿Listo para destrabar tu crecimiento?</h2>
+    <p class="section-sub">Descubre cuál es el cuello de botella de tu negocio o escríbeme directamente para explorar cómo trabajar juntos.</p>
+    <div class="cta-buttons">
+      <a href="/diagnostico/" class="btn-dark">Diagnóstico gratuito →</a>
+      <a href="https://wa.me/522211229846?text=Hola%20Leila%2C%20vi%20tu%20página%20de%20servicios%20y%20quiero%20más%20información" class="btn-wa" target="_blank" rel="noopener">💬 Escríbeme por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">LEILA <span>FITTIPALDI</span></p>
+        <p class="footer-desc">Coach y Mentora de Dueños de Negocio. Formando líderes desde 2013. Fundadora de La Academia del Coach.</p>
+        <p class="footer-desc" style="margin-top:8px">📍 Cancún, México</p>
+      </div>
+      <div>
+        <p class="footer-heading">Navegación</p>
+        <ul class="footer-links">
+          <li><a href="/mi-historia/">Mi Historia</a></li>
+          <li><a href="/casos/">Casos de Éxito</a></li>
+          <li><a href="/lidermente/">LíderMente</a></li>
+          <li><a href="/sobre-mi/">Sobre Mí</a></li>
+          <li><a href="/servicios/">Servicios</a></li>
+          <li><a href="/diagnostico/">Diagnóstico</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-heading">Contacto</p>
+        <ul class="footer-links">
+          <li><a href="https://wa.me/522211229846?text=Hola%20Leila" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/leilafittipaldiok/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.youtube.com/@LaAcademiaDelCoach" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="mailto:hola@leilafittipaldi.com">hola@leilafittipaldi.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Leila Fittipaldi. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- MaKo Pixel + Clarity (compacto — sin video tracking) -->
+<script>
+(function(){
+  var E='https://hola-mako.com/api/track/vsl',T='mko_f5111dea4cc7e855055ab5d704c688f7',SV=16;
+  function gc(n){var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)'));return m?decodeURIComponent(m[1]):null}
+  var vi=gc('nqe_visitor_id');
+  if(!vi){vi=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2);document.cookie='nqe_visitor_id='+vi+'; max-age=31536000; path=/; SameSite=Lax'}
+  var lt=new URLSearchParams(location.search).get('l')||null;
+  var pr=null;try{pr=new URLSearchParams(location.search).get('mko_test');if(pr)sessionStorage.setItem('mko_test',pr);else pr=sessionStorage.getItem('mko_test')}catch(e){}
+  function env(d){d.t=T;d.sv=SV;d.visitor_id=vi;if(d.landing_url==null)d.landing_url=location.href;if(pr)d.prueba=pr;if(lt)d.l=lt;try{fetch(E,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),keepalive:true}).catch(function(){})}catch(e){}}
+  env({tipo_evento:'pageview',landing_url:location.href,referrer:document.referrer||null});
+  var CL=0;document.addEventListener('click',function(ev){try{if(CL>=40)return;var el=ev.target;for(var i=0;el&&i<5;i++){var t=(el.tagName||'').toUpperCase();if(t==='A'||t==='BUTTON'||el.getAttribute&&el.getAttribute('role')==='button')break;el=el.parentElement}if(!el||!el.tagName)return;var tag=el.tagName.toUpperCase();if(tag!=='A'&&tag!=='BUTTON'&&el.getAttribute('role')!=='button')return;var href=el.getAttribute?(el.getAttribute('href')||''):'';var txt=(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim().slice(0,80);var det=href?(href.indexOf('#')===0?'ancla '+href:href):('boton: '+txt);if(!det)return;CL++;env({tipo_evento:'click',detalle:det.slice(0,300)+(txt&&href?' — '+txt:'')})}catch(e){}},true);
+  var OP='https://hola-mako.com/api/track/optin';
+  function mop(d){try{if(!d||(!d.email&&!d.telefono))return;fetch(OP,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:T,visitor_id:vi,nombre:d.nombre||null,email:d.email||null,telefono:d.telefono||null,empresa:d.empresa||null,origen_captura:d.origen||'formulario',pagina:location.href,prueba:pr}),keepalive:true}).catch(function(){})}catch(e){}}
+  function cf(form,pats,types){var els=form.querySelectorAll('input,textarea,select');for(var i=0;i<els.length;i++){var el=els[i];if(!el.value||!String(el.value).trim())continue;if(types&&types.indexOf(el.type)!==-1)return String(el.value).trim();var p=[el.name,el.id,el.getAttribute('autocomplete'),el.placeholder,el.getAttribute('aria-label')].join(' ').toLowerCase();for(var j=0;j<pats.length;j++)if(p.indexOf(pats[j])!==-1)return String(el.value).trim()}return null}
+  document.addEventListener('submit',function(ev){try{var form=ev.target;if(!form||form.tagName!=='FORM')return;var email=cf(form,['email','correo','mail'],['email']);var tel=cf(form,['tel','phone','whats','celular','movil','móvil'],['tel']);if(!email&&!tel)return;mop({nombre:cf(form,['nombre','name','first','apellido']),email:email,telefono:tel,empresa:cf(form,['empresa','company','negocio']),origen:'formulario'})}catch(e){}},true);
+  var ap=Date.now(),cerr=false;
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')env({tipo_evento:'salio',segundos:Math.round((Date.now()-ap)/1000)})});
+  window.addEventListener('pagehide',function(){if(cerr)return;cerr=true;try{env({tipo_evento:'cierre',segundos:Math.round((Date.now()-ap)/1000)})}catch(e){}});
+  try{(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","y3dwgikuul");window.clarity("identify",vi);window.clarity("set","mko_pixel",String(SV));if(pr)window.clarity("set","mko_prueba",pr)}catch(e){}
+})();
+</script>
+</body>
+</html>
