@@ -149,6 +149,17 @@ section{padding:80px 0}
 .channel h3{font-family:var(--display);font-size:1rem;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:8px}
 .channel p{font-size:.9rem;color:var(--gray);line-height:1.6}
 
+/* ─── TESTIMONIOS ─── */
+.testimonios-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.testimonio{background:var(--dark3);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:28px 24px;position:relative;transition:border-color .3s}
+.testimonio:hover{border-color:rgba(42,250,210,.25)}
+.testimonio::before{content:'"';font-family:var(--display);font-size:3.5rem;color:rgba(42,250,210,.2);position:absolute;top:12px;left:20px;line-height:1}
+.testimonio blockquote{font-size:.95rem;color:var(--white);line-height:1.6;margin-bottom:16px;padding-top:20px;font-style:italic}
+.testimonio-author{display:flex;align-items:center;gap:8px}
+.testimonio-flag{font-size:1.2rem}
+.testimonio-info strong{font-family:var(--display);font-size:.85rem;font-weight:800;display:block;line-height:1.2}
+.testimonio-info span{font-size:.78rem;color:var(--gray)}
+
 /* ─── CTA BANDS ─── */
 .cta-band{background:var(--turquoise);color:var(--black);text-align:center;padding:64px 0}
 .cta-band .section-eyebrow{color:rgba(0,0,0,.5)}
@@ -184,6 +195,7 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
   .inhouse .container{grid-template-columns:1fr}
   .channels{grid-template-columns:1fr}
   .soluciones-grid{grid-template-columns:repeat(2,1fr)}
+  .testimonios-grid{grid-template-columns:1fr}
   .split,.split-reverse{grid-template-columns:1fr}
   .split-reverse{direction:ltr}
   .footer-grid{grid-template-columns:1fr;text-align:center}
@@ -654,6 +666,107 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
       <div>
         <h3 class="section-title" style="font-size:clamp(1.3rem,3vw,1.8rem)">Contenido que conecta y transforma</h3>
         <p style="color:var(--gray);line-height:1.7">Entrevistas, podcast y formatos conversacionales que posicionan tu autoridad y expanden tu audiencia a nuevas comunidades.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIOS ═══ -->
+<section>
+  <div class="container">
+    <p class="section-eyebrow">Testimonios</p>
+    <h2 class="section-title">Lo que dicen quienes ya se destrabaron</h2>
+    <p class="section-sub">Personas de más de 27 países que decidieron transformar su vida personal y profesional con La Academia del Coach.</p>
+    <div class="testimonios-grid">
+      <div class="testimonio">
+        <blockquote>Hoy con la mano de Leila estoy dando sesiones de coaching y dando clases en el mundo.</blockquote>
+        <div class="testimonio-author">
+          <span class="testimonio-flag">🇦🇷</span>
+          <div class="testimonio-info">
+            <strong>Julio César Armentía</strong>
+            <span>Coach deportivo</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio">
+        <blockquote>Ya tengo mis primeros clientes, puedo monetizar mi profesión.</blockquote>
+        <div class="testimonio-author">
+          <span class="testimonio-flag">🇺🇾</span>
+          <div class="testimonio-info">
+            <strong>Marcelo Nuñez</strong>
+            <span>Coach y emprendedor</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio">
+        <blockquote>Ahora estoy monetizando y viviendo de mi pasión, recuperando al 100% mi inversión y más.</blockquote>
+        <div class="testimonio-author">
+          <span class="testimonio-flag">🇵🇦</span>
+          <div class="testimonio-info">
+            <strong>Arge Solis</strong>
+            <span>Psicóloga y Coach</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio">
+        <blockquote>He crecido tanto personal, como profesional y familiar.</blockquote>
+        <div class="testimonio-author">
+          <span class="testimonio-flag">🇲🇽</span>
+          <div class="testimonio-info">
+            <strong>Cristina Martínez</strong>
+            <span>Modelo y empresaria</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio">
+        <blockquote>Hoy en día estoy monetizando, lo mejor es ver a mis clientes con su transformación.</blockquote>
+        <div class="testimonio-author">
+          <span class="testimonio-flag">🇲🇽</span>
+          <div class="testimonio-info">
+            <strong>Ivonne Anaya</strong>
+            <span>Coach y emprendedora</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio">
+        <blockquote>LAC me ayudó a cambiar mi mirada de la vida, pasé de ser víctima a volverme protagonista.</blockquote>
+        <div class="testimonio-author">
+          <span class="testimonio-flag">🇦🇷</span>
+          <div class="testimonio-info">
+            <strong>Luisana Pereyra</strong>
+            <span>Previsionista de Seguridad</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio">
+        <blockquote>El máximo beneficio ha sido la transformación de mi propio ser.</blockquote>
+        <div class="testimonio-author">
+          <span class="testimonio-flag">🇬🇹</span>
+          <div class="testimonio-info">
+            <strong>Cindy Caravalles</strong>
+            <span>Psicopedagoga y dueña de kínder</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio">
+        <blockquote>Una experiencia realmente sanadora, desde lo más profundo de tu ser.</blockquote>
+        <div class="testimonio-author">
+          <span class="testimonio-flag">🇻🇪</span>
+          <div class="testimonio-info">
+            <strong>Maribel Alvarado</strong>
+            <span>Docente</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio">
+        <blockquote>Muy feliz, muy contenta, muy agradecida, diferente a lo que yo he hecho.</blockquote>
+        <div class="testimonio-author">
+          <span class="testimonio-flag">🇪🇸</span>
+          <div class="testimonio-info">
+            <strong>Joanna Habiak</strong>
+            <span>Escritora</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
