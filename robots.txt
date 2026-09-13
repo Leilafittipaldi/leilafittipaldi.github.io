@@ -1,0 +1,10 @@
+# leilafittipaldi.com
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://leilafittipaldi.com/sitemap.xml
+
+# No indexar página de bienvenida (post-opt-in)
+Disallow: /bienvenida/
+Disallow: /lidermente/
