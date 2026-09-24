@@ -50,3 +50,4 @@ Trabaja sobre 4 pilares: Identidad → Liderazgo → Comunicación → Resultado
 ## Para más contexto
 
 - [Versión extendida para LLMs](https://leilafittipaldi.com/llms-full.txt)
+- [Guía: El cuello de botella eres tú](https://leilafittipaldi.com/guia-cuello-de-botella/): guía de ejecución de 4 semanas para dueños de negocio de 1 a 5 personas — escalera de delegación, límites de dinero y descuento, guion de la junta con el equipo y los seis números para medir el avance.
