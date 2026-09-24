@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Onboarding de clientes — Leila Fittipaldi</title>
+<meta name="description" content="Cuestionario de arranque para clientes de marketing digital del Equipo Leila Fittipaldi.">
+<link rel="canonical" href="https://leilafittipaldi.com/onboarding/">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;800;900&family=Bebas+Neue&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#000; --surface:#0F1011; --surface-2:#17181A; --ink:#fff; --muted:#A0A3A8;
+    --line:#26282B; --accent:#2AFAD2; --fill:#2AFAD2; --fill-ink:#00201A; --track:#1C1E20;
+    --soft:rgba(42,250,210,.1); --danger:#ff8a80;
+    --display:'League Spartan','Arial Black',system-ui,sans-serif;
+    --cond:'Bebas Neue','Oswald','Impact',system-ui,sans-serif;
+    --body:'Cabin',system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  @media (prefers-color-scheme:light){
+    :root{--bg:#fff;--surface:#fff;--surface-2:#F3F5F6;--ink:#0A0A0B;--muted:#565A5F;--line:#E6E8EA;--accent:#0AA88D;--fill:#2AFAD2;--fill-ink:#00201A;--track:#EDEFF1;--soft:rgba(10,168,141,.08);--danger:#b3261e}
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg)}
+  body{color:var(--ink);font-family:var(--body);font-size:1.06rem;line-height:1.6;-webkit-font-smoothing:antialiased;
+    background:radial-gradient(130% 50% at 50% -8%, color-mix(in srgb,var(--accent) 12%, transparent), transparent 62%) fixed, var(--bg)}
+  .wrap{max-width:760px;margin:0 auto;padding:32px 16px 80px}
+  .eyebrow{font-family:var(--cond);font-size:1.15rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:9px}
+  .eyebrow::before{content:"★";font-size:.75em}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(2rem,6vw,2.8rem);line-height:1.05;letter-spacing:-.01em;margin:10px 0 14px;text-wrap:balance}
+  h2{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,5vw,1.9rem);line-height:1.1;margin:0 0 6px}
+  h3{font-family:var(--cond);font-weight:400;font-size:1.25rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:26px 0 8px}
+  .lead{color:var(--muted);margin:0}
+  .progress{position:sticky;top:0;z-index:5;background:var(--bg);padding:14px 0;margin:18px 0 6px}
+  .bar{height:8px;border-radius:99px;background:var(--track);overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:var(--fill);border-radius:99px;transition:width .35s cubic-bezier(.4,0,.2,1)}
+  .steps-label{display:flex;justify-content:space-between;font-family:var(--cond);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px 24px}
+  .section-intro{color:var(--muted);margin:0 0 24px}
+  .field{margin:0 0 22px}
+  .field > label, .field > .q{display:block;font-weight:600;margin-bottom:6px}
+  .req{color:var(--accent);margin-left:2px}
+  .help{display:block;font-size:.93rem;color:var(--muted);margin:-2px 0 8px;font-weight:400}
+  input[type=text],input[type=email],input[type=tel],input[type=url],textarea{
+    width:100%;font:inherit;color:var(--ink);background:var(--surface-2);border:2px solid var(--line);border-radius:12px;padding:12px 14px;outline:none;transition:border-color .12s}
+  textarea{min-height:96px;resize:vertical;line-height:1.45}
+  input:focus,textarea:focus{border-color:var(--accent)}
+  input::placeholder,textarea::placeholder{color:var(--muted)}
+  .opts{display:grid;gap:8px}
+  .opts.cols{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+  .opt{display:flex;gap:10px;align-items:flex-start;padding:11px 13px;border:2px solid var(--line);border-radius:12px;cursor:pointer;background:var(--surface-2);transition:border-color .12s}
+  .opt:hover{border-color:var(--accent)}
+  .opt input{margin-top:5px;accent-color:var(--accent)}
+  .opt:has(input:checked){border-color:var(--accent);background:var(--soft)}
+  .grid-status{width:100%;border-collapse:collapse;font-size:.98rem}
+  .grid-status th{font-family:var(--cond);font-weight:400;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:center;padding:6px 4px;line-height:1.1}
+  .grid-status th:first-child{text-align:left}
+  .grid-status td{border-top:1px solid var(--line);padding:10px 4px;text-align:center}
+  .grid-status td:first-child{text-align:left}
+  .grid-status input{accent-color:var(--accent);width:19px;height:19px}
+  .notice{background:var(--soft);border:1px solid color-mix(in srgb,var(--accent) 35%, transparent);border-radius:12px;padding:12px 14px;font-size:.95rem;margin:0 0 22px}
+  .error-msg{color:var(--danger);font-size:.93rem;margin-top:6px;display:none}
+  .field.invalid .error-msg{display:block}
+  .field.invalid input,.field.invalid textarea{border-color:var(--danger)}
+  .field.invalid .opts{outline:2px solid var(--danger);outline-offset:4px;border-radius:12px}
+  /* Adjuntos */
+  .link-row{display:flex;gap:8px;margin-bottom:8px}
+  .link-row input{flex:1}
+  .icon-btn{flex:none;width:46px;border-radius:12px;border:2px solid var(--line);background:var(--surface-2);color:var(--muted);font-size:1.3rem;cursor:pointer;padding:0}
+  .icon-btn:hover{border-color:var(--danger);color:var(--danger)}
+  .add-link{background:none;border:none;color:var(--accent);font:600 1rem var(--body);cursor:pointer;padding:6px 0}
+  .drop{display:block;border:2px dashed var(--line);border-radius:14px;padding:26px 16px;text-align:center;cursor:pointer;background:var(--surface-2);transition:border-color .12s, background .12s}
+  .drop:hover,.drop.over{border-color:var(--accent);background:var(--soft)}
+  .drop strong{display:block;font-family:var(--display);font-weight:800;font-size:1.1rem;margin-bottom:4px}
+  .drop span{color:var(--muted);font-size:.93rem}
+  .drop input{position:absolute;width:1px;height:1px;opacity:0}
+  .file-list{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+  .file-list li{display:flex;align-items:center;gap:10px;padding:9px 10px 9px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}
+  .file-list .fname{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .file-list .fsize{color:var(--muted);font-size:.9rem;flex:none}
+  .file-list .icon-btn{width:36px;height:36px;font-size:1.1rem}
+  .file-err{color:var(--danger);font-size:.93rem;margin-top:8px;min-height:1em}
+  .review-item{padding:8px 0;border-top:1px solid var(--line)}
+  .review-item .k{color:var(--muted);font-size:.88rem}
+  .review-item .v{white-space:pre-wrap;overflow-wrap:anywhere}
+  .nav{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
+  .btn{appearance:none;cursor:pointer;font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:.02em;border-radius:12px;padding:15px 26px;border:0;background:var(--fill);color:var(--fill-ink);transition:filter .12s, transform .12s}
+  .btn:hover{filter:brightness(1.06)} .btn:active{transform:translateY(1px)}
+  .btn.ghost{background:none;color:var(--muted);font-family:var(--body);font-weight:600;border:2px solid var(--line)}
+  .btn:disabled{opacity:.55;cursor:wait}
+  .btn:focus-visible,input:focus-visible,textarea:focus-visible,.add-link:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  .saved{font-size:.88rem;color:var(--muted);text-align:center;margin-top:14px;min-height:1em}
+  .done{text-align:center;padding:44px 24px}
+  .done .check{width:60px;height:60px;border-radius:50%;background:var(--fill);color:var(--fill-ink);display:grid;place-items:center;margin:0 auto 18px;font:900 1.8rem var(--display)}
+  .actions-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
+  .hidden{display:none!important}
+  .hp{position:absolute;left:-9999px}
+  @media (max-width:560px){
+    .card{padding:22px 16px}
+    .grid-status th{font-size:.8rem;letter-spacing:.02em}
+    .grid-status{font-size:.93rem}
+    .btn{padding:14px 18px}
+  }
+  @media print{ .progress,.nav,.saved,.actions-row{display:none!important} body{background:#fff;color:#000} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Equipo Leila Fittipaldi · Onboarding</div>
+    <h1 id="title">Cuestionario de arranque</h1>
+    <p class="lead">Con tus respuestas preparamos el sitio, el SEO y la configuración de tus canales sin pedirte información dos veces. Toma unos 20–25 minutos. Tus respuestas se guardan en este navegador mientras avanzas, así que puedes pausar y volver.</p>
+  </header>
+
+  <div class="progress" aria-hidden="true">
+    <div class="bar"><i id="barFill"></i></div>
+    <div class="steps-label"><span id="stepName"></span><span id="stepCount"></span></div>
+  </div>
+
+  <form id="form" novalidate>
+    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+    <div id="steps"></div>
+    <div class="nav">
+      <button type="button" class="btn ghost" id="prev">Anterior</button>
+      <button type="button" class="btn" id="next">Siguiente</button>
+    </div>
+    <div class="saved" id="saved"></div>
+  </form>
+
+  <div class="card done hidden" id="done">
+    <div class="check">✓</div>
+    <h2>¡Gracias! Recibimos tus respuestas</h2>
+    <p class="lead">Las revisamos antes de nuestra reunión. Si algo cambia o encuentras otro documento, puedes volver a esta página y enviarlo de nuevo.</p>
+    <div class="actions-row"><button type="button" class="btn ghost" id="dlDone">Descargar mis respuestas</button></div>
+  </div>
+
+  <div class="card done hidden" id="fail">
+    <div class="check">!</div>
+    <h2>No pudimos enviar el formulario</h2>
+    <p class="lead" id="failMsg">Tus respuestas siguen guardadas. Revisa tu conexión y reintenta, o descárgalas y envíanoslas por correo.</p>
+    <div class="actions-row">
+      <button type="button" class="btn" id="retry">Reintentar</button>
+      <button type="button" class="btn ghost" id="dlFail">Descargar respuestas</button>
+      <button type="button" class="btn ghost" id="mailFail">Enviar por correo</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== CONFIGURACIÓN =====
+   endpoint: URL de la implementación de Apps Script (ver SETUP-ONBOARDING.md en la raíz del repo).
+   Guarda las respuestas en Google Sheets, los archivos en una carpeta de Drive por cliente y te avisa por correo. */
+const CONFIG = {
+  endpoint: "https://script.google.com/macros/s/AKfycbw7d4hmlYInu03Tg1_4Z6NRYct8VxHoaClI2wux2XLjVTkYFyJk3__k95xXDPRwjtUS/exec",
+  correo: "hola@leilafittipaldi.com",
+  maxArchivoMB: 10,
+  maxTotalMB: 20
+};
+/* Personalización por enlace: /onboarding/?cliente=Capitalízate%20by%20Gretel%20García */
+const params = new URLSearchParams(location.search);
+const CLIENTE = (params.get("cliente") || "").trim();
+
+/* ===== PREGUNTAS ===== */
+const ACCESOS = [
+  "Dominio (dónde está registrado hoy)",
+  "Correo empresarial",
+  "Perfil de Empresa de Google / Google Maps",
+  "Meta Business Suite (Facebook + Instagram)",
+  "Cuenta de Instagram",
+  "Página de Facebook",
+  "Página de empresa en LinkedIn",
+  "WhatsApp Business",
+  "Google Analytics / Search Console",
+  "Logotipo en vector (AI, SVG o PDF)",
+  "Manual o guía de uso de marca",
+  "Fotografías institucionales o de espacios"
+];
+
+const STEPS = [
+  { title: "Contacto", intro: "Quién eres y cómo coordinamos el proyecto.", fields: [
+    {id:"nombre", label:"Nombre completo", type:"text", req:true},
+    {id:"empresa", label:"Nombre de la empresa o marca", type:"text", req:true},
+    {id:"puesto", label:"Puesto / rol", type:"text"},
+    {id:"email", label:"Correo electrónico", type:"email", req:true},
+    {id:"whatsapp", label:"WhatsApp", type:"tel", req:true},
+    {id:"aprueba", label:"¿Quién aprueba los entregables?", help:"Nombre y rol. Si son varias personas, indícalo.", type:"text"},
+    {id:"canal", label:"Canal preferido para coordinar", type:"radio", opts:["WhatsApp","Correo","Videollamada","Indistinto"]},
+    {id:"horario", label:"Días y horarios en que prefieres ser contactada/o", type:"text"}
+  ]},
+  { title: "El negocio", intro: "Lo esencial de lo que haces y cómo lo explicas.", fields: [
+    {id:"una_frase", label:"Explica tu negocio en una sola frase", help:"Como se lo dirías a un empresario en un elevador.", type:"textarea", req:true},
+    {id:"servicios", label:"Servicios que ofreces", help:"Uno por línea. Marca con * el que más quieres vender.", type:"textarea", req:true},
+    {id:"diferenciador", label:"¿Por qué un cliente te elegiría a ti y no a otra opción?", type:"textarea", req:true},
+    {id:"modalidad", label:"Modalidad de atención", type:"checkbox", opts:["Presencial","En línea","Híbrida","En las instalaciones del cliente"]},
+    {id:"zona", label:"Zona geográfica que atiendes", help:"Ciudad o estado hoy, y si más adelante quieres atender otras.", type:"text"},
+    {id:"precios", label:"Rango de precios o forma de cobro (opcional)", help:"No se publica si no quieres; nos sirve para calibrar el mensaje.", type:"textarea"},
+    {id:"trayectoria", label:"Trayectoria y credenciales que respaldan la marca", help:"Formación, años de experiencia, logros. Solo lo que quieras mostrar.", type:"textarea"}
+  ]},
+  { title: "Cliente ideal", intro: "A quién le hablamos en el sitio y en el contenido.", fields: [
+    {id:"cliente_perfil", label:"Describe a tu cliente ideal", help:"Rol, tipo y tamaño de empresa, sector, edad aproximada del negocio.", type:"textarea", req:true},
+    {id:"dolores", label:"¿Qué problema o situación los hace buscarte?", type:"textarea", req:true},
+    {id:"preguntas", label:"Preguntas que te hacen con más frecuencia", help:"Una por línea. Se convertirán en la sección de preguntas frecuentes y en contenido para SEO/GEO.", type:"textarea", req:true},
+    {id:"objeciones", label:"¿Qué los frena para contratarte?", type:"textarea"},
+    {id:"no_cliente", label:"¿A quién NO quieres atraer?", type:"textarea"},
+    {id:"como_llegan", label:"¿Cómo llegan tus clientes hoy?", type:"checkbox", opts:["Recomendación","Redes sociales","Google","Eventos / networking","Docencia o conferencias","Todavía no tengo clientes"]}
+  ]},
+  { title: "Objetivos", intro: "Qué tiene que pasar para que el proyecto sea un éxito.", fields: [
+    {id:"accion", label:"¿Cuál es la acción principal que debe hacer un visitante?", type:"radio", req:true, opts:["Escribir por WhatsApp","Llenar formulario de contacto","Agendar una consulta en calendario","Llamar por teléfono"]},
+    {id:"objetivos", label:"Objetivos de los próximos 3 meses", type:"checkbox", opts:["Tener presencia profesional al compartir mi enlace","Recibir solicitudes de consulta","Aparecer en Google / Maps","Posicionarme como referente","Validar una oferta nueva","Apoyar campañas de publicidad"]},
+    {id:"exito", label:"En 90 días, ¿qué resultado concreto te haría decir “valió la pena”?", type:"textarea", req:true},
+    {id:"consultas_mes", label:"¿Cuántas solicitudes de consulta al mes podrías atender bien?", type:"text"},
+    {id:"fecha_clave", label:"¿Hay alguna fecha clave (lanzamiento, evento, conferencia)?", type:"text"}
+  ]},
+  { title: "Marca y tono", intro: "Cómo debe sentirse y sonar la marca.", fields: [
+    {id:"adjetivos", label:"Tres palabras que debe transmitir la marca", type:"text", req:true},
+    {id:"evitar", label:"Palabras, frases o estilos que NO quieres usar", help:"Ej.: “lleva tu negocio al siguiente nivel”, tono motivacional, emojis…", type:"textarea"},
+    {id:"trato", label:"Trato hacia el lector", type:"radio", opts:["Tú","Usted","Indistinto"]},
+    {id:"imagen_personal", label:"¿Cuánto quieres aparecer tú (rostro, voz, fotos)?", type:"radio", req:true, opts:["No quiero aparecer","Muy poco: foto institucional y nombre","Ocasionalmente","Sin problema, puedo ser la cara de la marca"]},
+    {id:"referentes", label:"Sitios o cuentas que te gustan (y por qué)", help:"Enlaces, uno por línea.", type:"textarea"},
+    {id:"competencia", label:"Competidores o colegas que conozcas", help:"Nombres o enlaces.", type:"textarea"}
+  ]},
+  { title: "Sitio web", intro: "Estructura y materiales para la primera versión (hasta 5 secciones).", fields: [
+    {id:"dominio", label:"Dominio que usaremos", help:"Ej.: tuempresa.com", type:"text"},
+    {id:"secciones", label:"Secciones que te imaginas", help:"Elige hasta 5; podemos ajustar en la reunión.", type:"checkbox", cols:true, max:5, opts:["Inicio","Qué hacemos","Cómo trabajamos","Para quién","Sobre mí / nosotros","Servicios","Casos o resultados","Preguntas frecuentes","Blog","Contacto"]},
+    {id:"textos", label:"¿Los textos del sitio…?", type:"radio", opts:["Los tengo listos","Tengo borradores o ideas","Necesito que los redacten con base en este cuestionario"]},
+    {id:"testimonios", label:"¿Cuentas con testimonios o casos que se puedan publicar?", type:"radio", opts:["Sí, con permiso","Sí, pero anonimizados","Todavía no"]},
+    {id:"agenda", label:"¿Usas alguna herramienta de agenda o CRM?", help:"Calendly, Google Calendar, HubSpot, ninguna…", type:"text"},
+    {id:"direccion", label:"¿Tienes dirección física que se pueda mostrar en Google Maps?", type:"radio", opts:["Sí, oficina con atención al público","Sí, pero prefiero mostrar solo la zona","No, trabajo en línea o a domicilio"]},
+    {id:"horarios", label:"Horarios de atención", type:"text"},
+    {id:"idiomas", label:"Idioma del sitio", type:"radio", opts:["Solo español","Español e inglés"]}
+  ]},
+  { title: "Búsquedas (SEO y GEO)", intro: "Cómo te buscarían en Google y en asistentes de IA como ChatGPT.", fields: [
+    {id:"keywords", label:"¿Qué escribiría en Google alguien que necesita lo que haces?", help:"Frases completas, una por línea. Ej.: “consultoría empresarial en Cancún”.", type:"textarea", req:true},
+    {id:"ciudades", label:"Ciudades o zonas donde quieres aparecer", type:"text"},
+    {id:"categoria", label:"Categoría principal del negocio en Google", help:"Si no la conoces, déjala vacía y la definimos juntos.", type:"text"}
+  ]},
+  { title: "Accesos y activos", intro: "Solo queremos saber qué existe. Los accesos se comparten como usuario invitado, nunca con tu contraseña.", notice:"🔒 No escribas contraseñas en este formulario. En la reunión te guiamos para darnos acceso como colaboradores; tú conservas la propiedad de todo. Al final podrás adjuntar tu logo, fotos y documentos.", fields: [
+    {id:"accesos", label:"Estado de cada activo", type:"status", rows:ACCESOS, cols:["Lo tengo","No existe","No sé"]},
+    {id:"accesos_notas", label:"Notas sobre accesos", help:"Ej.: el dominio lo administra otra persona, la página de Facebook está en una cuenta personal…", type:"textarea"}
+  ]},
+  { title: "Legal y datos", intro: "Para el aviso de privacidad y el formulario del sitio.", fields: [
+    {id:"aviso", label:"¿Tienes aviso de privacidad?", type:"radio", opts:["Sí, ya lo tengo","Lo está preparando mi abogado/contador","No, necesito orientación sobre cómo conseguirlo"]},
+    {id:"razon_social", label:"Nombre o razón social responsable de los datos", help:"Aparece en el aviso de privacidad.", type:"text"},
+    {id:"correo_legal", label:"Correo para solicitudes de privacidad (derechos ARCO)", type:"email"}
+  ]},
+  { title: "Contenido", intro: "Para preparar la operación mensual, si la contratas.", fields: [
+    {id:"temas", label:"Temas que dominas y te gustaría compartir", help:"Uno por línea.", type:"textarea"},
+    {id:"temas_no", label:"Temas que prefieres evitar", type:"textarea"},
+    {id:"redes_prioridad", label:"Redes prioritarias", type:"checkbox", opts:["Instagram","Facebook","LinkedIn","Otra"]},
+    {id:"tiempo", label:"¿Cuánto tiempo a la semana puedes dedicar a revisar y aprobar?", type:"radio", opts:["Menos de 30 min","30–60 min","1–2 horas","Más de 2 horas"]},
+    {id:"comentarios", label:"¿Algo más que debamos saber antes de empezar?", type:"textarea"}
+  ]}
+];
+
+/* ===== RENDER ===== */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const STORE_KEY = "onboarding-draft:" + (CLIENTE || "general");
+const MB = 1024 * 1024;
+
+if (CLIENTE){
+  $("#title").textContent = "Cuestionario de arranque · " + CLIENTE;
+  document.title = "Onboarding · " + CLIENTE;
+}
+
+function fieldHTML(f){
+  const req = f.req ? '<span class="req">*</span>' : "";
+  const help = f.help ? `<span class="help">${esc(f.help)}</span>` : "";
+  const err = `<div class="error-msg">${f.max ? "Elige máximo " + f.max + " opciones." : f.type === "email" ? "Revisa el correo." : "Este campo es necesario."}</div>`;
+  if (["text","email","tel","url"].includes(f.type))
+    return `<div class="field" data-id="${f.id}"><label for="${f.id}">${esc(f.label)}${req}</label>${help}<input type="${f.type}" id="${f.id}" name="${f.id}">${err}</div>`;
+  if (f.type === "textarea")
+    return `<div class="field" data-id="${f.id}"><label for="${f.id}">${esc(f.label)}${req}</label>${help}<textarea id="${f.id}" name="${f.id}"></textarea>${err}</div>`;
+  if (f.type === "radio" || f.type === "checkbox")
+    return `<div class="field" data-id="${f.id}"><span class="q">${esc(f.label)}${req}</span>${help}<div class="opts ${f.cols?"cols":""}" role="group">${
+      f.opts.map(o => `<label class="opt"><input type="${f.type}" name="${f.id}" value="${esc(o)}"><span>${esc(o)}</span></label>`).join("")
+    }</div>${err}</div>`;
+  if (f.type === "status")
+    return `<div class="field" data-id="${f.id}"><span class="q">${esc(f.label)}</span>${help}<table class="grid-status"><thead><tr><th>Activo</th>${f.cols.map(c=>`<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>${
+      f.rows.map((r,i) => `<tr><td>${esc(r)}</td>${f.cols.map(c=>`<td><input type="radio" name="${f.id}_${i}" value="${esc(c)}" aria-label="${esc(r)}: ${esc(c)}"></td>`).join("")}</tr>`).join("")
+    }</tbody></table></div>`;
+}
+
+$("#steps").innerHTML = STEPS.map((s,i) => `
+  <section class="card step ${i?"hidden":""}" data-step="${i}">
+    <h2>${esc(s.title)}</h2>
+    <p class="section-intro">${esc(s.intro)}</p>
+    ${s.notice ? `<div class="notice">${esc(s.notice)}</div>` : ""}
+    ${s.fields.map(fieldHTML).join("")}
+  </section>`).join("") + `
+  <section class="card step hidden" data-step="${STEPS.length}">
+    <h2>Revisar y enviar</h2>
+    <p class="section-intro">Si ya tienes documentos o enlaces útiles, agrégalos aquí. Después revisa tus respuestas; puedes regresar a cualquier sección con “Anterior”.</p>
+
+    <h3>Documentos y enlaces <span style="color:var(--muted)">(opcional)</span></h3>
+    <p class="help" style="margin:0 0 14px">Logo, manual de marca, fotos, presentaciones, textos, aviso de privacidad, tu sitio o redes actuales… lo que ya exista.</p>
+
+    <div class="field">
+      <span class="q">Enlaces</span>
+      <span class="help">Carpetas de Drive o Dropbox, tu sitio actual, perfiles de redes, Canva, etc.</span>
+      <div id="links"></div>
+      <button type="button" class="add-link" id="addLink">+ Agregar otro enlace</button>
+    </div>
+
+    <div class="field">
+      <span class="q">Archivos</span>
+      <label class="drop" id="drop">
+        <input type="file" id="fileInput" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.jpg,.jpeg,.png,.webp,.svg,.ai,.eps,.zip">
+        <strong>Arrastra tus archivos aquí o toca para elegir</strong>
+        <span>PDF, Word, Excel, PowerPoint, imágenes, AI/SVG o ZIP · hasta ${CONFIG.maxArchivoMB} MB por archivo y ${CONFIG.maxTotalMB} MB en total</span>
+      </label>
+      <ul class="file-list" id="fileList"></ul>
+      <div class="file-err" id="fileErr"></div>
+      <span class="help" style="margin-top:6px">¿Archivos más pesados (videos, fotos en alta)? Súbelos a Drive o WeTransfer y pega el enlace arriba.</span>
+    </div>
+
+    <h3>Tus respuestas</h3>
+    <div id="review"></div>
+  </section>`;
+
+/* ===== ADJUNTOS ===== */
+let files = [];
+const fmtSize = b => b >= MB ? (b/MB).toFixed(1) + " MB" : Math.max(1, Math.round(b/1024)) + " KB";
+
+function addLinkRow(value = ""){
+  const row = document.createElement("div");
+  row.className = "link-row";
+  row.innerHTML = `<input type="url" class="link-input" placeholder="https://" aria-label="Enlace" value="${esc(value)}"><button type="button" class="icon-btn" aria-label="Quitar enlace">×</button>`;
+  row.querySelector("button").onclick = () => { row.remove(); if (!document.querySelector(".link-input")) addLinkRow(); save(); };
+  $("#links").appendChild(row);
+  return row.querySelector("input");
+}
+$("#addLink").onclick = () => addLinkRow().focus();
+const getLinks = () => [...document.querySelectorAll(".link-input")].map(i => i.value.trim()).filter(Boolean)
+  .map(v => /^https?:\/\//i.test(v) ? v : "https://" + v);
+
+function renderFiles(){
+  $("#fileList").innerHTML = files.map((f,i) =>
+    `<li><span class="fname">${esc(f.name)}</span><span class="fsize">${fmtSize(f.size)}</span><button type="button" class="icon-btn" data-i="${i}" aria-label="Quitar ${esc(f.name)}">×</button></li>`).join("");
+  $("#fileList").querySelectorAll("button").forEach(b => b.onclick = () => { files.splice(+b.dataset.i, 1); $("#fileErr").textContent = ""; renderFiles(); });
+}
+function addFiles(list){
+  const errs = [];
+  let total = files.reduce((a,f) => a + f.size, 0);
+  [...list].forEach(f => {
+    if (files.some(x => x.name === f.name && x.size === f.size)) return;
+    if (f.size > CONFIG.maxArchivoMB * MB) return errs.push(`“${f.name}” pesa más de ${CONFIG.maxArchivoMB} MB; compártelo por enlace.`);
+    if (total + f.size > CONFIG.maxTotalMB * MB) return errs.push(`“${f.name}” supera el límite total de ${CONFIG.maxTotalMB} MB; compártelo por enlace.`);
+    files.push(f); total += f.size;
+  });
+  $("#fileErr").textContent = errs.join(" ");
+  renderFiles();
+}
+$("#fileInput").onchange = e => { addFiles(e.target.files); e.target.value = ""; };
+const drop = $("#drop");
+["dragenter","dragover"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add("over"); }));
+["dragleave","drop"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove("over"); }));
+drop.addEventListener("drop", e => addFiles(e.dataTransfer.files));
+
+const toBase64 = f => new Promise((res, rej) => {
+  const r = new FileReader();
+  r.onload = () => res(String(r.result).split(",")[1] || "");
+  r.onerror = () => rej(r.error);
+  r.readAsDataURL(f);
+});
+
+/* ===== ESTADO ===== */
+let current = 0;
+const TOTAL = STEPS.length + 1;
+
+function collect(){
+  const data = {};
+  STEPS.forEach(s => s.fields.forEach(f => {
+    if (f.type === "checkbox") data[f.id] = [...document.querySelectorAll(`input[name="${f.id}"]:checked`)].map(i=>i.value);
+    else if (f.type === "radio") data[f.id] = (document.querySelector(`input[name="${f.id}"]:checked`)||{}).value || "";
+    else if (f.type === "status") f.rows.forEach((r,i) => data[`${f.id}_${i}`] = (document.querySelector(`input[name="${f.id}_${i}"]:checked`)||{}).value || "");
+    else data[f.id] = document.getElementById(f.id).value.trim();
+  }));
+  return data;
+}
+function restore(data){
+  const pick = (name, v) => { const el = v && document.querySelector(`input[name="${name}"][value="${CSS.escape(v)}"]`); if (el) el.checked = true; };
+  STEPS.forEach(s => s.fields.forEach(f => {
+    if (f.type === "checkbox") (data[f.id]||[]).forEach(v => pick(f.id, v));
+    else if (f.type === "radio") pick(f.id, data[f.id]);
+    else if (f.type === "status") f.rows.forEach((r,i) => pick(`${f.id}_${i}`, data[`${f.id}_${i}`]));
+    else if (data[f.id] != null) document.getElementById(f.id).value = data[f.id];
+  }));
+}
+function save(){
+  try {
+    localStorage.setItem(STORE_KEY, JSON.stringify({step:current, data:collect(), links:getLinks()}));
+    $("#saved").textContent = "Borrador guardado en este dispositivo" + (files.length ? " (los archivos se adjuntan al enviar)" : "");
+  } catch(e){}
+}
+let draftLinks = [];
+try {
+  const d = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
+  if (d && d.data){ restore(d.data); current = Math.min(d.step||0, TOTAL-1); draftLinks = d.links || []; }
+} catch(e){}
+(draftLinks.length ? draftLinks : [""]).forEach(addLinkRow);
+if (CLIENTE && !document.getElementById("empresa").value) document.getElementById("empresa").value = CLIENTE;
+
+/* ===== VALIDACIÓN ===== */
+function validate(stepIdx){
+  const s = STEPS[stepIdx]; if (!s) return true;
+  let ok = true, first = null;
+  s.fields.forEach(f => {
+    const box = document.querySelector(`.field[data-id="${f.id}"]`);
+    let bad = false;
+    if (f.req){
+      if (f.type === "radio" || f.type === "checkbox") bad = !document.querySelector(`input[name="${f.id}"]:checked`);
+      else bad = !document.getElementById(f.id).value.trim();
+    }
+    if (!bad && f.type === "email"){ const v = document.getElementById(f.id).value.trim(); bad = !!v && !/^\S+@\S+\.\S+$/.test(v); }
+    if (!bad && f.max) bad = document.querySelectorAll(`input[name="${f.id}"]:checked`).length > f.max;
+    box && box.classList.toggle("invalid", bad);
+    if (bad){ ok = false; first = first || box; }
+  });
+  if (first) first.scrollIntoView({behavior:"smooth", block:"center"});
+  return ok;
+}
+document.addEventListener("input", e => { const b = e.target.closest(".field.invalid"); if (b) b.classList.remove("invalid"); });
+document.addEventListener("change", e => { const b = e.target.closest(".field.invalid"); if (b) b.classList.remove("invalid"); });
+
+/* ===== TEXTO LEGIBLE ===== */
+function toSections(data){
+  return STEPS.map(s => ({ title:s.title, items: s.fields.flatMap(f => {
+    if (f.type === "status") return f.rows.map((r,i) => [r, data[`${f.id}_${i}`] || "—"]);
+    const v = Array.isArray(data[f.id]) ? data[f.id].join(", ") : data[f.id];
+    return [[f.label, v || "—"]];
+  })}));
+}
+function toText(data){
+  const links = getLinks();
+  return `ONBOARDING ${CLIENTE || data.empresa || ""}\n${new Date().toLocaleString("es-MX")}\n\n` +
+    toSections(data).map(s => `== ${s.title.toUpperCase()} ==\n` + s.items.map(([k,v]) => `• ${k}\n  ${String(v).replace(/\n/g,"\n  ")}`).join("\n")).join("\n\n") +
+    `\n\n== DOCUMENTOS Y ENLACES ==\n• Enlaces\n  ${links.join("\n  ") || "—"}\n• Archivos\n  ${files.map(f => f.name).join("\n  ") || "—"}`;
+}
+function renderReview(){
+  $("#review").innerHTML = toSections(collect()).map(s =>
+    `<h3 style="font-size:1.05rem;margin:20px 0 4px">${esc(s.title)}</h3>` +
+    s.items.map(([k,v]) => `<div class="review-item"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join("")
+  ).join("");
+}
+function download(){
+  const blob = new Blob([toText(collect())], {type:"text/plain;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `onboarding-${(collect().empresa || "cliente").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-")}.txt`;
+  a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+/* ===== NAVEGACIÓN ===== */
+function show(i){
+  current = i;
+  document.querySelectorAll(".step").forEach(el => el.classList.toggle("hidden", +el.dataset.step !== i));
+  $("#prev").style.visibility = i ? "visible" : "hidden";
+  $("#next").textContent = i === TOTAL-1 ? "Enviar respuestas" : i === TOTAL-2 ? "Revisar" : "Siguiente";
+  $("#barFill").style.width = ((i+1)/TOTAL*100) + "%";
+  $("#stepName").textContent = i < STEPS.length ? STEPS[i].title : "Revisión";
+  $("#stepCount").textContent = `${i+1} de ${TOTAL}`;
+  if (i === TOTAL-1) renderReview();
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+$("#prev").onclick = () => { save(); show(Math.max(0, current-1)); };
+$("#next").onclick = () => {
+  if (current < TOTAL-1){ if (!validate(current)) return; save(); show(current+1); }
+  else submit();
+};
+document.addEventListener("change", save);
+let t; document.addEventListener("input", () => { clearTimeout(t); t = setTimeout(save, 600); });
+
+/* ===== ENVÍO ===== */
+async function submit(){
+  for (let i = 0; i < STEPS.length; i++) if (!validate(i)) { show(i); setTimeout(() => validate(i), 350); return; }
+  if (document.querySelector('[name="_honey"]').value) return;
+  const data = collect();
+  const btn = $("#next"); btn.disabled = true;
+  try {
+    if (CONFIG.endpoint.includes("PLACEHOLDER")) throw new Error("Endpoint sin configurar");
+    btn.textContent = files.length ? "Subiendo archivos…" : "Enviando…";
+    const archivos = [];
+    for (const f of files) archivos.push({ nombre: f.name, tipo: f.type || "application/octet-stream", base64: await toBase64(f) });
+    const payload = {
+      tipo: "onboarding",
+      fecha: new Date().toISOString(),
+      cliente: CLIENTE,
+      respuestas: Object.fromEntries(Object.entries(data).map(([k,v]) => [k, Array.isArray(v) ? v.join(", ") : v])),
+      enlaces: getLinks(),
+      archivos,
+      texto: toText(data)
+    };
+    btn.textContent = "Enviando…";
+    // Apps Script no devuelve CORS legible: se envía como text/plain en modo no-cors (igual que el resto del sitio).
+    await fetch(CONFIG.endpoint, { method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain;charset=utf-8"}, body: JSON.stringify(payload) });
+    $("#form").classList.add("hidden"); document.querySelector(".progress").classList.add("hidden");
+    $("#done").classList.remove("hidden");
+    window.scrollTo({top:0});
+    // MaKo registra el lead escuchando el evento submit del formulario (nombre, email, WhatsApp, empresa).
+    $("#form").dispatchEvent(new Event("submit", {cancelable:true}));
+    try { localStorage.setItem(STORE_KEY, JSON.stringify({step:current, data, links:getLinks(), sent:true})); } catch(e){}
+  } catch(e){
+    $("#form").classList.add("hidden"); $("#fail").classList.remove("hidden");
+  } finally { btn.disabled = false; btn.textContent = "Enviar respuestas"; }
+}
+$("#dlDone").onclick = download;
+$("#dlFail").onclick = download;
+$("#retry").onclick = () => { $("#fail").classList.add("hidden"); $("#form").classList.remove("hidden"); submit(); };
+$("#mailFail").onclick = () => {
+  const d = collect();
+  location.href = `mailto:${CONFIG.correo}?subject=${encodeURIComponent("Onboarding: " + (d.empresa||""))}&body=${encodeURIComponent(toText(d).slice(0,1800) + "\n\n(Adjunto el archivo descargado con las respuestas completas.)")}`;
+};
+
+$("#form").addEventListener("submit", e => e.preventDefault());
+show(current);
+</script>
+<!-- MaKo Pixel + Clarity (mismo snippet que /bienvenida/ y /diagnostico/) -->
+<script>
+(function(){
+  var E='https://hola-mako.com/api/track/vsl',T='mko_f5111dea4cc7e855055ab5d704c688f7',SV=16;
+  function gc(n){var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)'));return m?decodeURIComponent(m[1]):null}
+  var vi=gc('nqe_visitor_id');
+  if(!vi){vi=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2);document.cookie='nqe_visitor_id='+vi+'; max-age=31536000; path=/; SameSite=Lax'}
+  var lt=new URLSearchParams(location.search).get('l')||null;
+  var pr=null;try{pr=new URLSearchParams(location.search).get('mko_test');if(pr)sessionStorage.setItem('mko_test',pr);else pr=sessionStorage.getItem('mko_test')}catch(e){}
+  function env(d){d.t=T;d.sv=SV;d.visitor_id=vi;if(d.landing_url==null)d.landing_url=location.href;if(pr)d.prueba=pr;if(lt)d.l=lt;try{fetch(E,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),keepalive:true}).catch(function(){})}catch(e){}}
+  env({tipo_evento:'pageview',landing_url:location.href,referrer:document.referrer||null});
+  var CL=0;document.addEventListener('click',function(ev){try{if(CL>=40)return;var el=ev.target;for(var i=0;el&&i<5;i++){var t=(el.tagName||'').toUpperCase();if(t==='A'||t==='BUTTON'||el.getAttribute&&el.getAttribute('role')==='button')break;el=el.parentElement}if(!el||!el.tagName)return;var tag=el.tagName.toUpperCase();if(tag!=='A'&&tag!=='BUTTON'&&el.getAttribute('role')!=='button')return;var href=el.getAttribute?(el.getAttribute('href')||''):'';var txt=(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim().slice(0,80);var det=href?(href.indexOf('#')===0?'ancla '+href:href):('boton: '+txt);if(!det)return;CL++;env({tipo_evento:'click',detalle:det.slice(0,300)+(txt&&href?' — '+txt:'')})}catch(e){}},true);
+  var OP='https://hola-mako.com/api/track/optin';
+  function mop(d){try{if(!d||(!d.email&&!d.telefono))return;fetch(OP,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:T,visitor_id:vi,nombre:d.nombre||null,email:d.email||null,telefono:d.telefono||null,empresa:d.empresa||null,origen_captura:d.origen||'formulario',pagina:location.href,prueba:pr}),keepalive:true}).catch(function(){})}catch(e){}}
+  function cf(form,pats,types){var els=form.querySelectorAll('input,textarea,select');for(var i=0;i<els.length;i++){var el=els[i];if(!el.value||!String(el.value).trim())continue;if(types&&types.indexOf(el.type)!==-1)return String(el.value).trim();var p=[el.name,el.id,el.getAttribute('autocomplete'),el.placeholder,el.getAttribute('aria-label')].join(' ').toLowerCase();for(var j=0;j<pats.length;j++)if(p.indexOf(pats[j])!==-1)return String(el.value).trim()}return null}
+  document.addEventListener('submit',function(ev){try{var form=ev.target;if(!form||form.tagName!=='FORM')return;var email=cf(form,['email','correo','mail'],['email']);var tel=cf(form,['tel','phone','whats','celular','movil','móvil'],['tel']);if(!email&&!tel)return;mop({nombre:cf(form,['nombre','name','first','apellido']),email:email,telefono:tel,empresa:cf(form,['empresa','company','negocio']),origen:'formulario'})}catch(e){}},true);
+  var ap=Date.now(),cerr=false;
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')env({tipo_evento:'salio',segundos:Math.round((Date.now()-ap)/1000)})});
+  window.addEventListener('pagehide',function(){if(cerr)return;cerr=true;try{env({tipo_evento:'cierre',segundos:Math.round((Date.now()-ap)/1000)})}catch(e){}});
+  try{(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","y3dwgikuul");window.clarity("identify",vi);window.clarity("set","mko_pixel",String(SV));if(pr)window.clarity("set","mko_prueba",pr)}catch(e){}
+})();
+</script>
+</body>
+</html>
