@@ -111,7 +111,7 @@
   <header>
     <div class="eyebrow">Equipo Leila Fittipaldi · Onboarding</div>
     <h1 id="title">Cuestionario de arranque</h1>
-    <p class="lead">Con tus respuestas preparamos el sitio, el SEO y la configuración de tus canales sin pedirte información dos veces. Toma unos 20–25 minutos. Tus respuestas se guardan en este navegador mientras avanzas, así que puedes pausar y volver.</p>
+    <p class="lead">Con tus respuestas preparamos el sitio, el SEO y la configuración de tus canales sin pedirte información dos veces. Toma menos de 10 minutos; lo demás lo platicamos en la reunión. Tus respuestas se guardan en este navegador mientras avanzas.</p>
   </header>
 
   <div class="progress" aria-hidden="true">
@@ -164,93 +164,48 @@ const CLIENTE = (params.get("cliente") || "").trim();
 
 /* ===== PREGUNTAS ===== */
 const ACCESOS = [
-  "Dominio (dónde está registrado hoy)",
+  "Dominio (tuempresa.com)",
   "Correo empresarial",
-  "Perfil de Empresa de Google / Google Maps",
-  "Meta Business Suite (Facebook + Instagram)",
-  "Cuenta de Instagram",
-  "Página de Facebook",
-  "Página de empresa en LinkedIn",
+  "Perfil de Google / Google Maps",
+  "Facebook e Instagram (Meta Business)",
+  "LinkedIn de la empresa",
   "WhatsApp Business",
-  "Google Analytics / Search Console",
+  "Google Analytics",
   "Logotipo en vector (AI, SVG o PDF)",
-  "Manual o guía de uso de marca",
-  "Fotografías institucionales o de espacios"
+  "Manual o guía de marca"
 ];
 
 const STEPS = [
-  { title: "Contacto", intro: "Quién eres y cómo coordinamos el proyecto.", fields: [
+  { title: "Contacto", intro: "Para coordinar el proyecto contigo.", fields: [
     {id:"nombre", label:"Nombre completo", type:"text", req:true},
-    {id:"empresa", label:"Nombre de la empresa o marca", type:"text", req:true},
-    {id:"puesto", label:"Puesto / rol", type:"text"},
+    {id:"empresa", label:"Empresa o marca", type:"text", req:true},
     {id:"email", label:"Correo electrónico", type:"email", req:true},
     {id:"whatsapp", label:"WhatsApp", type:"tel", req:true},
-    {id:"aprueba", label:"¿Quién aprueba los entregables?", help:"Nombre y rol. Si son varias personas, indícalo.", type:"text"},
-    {id:"canal", label:"Canal preferido para coordinar", type:"radio", opts:["WhatsApp","Correo","Videollamada","Indistinto"]},
-    {id:"horario", label:"Días y horarios en que prefieres ser contactada/o", type:"text"}
+    {id:"aprueba", label:"¿Quién aprueba los entregables?", help:"Déjalo vacío si eres tú.", type:"text"}
   ]},
-  { title: "El negocio", intro: "Lo esencial de lo que haces y cómo lo explicas.", fields: [
-    {id:"una_frase", label:"Explica tu negocio en una sola frase", help:"Como se lo dirías a un empresario en un elevador.", type:"textarea", req:true},
-    {id:"servicios", label:"Servicios que ofreces", help:"Uno por línea. Marca con * el que más quieres vender.", type:"textarea", req:true},
-    {id:"diferenciador", label:"¿Por qué un cliente te elegiría a ti y no a otra opción?", type:"textarea", req:true},
-    {id:"modalidad", label:"Modalidad de atención", type:"checkbox", opts:["Presencial","En línea","Híbrida","En las instalaciones del cliente"]},
-    {id:"zona", label:"Zona geográfica que atiendes", help:"Ciudad o estado hoy, y si más adelante quieres atender otras.", type:"text"},
-    {id:"precios", label:"Rango de precios o forma de cobro (opcional)", help:"No se publica si no quieres; nos sirve para calibrar el mensaje.", type:"textarea"},
-    {id:"trayectoria", label:"Trayectoria y credenciales que respaldan la marca", help:"Formación, años de experiencia, logros. Solo lo que quieras mostrar.", type:"textarea"}
+  { title: "Tu negocio", intro: "Respuestas cortas: lo desarrollamos juntos en la reunión.", fields: [
+    {id:"una_frase", label:"¿Qué haces, en una frase?", help:"Como se lo dirías a alguien en un elevador.", type:"textarea", req:true},
+    {id:"servicios", label:"Tus servicios principales", help:"Uno por línea. Marca con * el que más quieres vender.", type:"textarea", req:true},
+    {id:"cliente_perfil", label:"¿A quién ayudas y qué problema le resuelves?", type:"textarea", req:true},
+    {id:"preguntas", label:"Preguntas que tus clientes te hacen seguido (opcional)", help:"2 o 3 bastan. Las usamos para las preguntas frecuentes y el SEO.", type:"textarea"}
   ]},
-  { title: "Cliente ideal", intro: "A quién le hablamos en el sitio y en el contenido.", fields: [
-    {id:"cliente_perfil", label:"Describe a tu cliente ideal", help:"Rol, tipo y tamaño de empresa, sector, edad aproximada del negocio.", type:"textarea", req:true},
-    {id:"dolores", label:"¿Qué problema o situación los hace buscarte?", type:"textarea", req:true},
-    {id:"preguntas", label:"Preguntas que te hacen con más frecuencia", help:"Una por línea. Se convertirán en la sección de preguntas frecuentes y en contenido para SEO/GEO.", type:"textarea", req:true},
-    {id:"objeciones", label:"¿Qué los frena para contratarte?", type:"textarea"},
-    {id:"no_cliente", label:"¿A quién NO quieres atraer?", type:"textarea"},
-    {id:"como_llegan", label:"¿Cómo llegan tus clientes hoy?", type:"checkbox", opts:["Recomendación","Redes sociales","Google","Eventos / networking","Docencia o conferencias","Todavía no tengo clientes"]}
+  { title: "Objetivo y marca", intro: "Cómo debe sentirse la marca y qué debe lograr el sitio.", fields: [
+    {id:"accion", label:"¿Qué quieres que haga quien visite tu sitio?", type:"radio", req:true, opts:["Escribir por WhatsApp","Llenar un formulario","Agendar una consulta","Llamar por teléfono"]},
+    {id:"adjetivos", label:"Tres palabras que debe transmitir tu marca", type:"text", req:true},
+    {id:"imagen_personal", label:"¿Cuánto quieres aparecer tú (rostro, voz, fotos)?", type:"radio", req:true, opts:["Nada","Poco: nombre y una foto institucional","Ocasionalmente","Sin problema, puedo ser la cara de la marca"]},
+    {id:"trato", label:"¿Cómo le hablamos a tu cliente?", type:"radio", opts:["De tú","De usted","Indistinto"]},
+    {id:"evitar", label:"Frases o estilos que NO quieres (opcional)", help:"Ej.: “lleva tu negocio al siguiente nivel”, emojis, tono motivacional.", type:"text"}
   ]},
-  { title: "Objetivos", intro: "Qué tiene que pasar para que el proyecto sea un éxito.", fields: [
-    {id:"accion", label:"¿Cuál es la acción principal que debe hacer un visitante?", type:"radio", req:true, opts:["Escribir por WhatsApp","Llenar formulario de contacto","Agendar una consulta en calendario","Llamar por teléfono"]},
-    {id:"objetivos", label:"Objetivos de los próximos 3 meses", type:"checkbox", opts:["Tener presencia profesional al compartir mi enlace","Recibir solicitudes de consulta","Aparecer en Google / Maps","Posicionarme como referente","Validar una oferta nueva","Apoyar campañas de publicidad"]},
-    {id:"exito", label:"En 90 días, ¿qué resultado concreto te haría decir “valió la pena”?", type:"textarea", req:true},
-    {id:"consultas_mes", label:"¿Cuántas solicitudes de consulta al mes podrías atender bien?", type:"text"},
-    {id:"fecha_clave", label:"¿Hay alguna fecha clave (lanzamiento, evento, conferencia)?", type:"text"}
+  { title: "Sitio web", intro: "Lo básico para armar la primera versión.", fields: [
+    {id:"secciones", label:"Secciones que te imaginas (hasta 5)", type:"checkbox", cols:true, max:5, opts:["Inicio","Qué hacemos","Cómo trabajamos","Para quién","Sobre mí / nosotros","Servicios","Preguntas frecuentes","Contacto"]},
+    {id:"textos", label:"Los textos del sitio…", type:"radio", opts:["Los tengo listos","Tengo borradores o ideas","Necesito que los redacten"]},
+    {id:"direccion", label:"¿Mostramos tu ubicación en Google Maps?", type:"radio", opts:["Sí, con dirección","Solo la zona","No, trabajo en línea"]},
+    {id:"keywords", label:"¿Qué escribiría en Google alguien que te necesita? (opcional)", help:"Ej.: “consultoría empresarial en Cancún”.", type:"text"}
   ]},
-  { title: "Marca y tono", intro: "Cómo debe sentirse y sonar la marca.", fields: [
-    {id:"adjetivos", label:"Tres palabras que debe transmitir la marca", type:"text", req:true},
-    {id:"evitar", label:"Palabras, frases o estilos que NO quieres usar", help:"Ej.: “lleva tu negocio al siguiente nivel”, tono motivacional, emojis…", type:"textarea"},
-    {id:"trato", label:"Trato hacia el lector", type:"radio", opts:["Tú","Usted","Indistinto"]},
-    {id:"imagen_personal", label:"¿Cuánto quieres aparecer tú (rostro, voz, fotos)?", type:"radio", req:true, opts:["No quiero aparecer","Muy poco: foto institucional y nombre","Ocasionalmente","Sin problema, puedo ser la cara de la marca"]},
-    {id:"referentes", label:"Sitios o cuentas que te gustan (y por qué)", help:"Enlaces, uno por línea.", type:"textarea"},
-    {id:"competencia", label:"Competidores o colegas que conozcas", help:"Nombres o enlaces.", type:"textarea"}
-  ]},
-  { title: "Sitio web", intro: "Estructura y materiales para la primera versión (hasta 5 secciones).", fields: [
-    {id:"dominio", label:"Dominio que usaremos", help:"Ej.: tuempresa.com", type:"text"},
-    {id:"secciones", label:"Secciones que te imaginas", help:"Elige hasta 5; podemos ajustar en la reunión.", type:"checkbox", cols:true, max:5, opts:["Inicio","Qué hacemos","Cómo trabajamos","Para quién","Sobre mí / nosotros","Servicios","Casos o resultados","Preguntas frecuentes","Blog","Contacto"]},
-    {id:"textos", label:"¿Los textos del sitio…?", type:"radio", opts:["Los tengo listos","Tengo borradores o ideas","Necesito que los redacten con base en este cuestionario"]},
-    {id:"testimonios", label:"¿Cuentas con testimonios o casos que se puedan publicar?", type:"radio", opts:["Sí, con permiso","Sí, pero anonimizados","Todavía no"]},
-    {id:"agenda", label:"¿Usas alguna herramienta de agenda o CRM?", help:"Calendly, Google Calendar, HubSpot, ninguna…", type:"text"},
-    {id:"direccion", label:"¿Tienes dirección física que se pueda mostrar en Google Maps?", type:"radio", opts:["Sí, oficina con atención al público","Sí, pero prefiero mostrar solo la zona","No, trabajo en línea o a domicilio"]},
-    {id:"horarios", label:"Horarios de atención", type:"text"},
-    {id:"idiomas", label:"Idioma del sitio", type:"radio", opts:["Solo español","Español e inglés"]}
-  ]},
-  { title: "Búsquedas (SEO y GEO)", intro: "Cómo te buscarían en Google y en asistentes de IA como ChatGPT.", fields: [
-    {id:"keywords", label:"¿Qué escribiría en Google alguien que necesita lo que haces?", help:"Frases completas, una por línea. Ej.: “consultoría empresarial en Cancún”.", type:"textarea", req:true},
-    {id:"ciudades", label:"Ciudades o zonas donde quieres aparecer", type:"text"},
-    {id:"categoria", label:"Categoría principal del negocio en Google", help:"Si no la conoces, déjala vacía y la definimos juntos.", type:"text"}
-  ]},
-  { title: "Accesos y activos", intro: "Solo queremos saber qué existe. Los accesos se comparten como usuario invitado, nunca con tu contraseña.", notice:"🔒 No escribas contraseñas en este formulario. En la reunión te guiamos para darnos acceso como colaboradores; tú conservas la propiedad de todo. Al final podrás adjuntar tu logo, fotos y documentos.", fields: [
-    {id:"accesos", label:"Estado de cada activo", type:"status", rows:ACCESOS, cols:["Lo tengo","No existe","No sé"]},
-    {id:"accesos_notas", label:"Notas sobre accesos", help:"Ej.: el dominio lo administra otra persona, la página de Facebook está en una cuenta personal…", type:"textarea"}
-  ]},
-  { title: "Legal y datos", intro: "Para el aviso de privacidad y el formulario del sitio.", fields: [
-    {id:"aviso", label:"¿Tienes aviso de privacidad?", type:"radio", opts:["Sí, ya lo tengo","Lo está preparando mi abogado/contador","No, necesito orientación sobre cómo conseguirlo"]},
-    {id:"razon_social", label:"Nombre o razón social responsable de los datos", help:"Aparece en el aviso de privacidad.", type:"text"},
-    {id:"correo_legal", label:"Correo para solicitudes de privacidad (derechos ARCO)", type:"email"}
-  ]},
-  { title: "Contenido", intro: "Para preparar la operación mensual, si la contratas.", fields: [
-    {id:"temas", label:"Temas que dominas y te gustaría compartir", help:"Uno por línea.", type:"textarea"},
-    {id:"temas_no", label:"Temas que prefieres evitar", type:"textarea"},
-    {id:"redes_prioridad", label:"Redes prioritarias", type:"checkbox", opts:["Instagram","Facebook","LinkedIn","Otra"]},
-    {id:"tiempo", label:"¿Cuánto tiempo a la semana puedes dedicar a revisar y aprobar?", type:"radio", opts:["Menos de 30 min","30–60 min","1–2 horas","Más de 2 horas"]},
-    {id:"comentarios", label:"¿Algo más que debamos saber antes de empezar?", type:"textarea"}
+  { title: "Accesos", intro: "Solo marca qué existe; los accesos los vemos juntos en la reunión.", notice:"🔒 No escribas contraseñas aquí. Nos das acceso como colaboradores y tú conservas la propiedad de todo. En el siguiente paso puedes adjuntar logo, fotos y documentos.", fields: [
+    {id:"accesos", label:"¿Qué tienes hoy?", type:"status", rows:ACCESOS, cols:["Sí","No","No sé"]},
+    {id:"aviso", label:"¿Tienes aviso de privacidad?", type:"radio", opts:["Sí","No","No sé"]},
+    {id:"comentarios", label:"¿Algo más que debamos saber? (opcional)", type:"textarea"}
   ]}
 ];
 
@@ -295,7 +250,7 @@ $("#steps").innerHTML = STEPS.map((s,i) => `
     <p class="section-intro">Si ya tienes documentos o enlaces útiles, agrégalos aquí. Después revisa tus respuestas; puedes regresar a cualquier sección con “Anterior”.</p>
 
     <h3>Documentos y enlaces <span style="color:var(--muted)">(opcional)</span></h3>
-    <p class="help" style="margin:0 0 14px">Logo, manual de marca, fotos, presentaciones, textos, aviso de privacidad, tu sitio o redes actuales… lo que ya exista.</p>
+    <p class="help" style="margin:0 0 14px">Logo, manual de marca, fotos, presentaciones, tu sitio o redes actuales, sitios que te gustan… lo que ya exista.</p>
 
     <div class="field">
       <span class="q">Enlaces</span>
