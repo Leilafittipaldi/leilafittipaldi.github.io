@@ -192,8 +192,16 @@ input[type=range]{flex:1;accent-color:var(--accent);height:1.5rem}
 .pbody h3{font-size:var(--s-2)}
 .pbody p{color:var(--muted)}
 .todo{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.45rem}
-.todo li{display:flex;gap:.65rem;align-items:flex-start;font-size:var(--s--1);line-height:1.5}
-.todo li::before{content:"";flex:0 0 auto;width:.8rem;height:.8rem;margin-top:.35rem;border:1.5px solid var(--muted-2);border-radius:2px}
+.todo li{font-size:var(--s--1);line-height:1.5}
+.todo label{display:flex;gap:.65rem;align-items:flex-start;cursor:pointer;padding:.12rem 0}
+.todo input[type=checkbox]{flex:0 0 auto;width:1.05rem;height:1.05rem;margin:.2rem 0 0;accent-color:var(--accent);cursor:pointer}
+.todo input[type=checkbox]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.todo label:hover span{color:var(--ink)}
+.todo li.done span{color:var(--muted-2);text-decoration:line-through;text-decoration-thickness:1px}
+.todo-head{display:flex;align-items:baseline;gap:.6rem;font-family:var(--cond);font-size:.92rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2)}
+.todo-head b{font-family:var(--display);font-weight:800;letter-spacing:0;font-size:var(--s-0);color:var(--ink);font-variant-numeric:tabular-nums}
+.todo-head.done{color:var(--accent)}
+.todo-head.done b{color:var(--accent)}
 .gate{display:flex;flex-direction:column;gap:.2rem;border-left:3px solid var(--accent);background:var(--accent-soft);padding:.75rem .95rem;font-size:var(--s--1);line-height:1.5}
 .gate .lbl{font-family:var(--cond);font-size:.88rem;letter-spacing:.11em;text-transform:uppercase;color:var(--accent)}
 
@@ -681,11 +689,11 @@ footer p{color:var(--muted-2);font-size:var(--s--1);max-width:var(--measure)}
       <h3>Elegir y escribir</h3>
       <p>De tu bitácora toma la tarea con más repeticiones semanales que además sea reversible. Escríbela como proceso, no como intención: qué entra, qué sale, qué nunca se hace. Esto es el escalón 1 de la escalera.</p>
       <ul class="todo">
-        <li>Ordena tu bitácora por repeticiones por semana</li>
-        <li>Elige la número 1 que sea reversible</li>
-        <li>Haz la junta de 25 minutos con tu equipo</li>
-        <li>Escribe la ficha de proceso completa</li>
-        <li>Junta 10 ejemplos reales de cómo la resolviste bien</li>
+        <li><label><input type="checkbox" data-k="t1"><span>Ordena tu bitácora por repeticiones por semana</span></label></li>
+        <li><label><input type="checkbox" data-k="t2"><span>Elige la número 1 que sea reversible</span></label></li>
+        <li><label><input type="checkbox" data-k="t3"><span>Haz la junta de 25 minutos con tu equipo</span></label></li>
+        <li><label><input type="checkbox" data-k="t4"><span>Escribe la ficha de proceso completa</span></label></li>
+        <li><label><input type="checkbox" data-k="t5"><span>Junta 10 ejemplos reales de cómo la resolviste bien</span></label></li>
       </ul>
       <div class="gate"><span class="lbl">Puerta de la semana</span><span>Alguien de tu equipo ejecuta la tarea leyendo solo tu ficha, sin preguntarte nada. Si te pregunta algo, la ficha está incompleta — y esa pregunta es el renglón que falta.</span></div>
     </div>
@@ -697,10 +705,10 @@ footer p{color:var(--muted-2);font-size:var(--s--1);max-width:var(--measure)}
       <h3>Armar y correr en paralelo</h3>
       <p>Construye la automatización con la ficha y los 10 ejemplos. Toda la semana corre en paralelo: el sistema propone, tú resuelves como siempre, comparas. Todavía no sale nada suyo al cliente.</p>
       <ul class="todo">
-        <li>Monta el flujo usando la ficha como instrucción base</li>
-        <li>Cada caso genera dos versiones: la automática y la tuya</li>
-        <li>Anota una sola cosa: ¿sirve tal cual, con edición, o no sirve?</li>
-        <li>Corrige la ficha con cada caso que falló</li>
+        <li><label><input type="checkbox" data-k="t6"><span>Monta el flujo usando la ficha como instrucción base</span></label></li>
+        <li><label><input type="checkbox" data-k="t7"><span>Cada caso genera dos versiones: la automática y la tuya</span></label></li>
+        <li><label><input type="checkbox" data-k="t8"><span>Anota una sola cosa: ¿sirve tal cual, con edición, o no sirve?</span></label></li>
+        <li><label><input type="checkbox" data-k="t9"><span>Corrige la ficha con cada caso que falló</span></label></li>
       </ul>
       <div class="gate"><span class="lbl">Puerta de la semana</span><span>7 de cada 10 salidas sirven tal cual o con edición menor. Si no llegas, no es que la IA no sirva: tu ficha todavía no describe lo que tú haces.</span></div>
     </div>
@@ -712,10 +720,10 @@ footer p{color:var(--muted-2);font-size:var(--s--1);max-width:var(--measure)}
       <h3>Soltarlo con freno de mano</h3>
       <p>Ahora opera de verdad, pero nada que cobre, publique o prometa algo sale sin que un humano lo vea. Tu trabajo deja de ser hacer la tarea y pasa a ser aprobarla en segundos. Es el escalón 3.</p>
       <ul class="todo">
-        <li>El sistema ejecuta, la persona revisa antes de enviar</li>
-        <li>Cronometra la revisión: debe bajar de minutos a segundos</li>
-        <li>Registra cada intervención y por qué ocurrió</li>
-        <li>El viernes revisas las intervenciones y ajustas la ficha</li>
+        <li><label><input type="checkbox" data-k="t10"><span>El sistema ejecuta, la persona revisa antes de enviar</span></label></li>
+        <li><label><input type="checkbox" data-k="t11"><span>Cronometra la revisión: debe bajar de minutos a segundos</span></label></li>
+        <li><label><input type="checkbox" data-k="t12"><span>Registra cada intervención y por qué ocurrió</span></label></li>
+        <li><label><input type="checkbox" data-k="t13"><span>El viernes revisas las intervenciones y ajustas la ficha</span></label></li>
       </ul>
       <div class="gate"><span class="lbl">Puerta de la semana</span><span>Menos de 2 intervenciones por cada 10 casos, tres semanas seguidas. Ese es el umbral para quitar el freno en lo reversible — y solo en lo reversible.</span></div>
     </div>
@@ -727,10 +735,10 @@ footer p{color:var(--muted-2);font-size:var(--s--1);max-width:var(--measure)}
       <h3>Medir, cerrar y pasar a la siguiente</h3>
       <p>Repite la bitácora de tres días, igual que al principio. La comparación contra tu línea base es el único resultado que cuenta. Y solo entonces eliges la segunda tarea.</p>
       <ul class="todo">
-        <li>Repite la bitácora de 3 días</li>
-        <li>Compara horas repetibles: antes contra ahora</li>
-        <li>Llena el tablero de los seis números</li>
-        <li>Elige la siguiente tarea y vuelve a la semana 1</li>
+        <li><label><input type="checkbox" data-k="t14"><span>Repite la bitácora de 3 días</span></label></li>
+        <li><label><input type="checkbox" data-k="t15"><span>Compara horas repetibles: antes contra ahora</span></label></li>
+        <li><label><input type="checkbox" data-k="t16"><span>Llena el tablero de los seis números</span></label></li>
+        <li><label><input type="checkbox" data-k="t17"><span>Elige la siguiente tarea y vuelve a la semana 1</span></label></li>
       </ul>
       <div class="gate"><span class="lbl">Puerta de la semana</span><span>Bajaste al menos 30 % las horas de esa tarea sin que ningún indicador de calidad empeore. Si bajaron las horas pero subieron las quejas, no ganaste: moviste el costo de lugar.</span></div>
     </div>
@@ -981,6 +989,43 @@ footer p{color:var(--muted-2);font-size:var(--s--1);max-width:var(--measure)}
   campos.forEach(function(c){el[c.id].addEventListener('input',pintar);});
   cargar();
   pintar();
+})();
+
+(function(){
+  var KEY='lidermente-plan-4-semanas-v1';
+  var st={};
+  try{st=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){st={};}
+  function guardar(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+
+  Array.prototype.forEach.call(document.querySelectorAll('ul.todo'),function(ul){
+    var cajas=Array.prototype.slice.call(ul.querySelectorAll('input[type=checkbox]'));
+    if(!cajas.length)return;
+
+    var head=document.createElement('p');
+    head.className='todo-head';
+    head.innerHTML='<span>Tareas de la semana</span><b></b>';
+    ul.parentNode.insertBefore(head,ul);
+    var marcador=head.querySelector('b');
+
+    function pintar(){
+      var hechas=0;
+      cajas.forEach(function(c){
+        var li=c.closest('li');
+        if(c.checked){hechas++;li.classList.add('done');}else{li.classList.remove('done');}
+      });
+      marcador.textContent=hechas+' de '+cajas.length;
+      if(hechas===cajas.length){head.classList.add('done');}else{head.classList.remove('done');}
+    }
+
+    cajas.forEach(function(c){
+      if(st[c.dataset.k])c.checked=true;
+      c.addEventListener('change',function(){
+        if(c.checked){st[c.dataset.k]=1;}else{delete st[c.dataset.k];}
+        guardar();pintar();
+      });
+    });
+    pintar();
+  });
 })();
 </script>
 
