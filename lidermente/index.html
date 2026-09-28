@@ -470,13 +470,16 @@ function enviar(e) {
 }
 </script>
 
-<!-- ── MaKo Pixel v16 + Clarity ── -->
+<!-- MaKo Pixel v18 + Clarity -->
 <script>
 (function () {
   var ENDPOINT = 'https://hola-mako.com/api/track/vsl';
   var TOKEN = 'mko_f5111dea4cc7e855055ab5d704c688f7';
-  var SV = 16;
+  // Versión del snippet: viaja en cada evento para que MaKo sepa quién quedó
+  // con el código viejo y le avise. Ver SNIPPET_VERSION.
+  var SV = 18;
 
+  // visitor_id anónimo, persistente (cookie de 1 año)
   function getCookie(n) {
     var m = document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]*)'));
     return m ? decodeURIComponent(m[1]) : null;
@@ -514,8 +517,10 @@ function enviar(e) {
     } catch (e) {}
   }
 
+  // Visita a la landing
   enviar({ tipo_evento: 'pageview', landing_url: location.href, referrer: document.referrer || null });
 
+  // VSL (Panda Video)
   function tituloVsl(id) {
     var f = document.querySelectorAll('iframe');
     for (var i = 0; i < f.length; i++) if (id && (f[i].src || '').indexOf(id) !== -1 && f[i].title) return f[i].title;
@@ -523,7 +528,6 @@ function enviar(e) {
     for (var j = 0; j < f.length; j++) if ((f[j].src || '').indexOf(MP) !== -1 && f[j].title) return f[j].title;
     return null;
   }
-
   var huboInteraccion = false;
   ['pointerdown', 'keydown', 'touchstart', 'wheel'].forEach(function (n) {
     try { window.addEventListener(n, function () { huboInteraccion = true; }, { once: true, passive: true, capture: true }); } catch (e) {}
@@ -607,7 +611,7 @@ function enviar(e) {
     new MutationObserver(engancharNativos).observe(document.documentElement, { childList: true, subtree: true });
   } catch (e) {}
 
-  // ── Wistia custom element ──
+  // ── EL REPRODUCTOR COMO ETIQUETA PROPIA ──
   function wisHost(t) {
     try {
       return (t && typeof t.mediaId === 'string' && t.mediaId && ('percentWatched' in t)) ? t : null;
@@ -683,7 +687,7 @@ function enviar(e) {
   wisOir('end', wisFin);
   wisOir('ended', wisFin);
 
-  // ── Custom element hosts ──
+  // ── PLAYERS QUE SON UN CUSTOM ELEMENT ──
   var HOSTS = [];
   function hostDeMedia(t, n) {
     if (t.__mkoH || (t.__mkoH === null && n !== 'play')) return t.__mkoH;
@@ -691,6 +695,7 @@ function enviar(e) {
     var ok = tag.indexOf('-') > 0 && typeof t.currentTime === 'number' && typeof t.duration === 'number' &&
       typeof t.muted === 'boolean' && typeof t.play === 'function';
     if (ok && t.querySelector('video')) ok = false;
+    if (ok && wisHost(t)) ok = false;
     for (var i = 0; ok && i < HOSTS.length; i++) if (HOSTS[i] !== t && (t.contains(HOSTS[i]) || HOSTS[i].contains(t))) ok = false;
     if (!ok) { t.__mkoH = null; return null; }
     var clave = null;
@@ -766,7 +771,6 @@ function enviar(e) {
     try { document.addEventListener(n, alEventoDeHost, true); } catch (err) {}
   });
 
-  // ── Panda Video (iframe) ──
   window.addEventListener('message', function (ev) {
     var d = ev.data;
     if (!d || typeof d !== 'object' || String(d.message || '').indexOf('panda_') !== 0) return;
@@ -817,7 +821,7 @@ function enviar(e) {
     }
   });
 
-  // ── YouTube (iframe) ──
+  // ── YOUTUBE (iframe) ──
   var YTS = [];
   var YT_EMBED = /^https?:\/\/(www\.)?youtube(-nocookie)?\.com\/embed\/([A-Za-z0-9_-]{6,20})/;
   var YT_ORIGEN = /^https:\/\/(www\.)?youtube(-nocookie)?\.com$/;
@@ -834,6 +838,7 @@ function enviar(e) {
       try { y.f.contentWindow.postMessage('{"event":"listening","id":"' + YT_ID + '","channel":"widget"}', '*'); } catch (err) {}
     }, 250);
   }
+
   function ytCeder(y) {
     if (y.pasivo) return;
     y.pasivo = true;
@@ -842,6 +847,7 @@ function enviar(e) {
     y.recargado = true;
     try { y.f.src = y.f.src; } catch (err) {}
   }
+
   function ytRevisar(f, puedeParchar) {
     var src = f.src || '';
     var m = YT_EMBED.exec(src);
@@ -864,6 +870,7 @@ function enviar(e) {
     }
     ytOir(y);
   }
+
   function ytEnganchar(f, puedeParchar) {
     if (f.__mkoI) return;
     f.__mkoI = true;
@@ -871,6 +878,7 @@ function enviar(e) {
     try { f.addEventListener('load', function () { if (f.__mkoY && YT_EMBED.test(f.src || '')) ytOir(f.__mkoY); }); } catch (err) {}
     ytRevisar(f, puedeParchar);
   }
+
   function ytBuscar(nodo) {
     if (!nodo) return;
     if (nodo.nodeName === 'IFRAME') { ytEnganchar(nodo, true); return; }
@@ -878,6 +886,7 @@ function enviar(e) {
     var l = nodo.getElementsByTagName('iframe');
     for (var i = 0; i < l.length; i++) ytEnganchar(l[i], true);
   }
+
   function ytAvance(e, id) {
     if (e.dur > 0) {
       e.pct = Math.min(100, Math.round((e.segs / e.dur) * 100));
@@ -895,6 +904,7 @@ function enviar(e) {
       }
     }
   }
+
   function ytEstado(e, id, s) {
     if (s === 1) {
       if (!e.play) {
@@ -921,6 +931,7 @@ function enviar(e) {
       enviar({ tipo_evento: 'fin', porcentaje: 100, segundos: e.segs, video_id: id, vsl_titulo: e.tit });
     }
   }
+
   function ytInfo(y, info) {
     var vd = info.videoData;
     var vid = (vd && vd.video_id) || y.vid;
@@ -939,6 +950,7 @@ function enviar(e) {
     if (hayTiempo && e.play) ytAvance(e, id);
     if (st !== null && st !== 1) ytEstado(e, id, st);
   }
+
   window.addEventListener('message', function (ev) {
     if (!YTS.length || typeof ev.data !== 'string' || !YT_ORIGEN.test(ev.origin || '')) return;
     var y = null;
@@ -951,9 +963,11 @@ function enviar(e) {
     if (d.id && d.id !== YT_ID) ytCeder(y);
     if ((d.event === 'initialDelivery' || d.event === 'infoDelivery') && d.info && typeof d.info === 'object') ytInfo(y, d.info);
   });
+
   window.addEventListener('blur', function () {
     try { var a = document.activeElement; if (a && a.tagName === 'IFRAME') huboInteraccion = true; } catch (err) {}
   });
+
   (function () {
     var l = document.getElementsByTagName('iframe');
     for (var i = 0; i < l.length; i++) ytEnganchar(l[i], ytTemprano && document.activeElement !== l[i]);
@@ -964,7 +978,7 @@ function enviar(e) {
     }).observe(document.documentElement, { childList: true, subtree: true });
   } catch (err) {}
 
-  // ── Vimeo (iframe) ──
+  // ── VIMEO ──
   var VIM = [];
   var VIM_ORIGEN = /^https:\/\/(player\.)?vimeo\.com$/;
   var VIM_VIGIA = 0;
@@ -1086,7 +1100,9 @@ function enviar(e) {
     } catch (err) {}
   });
 
-  // ── Videos ajenos (Drive, YouTube sin API) ──
+  // ── VIDEOS QUE NO SE PUEDEN MEDIR ──
+  var AJENOS = {}, ajenosPend = 0, ajenosEnvios = 0;
+  var IFRS = document.getElementsByTagName('iframe');
   function videoAjeno(src) {
     var m = /^(?:https?:)?\/\/([^\/?#]+)([^?#]*)(\?[^#]*)?/i.exec(src || '');
     if (!m) return null;
@@ -1110,8 +1126,6 @@ function enviar(e) {
     }
     return null;
   }
-  var AJENOS = {}, ajenosPend = 0, ajenosEnvios = 0;
-  var IFRS = document.getElementsByTagName('iframe');
   function revisarAjenos() {
     ajenosPend = 0;
     var nuevos = [];
@@ -1134,7 +1148,6 @@ function enviar(e) {
     new MutationObserver(programarAjenos).observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['src'] });
   } catch (e) {}
 
-  // Toque en iframe de video
   var ultimoTab = 0, focoEn = null, sondeoFoco = 0, TOQUES = {};
   window.addEventListener('keydown', function (ev) {
     if (ev.key === 'Tab' || ev.keyCode === 9) ultimoTab = Date.now();
@@ -1170,7 +1183,6 @@ function enviar(e) {
     }, 0);
   });
 
-  // ── Exit por video ──
   var exitEnviado = false;
   function alSalir() {
     if (exitEnviado) return;
@@ -1182,8 +1194,7 @@ function enviar(e) {
       enviar({ tipo_evento: 'exit', porcentaje: e.dur > 0 ? e.pct : null, segundos: e.segs, video_id: k === '_' ? null : k, vsl_titulo: e.tit });
     }
   }
-
-  // ── Clicks ──
+  // ── CLICKS ──
   var CLICKS = 0;
   document.addEventListener('click', function (ev) {
     try {
@@ -1207,7 +1218,7 @@ function enviar(e) {
     } catch (e) {}
   }, true);
 
-  // ── Clarity ──
+  // ── Microsoft Clarity ──
   try {
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -1219,18 +1230,20 @@ function enviar(e) {
     if (prueba) window.clarity("set", "mko_prueba", prueba);
   } catch (e) {}
 
-  // ── Agendó (Calendly + Cal) ──
+  // ── AGENDÓ ──
   var AGENDADOS = {};
   window.addEventListener('message', function (ev) {
     try {
       var d = ev.data;
       if (!d) return;
+
       var e = typeof d === 'string' ? d : d.event;
       if (typeof e === 'string' && e.indexOf('calendly.') === 0) {
         if (e !== 'calendly.event_scheduled') return;
         enviar({ tipo_evento: 'agendo', detalle: 'calendly' });
         return;
       }
+
       if (d.originator !== 'CAL') return;
       var t = String(d.type || d.fullType || '');
       if (t.indexOf('bookingSuccessful') === -1) return;
@@ -1255,7 +1268,7 @@ function enviar(e) {
     if (document.visibilityState === 'hidden') alSalir();
   });
 
-  // ── Wistia embed clásico e iframe ──
+  // ── VIDEO DEL REPRODUCTOR «W» ──
   var WN = 'wis' + 'tia';
   var W_ORIGEN = {};
   W_ORIGEN['https://fast.' + WN + '.net'] = true;
@@ -1315,6 +1328,7 @@ function enviar(e) {
       }
     }
   }
+
   var W_IFR = [];
   function wOlvidar(w) {
     for (var i = 0; i < W_IFR.length; i++) {
@@ -1370,6 +1384,7 @@ function enviar(e) {
       else wTiempo(vid, e, m.args[1]);
     } catch (err) {}
   });
+
   try {
     window._wq = window._wq || [];
     window._wq.push({ id: '_all', onReady: function (video) {
@@ -1395,7 +1410,7 @@ function enviar(e) {
     } });
   } catch (err) {}
 
-  // ── Visibilidad: salió / volvió / cierre ──
+  // ── SALIR DE LA PAGINA, VOLVER, Y CERRAR ──
   var CAMBIOS = 0;
   var afuera = 0;
   var arranquePagina = Date.now();
@@ -1419,8 +1434,31 @@ function enviar(e) {
     try { enviar({ tipo_evento: 'cierre', segundos: Math.round((Date.now() - arranquePagina) / 1000) }); } catch (e) {}
   });
 
-  // ── Opt-in (formularios) ──
+  // ── Opt-in ──
   var OPTIN = 'https://hola-mako.com/api/track/optin';
+
+  var ORIGEN = (function () {
+    var CLAVE = 'mk_origen';
+    var CAMPOS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'fbclid'];
+    function deLaUrl() {
+      var q = null, o = {}, hay = false;
+      try { q = new URLSearchParams(location.search); } catch (e) { return null; }
+      for (var i = 0; i < CAMPOS.length; i++) {
+        var v = q.get(CAMPOS[i]);
+        if (v && v.trim()) { o[CAMPOS[i]] = v.trim().slice(0, 200); hay = true; }
+        else o[CAMPOS[i]] = null;
+      }
+      return hay ? o : null;
+    }
+    var ahora = deLaUrl();
+    try {
+      if (ahora) { sessionStorage.setItem(CLAVE, JSON.stringify(ahora)); return ahora; }
+      var g = sessionStorage.getItem(CLAVE);
+      if (g) return JSON.parse(g);
+    } catch (e) {}
+    return ahora || { utm_source: null, utm_medium: null, utm_campaign: null, utm_content: null, fbclid: null };
+  })();
+
   function mandarOptin(d) {
     try {
       if (!d || (!d.email && !d.telefono)) return;
@@ -1432,12 +1470,17 @@ function enviar(e) {
           nombre: d.nombre || null, email: d.email || null,
           telefono: d.telefono || null, empresa: d.empresa || null,
           origen_captura: d.origen || 'formulario',
-          pagina: location.href, prueba: prueba
+          pagina: location.href, prueba: prueba,
+          utm_source: ORIGEN.utm_source, utm_medium: ORIGEN.utm_medium,
+          utm_campaign: ORIGEN.utm_campaign, utm_content: ORIGEN.utm_content,
+          fbclid: ORIGEN.fbclid,
+          respuestas: d.respuestas || null
         }),
         keepalive: true
       }).catch(function () {});
     } catch (e) {}
   }
+
   function campo(form, pats, types) {
     var els = form.querySelectorAll('input, textarea, select');
     for (var i = 0; i < els.length; i++) {
@@ -1449,6 +1492,37 @@ function enviar(e) {
     }
     return null;
   }
+
+  function otrosCampos(form) {
+    var fuera = 'email correo mail tel phone whats celular movil nombre name first apellido empresa company negocio';
+    var out = {}, n = 0;
+    try {
+      var els = form.querySelectorAll('input, textarea, select');
+      for (var i = 0; i < els.length && n < 8; i++) {
+        var el = els[i];
+        var t = (el.type || '').toLowerCase();
+        if (t === 'password' || t === 'hidden' || t === 'submit' || t === 'button' || t === 'file') continue;
+        if ((t === 'checkbox' || t === 'radio') && !el.checked) continue;
+        var val = String(el.value == null ? '' : el.value).trim();
+        if (!val) continue;
+        var pistas = [el.name, el.id, el.getAttribute('autocomplete'), el.placeholder, el.getAttribute('aria-label')].join(' ').toLowerCase();
+        var esContacto = false;
+        var claves = fuera.split(' ');
+        for (var k = 0; k < claves.length; k++) if (pistas.indexOf(claves[k]) !== -1) { esContacto = true; break; }
+        if (esContacto || t === 'email' || t === 'tel') continue;
+        var rot = null;
+        try {
+          if (el.labels && el.labels.length) rot = String(el.labels[0].textContent || '').trim();
+        } catch (e) {}
+        rot = rot || el.placeholder || el.getAttribute('aria-label') || el.name || el.id;
+        if (!rot) continue;
+        out[String(rot).trim().slice(0, 40)] = val.slice(0, 120);
+        n++;
+      }
+    } catch (e) {}
+    return n ? out : null;
+  }
+
   document.addEventListener('submit', function (ev) {
     try {
       var form = ev.target;
@@ -1461,6 +1535,7 @@ function enviar(e) {
         email: email,
         telefono: telefono,
         empresa: campo(form, ['empresa', 'company', 'negocio']),
+        respuestas: otrosCampos(form),
         origen: 'formulario'
       });
     } catch (e) {}
