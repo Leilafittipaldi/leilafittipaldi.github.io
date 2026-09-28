@@ -4,8 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Plan de Negocios LíderMente — Cuaderno de trabajo | Leila Fittipaldi</title>
-<meta name="description" content="Arma el plan de tu negocio en 9 pasos: visión, cliente ideal, oferta, FODA, ventas, sistemas, números y plan de 90 días. Descárgalo en PDF.">
-<meta name="robots" content="noindex">
+<meta name="description" content="Plan de negocios gratis para dueños de negocio: arma en 9 pasos tu visión, cliente ideal, oferta, FODA, ventas, sistemas, punto de equilibrio y plan de 90 días. Descárgalo en PDF.">
+<meta name="keywords" content="plan de negocios, plantilla plan de negocios, punto de equilibrio, FODA, plan de 90 días, dueños de negocio, Cancún, Leila Fittipaldi">
+<meta name="geo.region" content="MX-ROO">
+<meta name="geo.placename" content="Cancún, Quintana Roo">
 <link rel="canonical" href="https://leilafittipaldi.com/plan-de-negocios/">
 <meta property="og:title" content="Plan de Negocios LíderMente">
 <meta property="og:description" content="Tu negocio en una sola página antes de hacerlo crecer. Arma tu plan y descárgalo en PDF.">
@@ -164,6 +166,7 @@ textarea:focus,input:focus{border-color:var(--teal);outline:none;box-shadow:0 0 
 .compromiso{margin-top:22px;background:var(--panel);border:1px solid var(--teal-line);border-radius:12px;padding:20px;display:grid;gap:12px}
 .compromiso p{margin:0;font-family:var(--display);font-weight:500;font-size:19px;line-height:1.35}
 .compromiso .fields{gap:12px}
+.dl-form{display:grid;gap:12px;margin:0}
 .dl-row{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;margin-top:6px}
 .btn.big{font-size:16px;padding:14px 22px}
 .btn[disabled]{opacity:.6;cursor:wait}
@@ -337,16 +340,20 @@ footer{padding-top:32px;color:var(--muted);font-size:13.5px;display:flex;justify
       <div class="compromiso">
         <p>Me comprometo a ejecutar este plan porque mi negocio no puede seguir dependiendo solo de mí.</p>
         <div class="fields">
-          <div class="field"><label for="firma">Tu nombre completo *</label><input type="text" id="firma" data-q autocomplete="name" placeholder="Así aparecerá en tu PDF"></div>
-          <div class="field"><label for="whats">Tu WhatsApp *</label><input type="text" id="whats" data-q inputmode="tel" autocomplete="tel" placeholder="Ej.: +52 998 123 4567"></div>
-          <div class="field"><label for="email">Tu email</label><input type="text" id="email" data-q inputmode="email" autocomplete="email" placeholder="Opcional"></div>
           <div class="field"><label for="fechaInicio">Fecha de inicio</label><input type="text" id="fechaInicio" data-q placeholder="Ej.: 1 de octubre de 2026"></div>
-          <div class="field full"><label for="apoyo">¿Quién me va a pedir cuentas?</label><input type="text" id="apoyo" data-q placeholder="Ej.: Mi grupo de LíderMente de los miércoles"></div>
+          <div class="field"><label for="apoyo">¿Quién me va a pedir cuentas?</label><input type="text" id="apoyo" data-q placeholder="Ej.: Mi socio, mi equipo o mi grupo de LíderMente"></div>
         </div>
-        <div class="dl-row">
-          <button class="btn primary big" id="pdfBtn" type="button">Descargar mi plan en PDF</button>
-          <span class="dl-note" id="sendNote">Al descargarlo, Leila recibe una copia de tu plan para acompañarte en las sesiones.</span>
-        </div>
+        <form id="dlForm" class="dl-form" novalidate>
+          <div class="fields">
+            <div class="field"><label for="firma">Tu nombre completo *</label><input type="text" id="firma" name="nombre" data-q autocomplete="name" placeholder="Así aparecerá en tu PDF"></div>
+            <div class="field"><label for="whats">Tu WhatsApp *</label><input type="tel" id="whats" name="whatsapp" data-q autocomplete="tel" placeholder="Ej.: +52 998 123 4567"></div>
+            <div class="field full"><label for="email">Tu email</label><input type="email" id="email" name="email" data-q autocomplete="email" placeholder="Opcional"></div>
+          </div>
+          <div class="dl-row">
+            <button class="btn primary big" id="pdfBtn" type="submit">Descargar mi plan en PDF</button>
+            <span class="dl-note" id="sendNote">Al descargarlo, Leila recibe una copia de tu plan y puede escribirte por WhatsApp para darte su opinión. No compartimos tus datos con nadie.</span>
+          </div>
+        </form>
         <div class="dl-msg" id="dlMsg" hidden></div>
       </div>
     </section>
@@ -694,6 +701,7 @@ footer{padding-top:32px;color:var(--muted);font-size:13.5px;display:flex;justify
   var HEAD = {Negocio:'nombre','Propósito':'proposito','Visión 3 años':'vision','Meta 12 meses':'meta12','Cliente ideal':'cliente','Problema del cliente':'dolor','Resultado que busca':'deseo','Dónde encontrarlo':'donde','Propuesta de valor':'propuesta','Productos y precios':'productos','Diferenciador':'diferencia','Competencia':'competencia','Fortalezas':'f','Oportunidades':'o','Debilidades':'d','Amenazas':'a','Atraer':'atraer','Convertir':'convertir','Retener':'retener','Meta de ventas':'metaventas','Tareas que puede delegar':'yohago','Tareas solo yo':'solo','Plan de delegación':'delegar','Automatizar con IA':'ia','Procesos a escribir':'procesos','Fecha de inicio':'fechaInicio','Quién pide cuentas':'apoyo'};
   function payload(){
     var o = {Nombre: raw('firma'), WhatsApp: raw('whats'), Email: raw('email'), 'Avance %': document.getElementById('pct').textContent};
+    try { var q = new URLSearchParams(location.search); o['Origen'] = q.get('utm_source') || q.get('origen') || (document.referrer ? new URL(document.referrer).hostname : 'directo'); } catch(e){}
     Object.keys(HEAD).forEach(function(h){ o[h] = raw(HEAD[h]); });
     if (store.__nums){ // solo si el estudiante cambió los números de ejemplo
       o['Precio promedio']=R.p; o['Costo variable']=R.cv; o['Costos fijos']=R.cf; o['Utilidad meta']=R.u; o['Ventas actuales']=R.hoy;
@@ -721,8 +729,10 @@ footer{padding-top:32px;color:var(--muted);font-size:13.5px;display:flex;justify
 
   var pdfBtn = document.getElementById('pdfBtn'), dlMsg = document.getElementById('dlMsg');
   function showMsg(cls, html){ dlMsg.className = 'dl-msg ' + cls; dlMsg.innerHTML = html; dlMsg.hidden = false; }
+  var ctaLM = '<span style="color:var(--ink)">¿Quieres ejecutarlo acompañado? En LíderMente trabajamos este plan cada semana, en persona, con otros dueños de negocio de Cancún. <a href="https://leilafittipaldi.com/lidermente/" target="_blank" rel="noopener">Tu primera sesión es sin cargo →</a></span>';
   var waLink = '<a href="https://wa.me/'+WHATS_LEILA+'?text='+encodeURIComponent('Hola Leila, ya terminé mi Plan de Negocios. Te lo mando.')+'" target="_blank" rel="noopener">Enviarle mi PDF a Leila por WhatsApp →</a>';
-  pdfBtn.addEventListener('click', function(){
+  document.getElementById('dlForm').addEventListener('submit', function(ev){
+    ev.preventDefault();
     var bad = ['firma','whats'].filter(function(id){ var el=document.getElementById(id); var b=!el.value.trim(); el.classList.toggle('invalid', b); return b; });
     if (bad.length){ showMsg('bad','Escribe tu nombre y tu WhatsApp para generar tu PDF.'); document.getElementById(bad[0]).focus(); return; }
     if (!window.jspdf){ showMsg('bad','No se pudo cargar el generador de PDF. Revisa tu conexión y recarga la página.'); return; }
@@ -736,7 +746,7 @@ footer{padding-top:32px;color:var(--muted);font-size:13.5px;display:flex;justify
         var saved = res[0], sent = res[1];
         if (saved === 'declined'){ showMsg('bad','Cancelaste la descarga. Puedes intentarlo de nuevo cuando quieras.'); return; }
         if (saved !== 'ok'){ showMsg('bad','Tu navegador no permitió la descarga. Abre esta página en Chrome o Safari e inténtalo de nuevo.'); return; }
-        showMsg('ok', sent ? '<span>Listo. Tu PDF se descargó y Leila ya recibió una copia de tu plan.</span>' : '<span>Listo. Tu PDF se descargó.</span>' + waLink);
+        showMsg('ok', (sent ? '<span>Listo. Tu PDF se descargó y Leila ya recibió una copia de tu plan.</span>' : '<span>Listo. Tu PDF se descargó.</span>' + waLink) + ctaLM);
       });
   });
 
