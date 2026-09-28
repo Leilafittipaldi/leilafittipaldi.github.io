@@ -695,8 +695,10 @@ footer{padding-top:32px;color:var(--muted);font-size:13.5px;display:flex;justify
   function payload(){
     var o = {Nombre: raw('firma'), WhatsApp: raw('whats'), Email: raw('email'), 'Avance %': document.getElementById('pct').textContent};
     Object.keys(HEAD).forEach(function(h){ o[h] = raw(HEAD[h]); });
-    o['Precio promedio']=R.p; o['Costo variable']=R.cv; o['Costos fijos']=R.cf; o['Utilidad meta']=R.u; o['Ventas actuales']=R.hoy;
-    o['Punto de equilibrio']=R.pe||''; o['Ventas para meta']=R.meta||''; o['Facturación meta']=R.meta?R.meta*R.p:'';
+    if (store.__nums){ // solo si el estudiante cambió los números de ejemplo
+      o['Precio promedio']=R.p; o['Costo variable']=R.cv; o['Costos fijos']=R.cf; o['Utilidad meta']=R.u; o['Ventas actuales']=R.hoy;
+      o['Punto de equilibrio']=R.pe||''; o['Ventas para meta']=R.meta||''; o['Facturación meta']=R.meta?R.meta*R.p:'';
+    }
     for (var m=1;m<=3;m++){
       o['Mes '+m+' objetivo']=raw('m'+m+'obj');
       o['Mes '+m+' acciones']=[1,2,3].map(function(j){ var t=raw('m'+m+'a'+j); return t?((document.getElementById('m'+m+'c'+j).checked?'[x] ':'[ ] ')+t):''; }).filter(Boolean).join('\n');
