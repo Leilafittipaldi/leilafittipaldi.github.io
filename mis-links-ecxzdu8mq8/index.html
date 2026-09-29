@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Links de Leila</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cabin:wght@400;500;600;700&family=League+Spartan:wght@600;800&display=swap">
+<style>
+/* Layout: una sola columna de "qué quieres lograr" → link recomendado; filtros por a quién va; internos y duplicados al final. Look de marca, oscuro fijo. */
+:root{
+  color-scheme: dark;
+  --bg:#050707; --panel:#0e1413; --panel-2:#141c1b; --line:#223130;
+  --ink:#f3faf8; --muted:#94a3a0; --dim:#63716e;
+  --teal:#2afad2; --teal-soft:rgba(42,250,210,.12); --teal-line:rgba(42,250,210,.38);
+  --warn:#ffc857; --warn-soft:rgba(255,200,87,.1); --bad:#ff8a7a; --bad-soft:rgba(255,138,122,.1);
+  --display:"League Spartan","Arial Black",system-ui,sans-serif;
+  --label:"Bebas Neue",Impact,"Arial Narrow",sans-serif;
+  --body:"Cabin","Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.5;padding-inline:16px}
+a{color:var(--teal)}
+:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.wrap{max-width:980px;margin:0 auto;padding-block:32px 72px;display:grid;gap:28px}
+
+header .eyebrow{font-family:var(--label);letter-spacing:.14em;color:var(--teal);font-size:16px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,6vw,54px);line-height:.95;margin:6px 0 12px;text-wrap:balance}
+header p{margin:0;color:#c6d2cf;max-width:62ch}
+
+.controls{display:grid;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.ctl-label{font-family:var(--label);letter-spacing:.12em;font-size:14px;color:var(--muted);margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--body);font-weight:600;font-size:13.5px;padding:7px 13px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
+.chip:hover{color:var(--ink);border-color:var(--teal-line)}
+.chip[aria-pressed="true"]{background:var(--teal);color:#02140f;border-color:var(--teal)}
+.hint{font-size:13px;color:var(--dim);margin:6px 0 0}
+
+.alert{border:1px solid var(--warn);background:var(--warn-soft);border-radius:10px;padding:12px 14px;font-size:14.5px;color:#f5e2b8}
+.alert b{color:var(--warn)}
+
+section h2{font-family:var(--label);font-weight:400;letter-spacing:.1em;font-size:24px;margin:0 0 4px;display:flex;align-items:baseline;gap:10px}
+section h2 span{font-family:var(--body);letter-spacing:0;font-size:13px;color:var(--dim)}
+.sec-note{color:var(--muted);font-size:14px;margin:0 0 12px;max-width:66ch}
+.list{display:grid;gap:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;align-items:start}
+.card.star{border-color:var(--teal-line);background:linear-gradient(0deg,var(--teal-soft),var(--teal-soft)),var(--panel)}
+.card h3{margin:0;font-family:var(--display);font-weight:600;font-size:18px;line-height:1.2;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.when{margin:0;color:#c6d2cf;font-size:14.5px;grid-column:1}
+.meta{grid-column:1;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:12.5px;color:var(--dim)}
+.url{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:12.5px;color:var(--muted);word-break:break-all}
+.tag{font-family:var(--label);letter-spacing:.08em;font-size:13px;padding:1px 8px;border-radius:5px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.tag.google{border-color:var(--teal-line);color:var(--teal)}
+.tag.link{border-color:#4e6763;color:#b9cbc7}
+.tag.no{border-color:var(--bad);color:var(--bad)}
+.tag.dup{border-color:var(--warn);color:var(--warn)}
+.tag.lead{background:var(--teal);color:#02140f;border-color:var(--teal)}
+.actions{grid-column:2;grid-row:1 / span 3;display:flex;flex-direction:column;gap:6px;align-items:stretch}
+.btn{font-family:var(--body);font-weight:600;font-size:13px;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel-2);color:var(--ink);cursor:pointer;text-align:center;text-decoration:none;white-space:nowrap}
+.btn:hover{border-color:var(--teal-line)}
+.btn.primary{background:var(--teal);border-color:var(--teal);color:#02140f}
+@media (max-width:620px){
+  .card{grid-template-columns:1fr}
+  .actions{grid-column:1;grid-row:auto;flex-direction:row;flex-wrap:wrap}
+}
+details.fold{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:4px 16px}
+details.fold summary{cursor:pointer;padding:12px 0;font-family:var(--label);letter-spacing:.1em;font-size:20px}
+details.fold .list{padding-bottom:14px}
+details.fold .card{background:var(--panel-2)}
+.empty{color:var(--dim);font-style:italic;font-size:14px}
+footer{color:var(--dim);font-size:13px}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);transform:translateX(-50%) translateY(16px);background:var(--teal);color:#02140f;font-weight:600;font-size:14px;padding:9px 16px;border-radius:8px;opacity:0;transition:.2s;pointer-events:none;max-width:calc(100% - 32px)}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.fallback{position:fixed;inset:0;background:rgba(0,0,0,.75);display:grid;place-items:center;padding:16px}
+.fallback div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:10px;width:min(560px,100%)}
+.fallback input{width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:10px;font-size:14px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">LEILA FITTIPALDI · LÍDERMENTE</div>
+    <h1>¿Qué link le mando?</h1>
+    <p>Todas tus páginas en un solo lugar, ordenadas por a quién se las mandas y para qué. Elige de dónde viene la persona y el botón copia el link ya marcado, así en MaKo y en tus hojas sabes de dónde llegó cada lead.</p>
+  </header>
+
+  <div class="controls">
+    <div>
+      <div class="ctl-label">A quién se lo mandas</div>
+      <div class="chips" id="aud" role="group" aria-label="Filtrar por destinatario"></div>
+    </div>
+    <div>
+      <div class="ctl-label">Por dónde lo compartes</div>
+      <div class="chips" id="src" role="group" aria-label="Origen del link"></div>
+      <p class="hint" id="srcHint"></p>
+    </div>
+  </div>
+
+  <div class="alert"><b>Pendiente en tu web:</b> sobre-mí, mi-historia, servicios y conferencias todavía dicen "Directora de Capacitación (y Alianzas) de Sindemex". Tu cargo actual es Directora de Comunicación y Promoción. Revísalo antes de mandar esas páginas a una empresa.</div>
+
+  <div id="main"></div>
+
+  <details class="fold" id="dupFold">
+    <summary>Versiones viejas: no las mandes, usa la web</summary>
+    <p class="sec-note">Son copias que armamos en Claude antes de subir cada página a tu web. La web es la que capta leads y se mantiene al día.</p>
+    <div class="list" id="dupList"></div>
+  </details>
+
+  <details class="fold" id="intFold">
+    <summary>Solo para ti y tu equipo</summary>
+    <p class="sec-note">Material de trabajo. No lo compartas con prospectos ni alumnos.</p>
+    <div class="list" id="intList"></div>
+  </details>
+
+  <footer>Actualizado el 28 de septiembre de 2026 con las 12 páginas de leilafittipaldi.com y tus artefactos de Claude.</footer>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+  var W = 'https://leilafittipaldi.com';
+  var AUD = [
+    {id:'todos', n:'Todos'},
+    {id:'prospecto', n:'Prospecto nuevo'},
+    {id:'alumno', n:'Alumno o miembro'},
+    {id:'cliente', n:'Cliente de marketing'},
+    {id:'empresa', n:'Empresa o evento'}
+  ];
+  var SRC = [
+    {id:'', n:'Sin marca'},
+    {id:'instagram', n:'Instagram'},
+    {id:'whatsapp', n:'WhatsApp'},
+    {id:'reel', n:'Reel'},
+    {id:'alumnos', n:'Grupo de alumnos'},
+    {id:'evento', n:'Evento en vivo'}
+  ];
+
+  // Páginas para compartir (web + recursos)
+  var LINKS = [
+    {name:'Diagnóstico del cuello de botella', url:W+'/diagnostico/', web:true, aud:['prospecto'], star:true, tags:[['lead','Capta leads'],['google','En Google']],
+     when:'Tu mejor primer contacto con alguien frío. En 2 minutos descubre qué frena su negocio y queda registrado como lead.'},
+    {name:'Plan de Negocios (cuaderno + PDF)', url:W+'/plan-de-negocios/', web:true, aud:['prospecto','alumno'], star:true, tags:[['lead','Capta leads'],['google','En Google']],
+     when:'A quien comentó PLAN, o como tarea para tus alumnos. Descargan su plan en PDF y a ti te llega a la hoja de respuestas.'},
+    {name:'LíderMente · primera sesión sin costo', url:W+'/lidermente/', web:true, aud:['prospecto'], star:true, tags:[['google','En Google']],
+     when:'Cuando ya hay interés y lo quieres invitar a un miércoles en Gnius. Es la página que vende la membresía.'},
+    {name:'Guía: el cuello de botella eres tú', url:W+'/guia-cuello-de-botella/', web:true, aud:['prospecto','alumno'], tags:[['google','En Google']],
+     when:'Para quien ya se reconoce como cuello de botella y quiere pasos concretos: escalera de delegación, límites de dinero y los seis números. Termina invitando a LíderMente.'},
+    {name:'Casos de éxito', url:W+'/casos/', web:true, aud:['prospecto','empresa'], tags:[['google','En Google']],
+     when:'Cuando dudan o preguntan "¿y a quién le funcionó?". Testimonios en video.'},
+    {name:'Inicio', url:W+'/', web:true, aud:['prospecto','empresa'], tags:[['google','En Google']],
+     when:'Cuando alguien te pregunta a qué te dedicas o te pide "tu página".'},
+    {name:'Servicios', url:W+'/servicios/', web:true, aud:['prospecto','empresa'], tags:[['google','En Google']],
+     when:'Cuando te preguntan qué ofreces: coaching, mentoría, conferencias, estrategia digital y marca personal.'},
+    {name:'Conferencias y capacitación', url:W+'/conferencias/', web:true, aud:['empresa'], tags:[['google','En Google']],
+     when:'Cuando una empresa, cámara o evento te invita a dar una charla o un taller.'},
+    {name:'Sobre mí', url:W+'/sobre-mi/', web:true, aud:['empresa','prospecto'], tags:[['google','En Google']],
+     when:'Presentación corta con credenciales. Buena para organizadores de eventos y medios.'},
+    {name:'Mi historia', url:W+'/mi-historia/', web:true, aud:['prospecto'], tags:[['google','En Google']],
+     when:'Para crear conexión: de la inmobiliaria en Mar del Plata a formar líderes desde Cancún.'},
+    {name:'Bienvenida a LíderMente', url:W+'/bienvenida/', web:true, aud:['alumno'], tags:[['link','Solo con el link']],
+     when:'Justo después de que alguien se inscribe a LíderMente. No aparece en Google.'},
+    {name:'Onboarding de clientes', url:W+'/onboarding/', web:true, aud:['cliente'], tags:[['link','Solo con el link']],
+     when:'Cliente nuevo de marketing digital: el cuestionario de arranque. No aparece en Google.'},
+    {name:'Arsenal Fittipaldi', url:'https://claude.ai/code/artifact/1b8692d1-3252-4046-b919-88d997402adf', web:false, aud:['alumno','cliente'], tags:[['link','Solo con el link']],
+     when:'Biblioteca de métodos con el Consultor de IA, para tus clientes y alumnos. Ojo: quienes entran con el link pueden ver una versión anterior fijada; revisa cuál compartes en el menú Compartir.'},
+    {name:'La Academia del Coach', url:'https://laacademiadelcoach.com/', web:false, aud:['prospecto','empresa'], tags:[['google','En Google']],
+     when:'Para quien quiere formarse como coach, no mejorar su negocio.'},
+    {name:'Instagram @leilafittipaldiok', url:'https://www.instagram.com/leilafittipaldiok/', web:false, aud:['prospecto','alumno','cliente','empresa'], tags:[['google','Público']],
+     when:'Para que te sigan y vean tu contenido del día a día.'}
+  ];
+
+  var DUPS = [
+    {name:'Plan de Negocios LíderMente (versión Claude)', url:'https://claude.ai/artifact/TECUVMaSZwx551bJstUPfU', use:W+'/plan-de-negocios/', why:'No te manda las respuestas ni registra el lead.'},
+    {name:'El cuello de botella eres tú (versión del 29 ago)', url:'https://claude.ai/artifact/BZ5fHrSsrwjfHEUxxfsSS5', use:W+'/guia-cuello-de-botella/', why:'La guía ya vive en tu web.'},
+    {name:'El cuello de botella eres tú (versión del 14 ago)', url:'https://claude.ai/artifact/FNPMysJzLAdAFL38WgEpqC', use:W+'/guia-cuello-de-botella/', why:'Versión anterior de la misma guía.'},
+    {name:'LíderMente Cancún (landing en Claude)', url:'https://claude.ai/artifact/YQGb1KEK9MM67dh7no2Gos', use:W+'/lidermente/', why:'La landing oficial está en tu web.'}
+  ];
+
+  var INTERNAL = [
+    {name:'Playbook Viral LíderMente', url:'https://claude.ai/artifact/AmacAnAvkyr8AxsrTr8gTs', why:'Guiones y estrategia de contenido.'},
+    {name:'Guiones Virales LíderMente', url:'https://claude.ai/artifact/XkhHR17tRHDrzUNrEWVDh6', why:'Guiones para grabar.'},
+    {name:'LíderMente · Manual de Negocio', url:'https://claude.ai/artifact/KJQTkCEoxFN3C3HPwy5STd', why:'Tu oferta, precios y estrategia interna.'},
+    {name:'Qué mueve la aguja', url:'https://claude.ai/artifact/XetyNS9cSWMWDWeT6tr28Z', why:'Prioridades de trabajo.'},
+    {name:'Panel Personal', url:'https://claude.ai/artifact/U46FvzGCvWtJYCYgfDuVsM', why:'Tu tablero personal.'},
+    {name:'Resúmenes de la mañana (varios)', url:'https://claude.ai/artifact/4nZcfnKYmF9zsjnmBsrr69', why:'El más reciente; los demás están en tu galería de artefactos.'},
+  ];
+
+  var state = {aud:'todos', src:''};
+  try { var s = JSON.parse(localStorage.getItem('links-leila')||'{}'); if (s.aud) state.aud=s.aud; if (typeof s.src==='string') state.src=s.src; } catch(e){}
+  function persist(){ try{ localStorage.setItem('links-leila', JSON.stringify(state)); }catch(e){} }
+
+  function tagged(l){
+    if (!l.web || !state.src) return l.url;
+    return l.url + '?utm_source=' + encodeURIComponent(state.src);
+  }
+  function esc(t){ var d=document.createElement('div'); d.textContent=t; return d.innerHTML; }
+
+  function chips(host, list, key){
+    host.innerHTML='';
+    list.forEach(function(o){
+      var b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=o.n;
+      b.setAttribute('aria-pressed', String(state[key]===o.id));
+      b.addEventListener('click', function(){ state[key]=o.id; persist(); render(); });
+      host.appendChild(b);
+    });
+  }
+
+  function card(l){
+    var u = tagged(l);
+    var tags = l.tags.map(function(t){ return '<span class="tag '+t[0]+'">'+esc(t[1])+'</span>'; }).join('');
+    var d = document.createElement('div');
+    d.className = 'card' + (l.star ? ' star' : '');
+    d.innerHTML =
+      '<h3>'+esc(l.name)+' '+tags+'</h3>'+
+      '<p class="when">'+esc(l.when)+'</p>'+
+      '<div class="meta"><span class="url">'+esc(u)+'</span></div>'+
+      '<div class="actions"><button class="btn primary" type="button">Copiar link</button><a class="btn" href="'+esc(u)+'" target="_blank" rel="noopener">Abrir</a></div>';
+    d.querySelector('button').addEventListener('click', function(){ copy(u); });
+    return d;
+  }
+
+  function render(){
+    chips(document.getElementById('aud'), AUD, 'aud');
+    chips(document.getElementById('src'), SRC, 'src');
+    document.getElementById('srcHint').textContent = state.src
+      ? 'Los links de tu web se copian con ?utm_source='+state.src+'. Así aparecen con ese origen en MaKo y en la hoja del Plan de Negocios.'
+      : 'Elige un origen para que tus links de la web salgan marcados. Los de Instagram y Claude se copian tal cual.';
+
+    var main = document.getElementById('main'); main.innerHTML='';
+    var list = LINKS.filter(function(l){ return state.aud==='todos' || l.aud.indexOf(state.aud)>-1; });
+    var groups = [
+      {t:'Para captar y convertir', n:'Empieza por estas: son las que traen leads y llevan a LíderMente.', f:function(l){ return l.star; }},
+      {t:'Para dar confianza', n:'Cuando ya te conocen y quieren saber más de ti o de tu trabajo.', f:function(l){ return !l.star && l.tags[0][0]==='google'; }},
+      {t:'Solo con el link', n:'No aparecen en Google. Mándalas únicamente a quien corresponde.', f:function(l){ return !l.star && l.tags[0][0]==='link'; }}
+    ];
+    var any = false;
+    groups.forEach(function(g){
+      var items = list.filter(g.f); if (!items.length) return; any = true;
+      var s = document.createElement('section');
+      s.innerHTML = '<h2>'+esc(g.t)+' <span>'+items.length+'</span></h2><p class="sec-note">'+esc(g.n)+'</p>';
+      var box = document.createElement('div'); box.className='list';
+      items.forEach(function(l){ box.appendChild(card(l)); });
+      s.appendChild(box); main.appendChild(s);
+    });
+    if (!any) main.innerHTML = '<p class="empty">No hay links para ese destinatario.</p>';
+
+    var dl = document.getElementById('dupList'); dl.innerHTML='';
+    DUPS.forEach(function(x){
+      var d=document.createElement('div'); d.className='card';
+      d.innerHTML='<h3>'+esc(x.name)+' <span class="tag dup">Reemplazada</span></h3><p class="when">'+esc(x.why)+' Manda en su lugar: <span class="url">'+esc(x.use)+'</span></p>'+
+        '<div class="actions"><button class="btn primary" type="button">Copiar la de la web</button></div>';
+      d.querySelector('button').addEventListener('click', function(){ copy(tagged({url:x.use, web:true})); });
+      dl.appendChild(d);
+    });
+    var il = document.getElementById('intList'); il.innerHTML='';
+    INTERNAL.forEach(function(x){
+      var d=document.createElement('div'); d.className='card';
+      d.innerHTML='<h3>'+esc(x.name)+' <span class="tag no">No compartir</span></h3><p class="when">'+esc(x.why)+'</p>'+
+        '<div class="actions"><a class="btn" href="'+esc(x.url)+'" target="_blank" rel="noopener">Abrir</a></div>';
+      il.appendChild(d);
+    });
+  }
+
+  var tt;
+  function toast(m){ var t=document.getElementById('toast'); t.textContent=m; t.classList.add('on'); clearTimeout(tt); tt=setTimeout(function(){ t.classList.remove('on'); },1800); }
+  function fallback(u){
+    var f=document.createElement('div'); f.className='fallback';
+    f.innerHTML='<div><b>Copia este link</b><input readonly id="fbLink"><button class="btn primary" type="button">Listo</button></div>';
+    var i=f.querySelector('input'); i.value=u; document.body.appendChild(f); i.focus(); i.select();
+    f.querySelector('button').onclick=function(){ f.remove(); };
+  }
+  function copy(u){
+    try { navigator.clipboard.writeText(u).then(function(){ toast('Link copiado'); }, function(){ fallback(u); }); }
+    catch(e){ fallback(u); }
+  }
+
+  render();
+})();
+</script>
+
+</body>
+</html>
