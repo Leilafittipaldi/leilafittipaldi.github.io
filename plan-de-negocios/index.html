@@ -701,7 +701,7 @@ footer{padding-top:32px;color:var(--muted);font-size:13.5px;display:flex;justify
   var HEAD = {Negocio:'nombre','Propósito':'proposito','Visión 3 años':'vision','Meta 12 meses':'meta12','Cliente ideal':'cliente','Problema del cliente':'dolor','Resultado que busca':'deseo','Dónde encontrarlo':'donde','Propuesta de valor':'propuesta','Productos y precios':'productos','Diferenciador':'diferencia','Competencia':'competencia','Fortalezas':'f','Oportunidades':'o','Debilidades':'d','Amenazas':'a','Atraer':'atraer','Convertir':'convertir','Retener':'retener','Meta de ventas':'metaventas','Tareas que puede delegar':'yohago','Tareas solo yo':'solo','Plan de delegación':'delegar','Automatizar con IA':'ia','Procesos a escribir':'procesos','Fecha de inicio':'fechaInicio','Quién pide cuentas':'apoyo'};
   function payload(){
     var o = {Nombre: raw('firma'), WhatsApp: raw('whats'), Email: raw('email'), 'Avance %': document.getElementById('pct').textContent};
-    try { var q = new URLSearchParams(location.search); o['Origen'] = q.get('utm_source') || q.get('origen') || (document.referrer ? new URL(document.referrer).hostname : 'directo'); } catch(e){}
+    try { var q = new URLSearchParams(location.search); o['Origen'] = [q.get('utm_source') || q.get('origen'), q.get('utm_medium')].filter(Boolean).join(' / ') || (document.referrer ? new URL(document.referrer).hostname : 'directo'); } catch(e){}
     Object.keys(HEAD).forEach(function(h){ o[h] = raw(HEAD[h]); });
     if (store.__nums){ // solo si el estudiante cambió los números de ejemplo
       o['Precio promedio']=R.p; o['Costo variable']=R.cv; o['Costos fijos']=R.cf; o['Utilidad meta']=R.u; o['Ventas actuales']=R.hoy;

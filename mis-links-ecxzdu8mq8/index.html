@@ -136,14 +136,21 @@ footer{color:var(--dim);font-size:13px}
     {id:'cliente', n:'Cliente de marketing'},
     {id:'empresa', n:'Empresa o evento'}
   ];
+  // utm_source / utm_medium por canal. utm_campaign sale solo de la página (diagnostico, plan-de-negocios…)
   var SRC = [
     {id:'', n:'Sin marca'},
-    {id:'instagram', n:'Instagram'},
-    {id:'whatsapp', n:'WhatsApp'},
-    {id:'reel', n:'Reel'},
-    {id:'alumnos', n:'Grupo de alumnos'},
-    {id:'evento', n:'Evento en vivo'}
+    {id:'ig-bio', n:'Bio de Instagram', s:'instagram', m:'bio'},
+    {id:'ig-historia', n:'Historia de IG', s:'instagram', m:'historia'},
+    {id:'ig-reel', n:'Reel (palabra clave)', s:'instagram', m:'reel'},
+    {id:'ig-dm', n:'DM de Instagram', s:'instagram', m:'dm'},
+    {id:'wa-chat', n:'WhatsApp chat', s:'whatsapp', m:'mensaje'},
+    {id:'wa-estado', n:'Estado de WhatsApp', s:'whatsapp', m:'estado'},
+    {id:'alumnos', n:'Grupo de alumnos', s:'lidermente', m:'grupo_alumnos'},
+    {id:'email', n:'Email', s:'email', m:'correo'},
+    {id:'evento', n:'Evento o QR impreso', s:'evento', m:'presencial'},
+    {id:'meta-ads', n:'Anuncio en Meta', s:'meta', m:'paid'}
   ];
+  function srcOf(id){ for (var i=0;i<SRC.length;i++) if (SRC[i].id===id) return SRC[i]; return SRC[0]; }
 
   // Páginas para compartir (web + recursos)
   var LINKS = [
@@ -196,12 +203,14 @@ footer{color:var(--dim);font-size:13px}
   ];
 
   var state = {aud:'todos', src:''};
-  try { var s = JSON.parse(localStorage.getItem('links-leila')||'{}'); if (s.aud) state.aud=s.aud; if (typeof s.src==='string') state.src=s.src; } catch(e){}
+  try { var s = JSON.parse(localStorage.getItem('links-leila')||'{}'); if (s.aud) state.aud=s.aud; if (typeof s.src==='string' && srcOf(s.src).id===s.src) state.src=s.src; } catch(e){}
   function persist(){ try{ localStorage.setItem('links-leila', JSON.stringify(state)); }catch(e){} }
 
+  function campaignOf(url){ return url.replace(W,'').replace(/\//g,'') || 'inicio'; }
   function tagged(l){
-    if (!l.web || !state.src) return l.url;
-    return l.url + '?utm_source=' + encodeURIComponent(state.src);
+    var o = srcOf(state.src);
+    if (!l.web || !o.s) return l.url;
+    return l.url + '?utm_source=' + o.s + '&utm_medium=' + o.m + '&utm_campaign=' + campaignOf(l.url);
   }
   function esc(t){ var d=document.createElement('div'); d.textContent=t; return d.innerHTML; }
 
@@ -232,9 +241,10 @@ footer{color:var(--dim);font-size:13px}
   function render(){
     chips(document.getElementById('aud'), AUD, 'aud');
     chips(document.getElementById('src'), SRC, 'src');
-    document.getElementById('srcHint').textContent = state.src
-      ? 'Los links de tu web se copian con ?utm_source='+state.src+'. Así aparecen con ese origen en MaKo y en la hoja del Plan de Negocios.'
-      : 'Elige un origen para que tus links de la web salgan marcados. Los de Instagram y Claude se copian tal cual.';
+    var o = srcOf(state.src);
+    document.getElementById('srcHint').textContent = o.s
+      ? 'Tus links de la web se copian con utm_source='+o.s+', utm_medium='+o.m+' y utm_campaign con el nombre de cada página. Así ves en MaKo y en la hoja del Plan de Negocios de qué canal y de qué página llegó cada lead.'
+      : 'Elige un canal para que tus links de la web salgan marcados con sus UTM. Los de Instagram, la Academia y Claude se copian tal cual.';
 
     var main = document.getElementById('main'); main.innerHTML='';
     var list = LINKS.filter(function(l){ return state.aud==='todos' || l.aud.indexOf(state.aud)>-1; });
