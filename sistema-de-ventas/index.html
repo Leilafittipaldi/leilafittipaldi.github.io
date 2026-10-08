@@ -187,7 +187,7 @@ footer{border-top:1px solid var(--line);padding-block:48px 0;display:grid;gap:26
 
 <div class="wrap">
 <nav aria-label="Secciones">
-  <a href="#meta">Meta</a><a href="#canales">Canales</a><a href="#semana">Semana</a><a href="#proceso">Proceso</a><a href="#conversion">Conversión</a><a href="#tablero">Tablero</a><a href="#pitch">Tu sistema</a><a href="#descarga" class="pdf">PDF</a>
+  <a href="#meta">Meta</a><a href="#canales">Canales</a><a href="#semana">Semana</a><a href="#adquisicion">Adquisición</a><a href="#proceso">Proceso</a><a href="#conversion">Conversión</a><a href="#tablero">Tablero</a><a href="#pitch">Tu sistema</a><a href="#descarga" class="pdf">PDF</a>
 </nav>
 
 <header class="hero">
@@ -206,9 +206,9 @@ footer{border-top:1px solid var(--line);padding-block:48px 0;display:grid;gap:26
     <div class="inputs">
       <div class="field"><label for="meta">Meta mensual</label><div class="row"><span class="unit">$</span><input id="meta" type="number" min="0" step="1000" inputmode="numeric"></div></div>
       <div class="field"><label for="ticket">Ticket promedio</label><div class="row"><span class="unit">$</span><input id="ticket" type="number" min="1" step="500" inputmode="numeric"></div></div>
+      <div class="field"><label for="leadOpp">% lead → oportunidad (califica)</label><div class="row"><input id="leadOpp" type="number" min="1" max="100" inputmode="numeric"><span class="unit">%</span></div><input id="leadOppR" type="range" min="5" max="100" aria-label="% lead a oportunidad"></div>
+      <div class="field"><label for="propOpp">% oportunidad → propuesta (pide propuesta)</label><div class="row"><input id="propOpp" type="number" min="1" max="100" inputmode="numeric"><span class="unit">%</span></div><input id="propOppR" type="range" min="5" max="100" aria-label="% oportunidad a propuesta"></div>
       <div class="field"><label for="cierre">% de cierre (propuesta → venta)</label><div class="row"><input id="cierre" type="number" min="1" max="100" inputmode="numeric"><span class="unit">%</span></div><input id="cierreR" type="range" min="5" max="100" aria-label="% de cierre"></div>
-      <div class="field"><label for="propOpp">% oportunidad → propuesta</label><div class="row"><input id="propOpp" type="number" min="1" max="100" inputmode="numeric"><span class="unit">%</span></div><input id="propOppR" type="range" min="5" max="100" aria-label="% oportunidad a propuesta"></div>
-      <div class="field"><label for="leadOpp">% lead → oportunidad</label><div class="row"><input id="leadOpp" type="number" min="1" max="100" inputmode="numeric"><span class="unit">%</span></div><input id="leadOppR" type="range" min="5" max="100" aria-label="% lead a oportunidad"></div>
       <p class="hint">Oportunidad = conversación comercial calificada.</p>
     </div>
     <div class="funnel" aria-live="polite">
@@ -218,6 +218,7 @@ footer{border-top:1px solid var(--line);padding-block:48px 0;display:grid;gap:26
       <div class="stage"><div class="bar" id="bVentas">Ventas</div><div class="big" id="nVentas">0</div><div class="rate" id="rCierre"></div></div>
       <div class="total"><span>Facturación proyectada</span><b id="fact">$0</b></div>
       <p class="chain" id="chain"></p>
+      <p class="note" id="convTot"></p>
     </div>
   </div>
   <p class="note">El error es pensar “necesito venderle a 10 personas”. Lo que hay que calcular es todo lo que tiene que pasar antes.</p>
@@ -244,8 +245,27 @@ footer{border-top:1px solid var(--line);padding-block:48px 0;display:grid;gap:26
   </div>
 </section>
 
+<section id="adquisicion">
+  <h2><span class="num">5.</span>¿Cuánto te cuesta conseguir un cliente?</h2>
+  <p class="note">Adquisición de clientes. Suma todo lo que inviertes al mes para atraer y vender: publicidad, eventos, herramientas, comisiones y el sueldo de quien vende. Vienen precargados con un ejemplo.</p>
+  <div class="diag">
+    <div class="field"><label for="aInv">Inversión mensual</label><div class="row"><span class="unit">$</span><input id="aInv" type="number" min="0" step="1000" inputmode="numeric"></div></div>
+    <div class="field"><label for="aLeads">Leads del mes</label><input id="aLeads" type="number" min="0" inputmode="numeric"></div>
+    <div class="field"><label for="aClientes">Clientes nuevos del mes</label><input id="aClientes" type="number" min="0" inputmode="numeric"></div>
+    <div class="field"><label for="aCompras">Compras por cliente</label><input id="aCompras" type="number" min="1" step="0.5" inputmode="decimal"><span class="hint">En toda su relación contigo</span></div>
+  </div>
+  <div class="week">
+    <div class="tile"><span class="v" id="aCpl">$0</span><span class="k">Costo por lead</span></div>
+    <div class="tile"><span class="v" id="aCac">$0</span><span class="k">Costo por cliente (CAC)</span></div>
+    <div class="tile"><span class="v" id="aLtv">$0</span><span class="k">Lo que te deja un cliente</span></div>
+    <div class="tile"><span class="v" id="aRatio">0x</span><span class="k">Retorno por cliente</span></div>
+  </div>
+  <div class="verdict" id="aVerdict"></div>
+  <p class="note" id="aMeta"></p>
+</section>
+
 <section id="proceso">
-  <h2><span class="num">5.</span>Define el proceso</h2>
+  <h2><span class="num">6.</span>Define el proceso</h2>
   <p class="note">Responde cada etapa en dos renglones como máximo: cómo lo haces hoy o cómo lo vas a hacer.</p>
   <ol class="process" id="process"></ol>
   <p class="quote">El sistema no termina cuando alguien dice “lo voy a pensar”.</p>
@@ -253,7 +273,7 @@ footer{border-top:1px solid var(--line);padding-block:48px 0;display:grid;gap:26
 
 <section id="conversion">
   <div class="eyebrow">El concepto que quiero que te lleves</div>
-  <h2><span class="num">6.</span>Conversión: los números te dicen dónde mirar</h2>
+  <h2><span class="num">7.</span>Conversión: los números te dicen dónde mirar</h2>
   <p class="note">No basta con contar personas. Mide qué porcentaje avanza de una etapa a la siguiente. Escribe lo que pasó en tu negocio el mes pasado (vienen precargados con un ejemplo).</p>
   <div class="diag">
     <div class="field"><label for="dLeads">Leads</label><input id="dLeads" type="number" min="0" inputmode="numeric"></div>
@@ -267,7 +287,7 @@ footer{border-top:1px solid var(--line);padding-block:48px 0;display:grid;gap:26
 </section>
 
 <section id="tablero">
-  <h2><span class="num">7.</span>El tablero: solo 7 números semanales</h2>
+  <h2><span class="num">8.</span>El tablero: solo 7 números semanales</h2>
   <p class="note">Nada de un CRM monstruoso para empezar. Primero, que midan. La columna “Meta” sale de tu máquina.</p>
   <div class="scroll">
     <table class="board" id="board">
@@ -279,7 +299,7 @@ footer{border-top:1px solid var(--line);padding-block:48px 0;display:grid;gap:26
 
 <section id="pitch">
   <div class="eyebrow">Ejercicio · 60 segundos</div>
-  <h2><span class="num">8.</span>Vende tu sistema, no tu producto</h2>
+  <h2><span class="num">9.</span>Vende tu sistema, no tu producto</h2>
   <p class="note">Lee esto en voz alta al grupo. El grupo responde: ¿entendí su sistema? Sí o no.</p>
   <div class="pitch" id="pitchText"></div>
   <div class="actions">
@@ -301,7 +321,7 @@ footer{border-top:1px solid var(--line);padding-block:48px 0;display:grid;gap:26
 
 <section id="descarga">
   <h2>Descarga tu sistema en PDF</h2>
-  <p class="note">Te llevas tu máquina, tus canales, tu semana, tu proceso, tu diagnóstico, tu tablero y tu pitch en un solo documento para tenerlo a la mano cada lunes.</p>
+  <p class="note">Te llevas tu máquina, tus canales, tu semana, tu costo de adquisición, tu proceso, tu diagnóstico, tu tablero y tu pitch en un solo documento para tenerlo a la mano cada lunes.</p>
   <form class="dl" id="dlForm" novalidate>
     <div class="fields">
       <div class="field"><label for="nombre">Tu nombre *</label><input type="text" id="nombre" name="nombre" autocomplete="name" placeholder="Así aparecerá en tu PDF"></div>
@@ -359,7 +379,7 @@ footer{border-top:1px solid var(--line);padding-block:48px 0;display:grid;gap:26
   ];
   const defaults={meta:100000,ticket:10000,cierre:40,propOpp:50,leadOpp:25,
     channels:[["Contenido / redes",20],["Networking",15],["Referidos",15],["Alianzas estratégicas",10],["Reactivación de base de datos",10],["Eventos / lead magnet / campañas",10]],
-    diag:{dLeads:100,dConv:10,dProp:5,dVentas:2},board:{},pitch:["","",""],week:"",proc:PROC.map(()=>''),contact:{nombre:'',whats:'',negocio:'',email:''}};
+    diag:{dLeads:100,dConv:10,dProp:5,dVentas:2},board:{},pitch:["","",""],week:"",proc:PROC.map(()=>''),acq:{aInv:15000,aLeads:80,aClientes:4,aCompras:2},contact:{nombre:'',whats:'',negocio:'',email:''}};
   let s;
   try{s=Object.assign(JSON.parse(JSON.stringify(defaults)),JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){s=JSON.parse(JSON.stringify(defaults))}
   if(!Array.isArray(s.proc)||s.proc.length!==PROC.length)s.proc=PROC.map(()=>'');
@@ -401,6 +421,10 @@ footer{border-top:1px solid var(--line);padding-block:48px 0;display:grid;gap:26
     pr.appendChild(li);
   });
 
+  // Adquisición
+  if(!s.acq)s.acq=Object.assign({},defaults.acq);
+  Object.keys(defaults.acq).forEach(k=>{const el=$(k); el.value=s.acq[k]; el.addEventListener('input',()=>{s.acq[k]=Number(el.value)||0; update();});});
+
   // Diagnóstico
   Object.keys(defaults.diag).forEach(k=>{const el=$(k); el.value=s.diag[k]; el.addEventListener('input',()=>{s.diag[k]=Number(el.value)||0; update();});});
 
@@ -427,7 +451,18 @@ footer{border-top:1px solid var(--line);padding-block:48px 0;display:grid;gap:26
 
   const weekShow=v=>{const x=v/4; return x>=10||Number.isInteger(x)?int(Math.ceil(x)):`${Math.floor(x)}–${Math.ceil(x)}`;};
 
+  // El navegador (y el visor del artifact) pueden restaurar valores de los campos sin avisar: leerlos siempre del DOM
+  function syncFromDom(){
+    const n=id=>{const e=$(id); return e&&e.value!==''?Number(e.value):null;};
+    ['meta','ticket','cierre','propOpp','leadOpp'].forEach(k=>{const v=n(k); if(v!==null){s[k]=v; const r=$(k+'R'); if(r&&+r.value!==v)r.value=v;}});
+    s.channels.forEach((c,i)=>{const v=n('ch'+i); if(v!==null)c[1]=v;});
+    Object.keys(defaults.diag).forEach(k=>{const v=n(k); if(v!==null)s.diag[k]=v;});
+    Object.keys(defaults.acq).forEach(k=>{const v=n(k); if(v!==null)s.acq[k]=v;});
+    ['nombre','whats','negocio','email'].forEach(k=>{const e=$(k); if(e)s.contact[k]=e.value;});
+    PROC.forEach((p,i)=>{const e=$('pr'+i); if(e)s.proc[i]=e.value;});
+  }
   function update(){
+    syncFromDom();
     const ventas=Math.ceil((s.meta||0)/Math.max(1,s.ticket||1));
     const prop=Math.ceil(ventas/pct(s.cierre));
     const opp=Math.ceil(prop/pct(s.propOpp));
@@ -452,6 +487,23 @@ footer{border-top:1px solid var(--line);padding-block:48px 0;display:grid;gap:26
     if(tot>=leads){st.className='status ok';st.textContent=`${int(tot)} de ${int(leads)} leads cubiertos. Tu meta tiene de dónde salir.`;}
     else{const vReal=Math.floor(tot*pct(s.leadOpp)*pct(s.propOpp)*pct(s.cierre));st.className='status warn';st.textContent=`${int(tot)} de ${int(leads)} leads. Con ${int(tot)} leads, a tus porcentajes, cerrarías ${int(vReal)} ventas (${fmt(vReal*(s.ticket||0))}). Te faltan ${int(leads-tot)} leads: ¿de qué canal van a salir?`;}
     calc.chTot=tot;
+
+    // Conversión total
+    const tc=pct(s.leadOpp)*pct(s.propOpp)*pct(s.cierre);
+    $('convTot').innerHTML=`<strong style="color:var(--fg)">Conversión total: ${(tc*100).toLocaleString('es-MX',{maximumFractionDigits:1})}%.</strong> De cada ${int(Math.round(1/tc))} leads, 1 termina comprando.`;
+    calc.tc=tc;
+
+    // Adquisición
+    const A=s.acq, cpl=A.aLeads?A.aInv/A.aLeads:0, cac=A.aClientes?A.aInv/A.aClientes:0, ltv=(s.ticket||0)*(A.aCompras||1), ratio=cac?ltv/cac:0;
+    $('aCpl').textContent=A.aLeads?fmt(cpl):'—'; $('aCac').textContent=A.aClientes?fmt(cac):'—'; $('aLtv').textContent=fmt(ltv);
+    $('aRatio').textContent=cac?ratio.toLocaleString('es-MX',{maximumFractionDigits:1})+'x':'—';
+    const av=$('aVerdict'); av.style.borderColor='';
+    if(!cac){av.className='verdict good';av.innerHTML='<h3>Escribe tus clientes nuevos del mes</h3><p>Sin ese número no se puede calcular cuánto te cuesta cada cliente.</p>';}
+    else if(ratio>=3){av.className='verdict good';av.innerHTML=`<h3>Adquisición sana</h3><p>Cada cliente te cuesta ${fmt(cac)} y te deja ${fmt(ltv)}: por cada $1 que inviertes en conseguirlo regresan $${ratio.toLocaleString('es-MX',{maximumFractionDigits:1})}. Puedes invertir más para crecer.</p>`;}
+    else if(ratio>=1){av.className='verdict';av.style.borderColor='var(--warn)';av.innerHTML=`<h3>Adquisición ajustada</h3><p>Cada cliente te cuesta ${fmt(cac)} y te deja ${fmt(ltv)}. Ganas, pero con poco margen para crecer. Lo sano es que un cliente te deje al menos 3 veces lo que te costó: baja el costo por lead, mejora tu conversión o haz que te compren más veces.</p>`;}
+    else{av.className='verdict';av.innerHTML=`<h3>Estás perdiendo dinero por cliente</h3><p>Conseguir un cliente te cuesta ${fmt(cac)} y solo te deja ${fmt(ltv)}. Antes de invertir más en atraer, arregla la conversión o la oferta.</p>`;}
+    $('aMeta').innerHTML=A.aLeads?`Para tu meta necesitas ${int(leads)} leads al mes. Con tu costo por lead actual (${fmt(cpl)}), eso es una inversión de <strong style="color:var(--fg)">${fmt(cpl*leads)} al mes</strong>.`:'';
+    calc.acq={cpl,cac,ltv,ratio};
 
     // Diagnóstico
     const d=s.diag;
@@ -594,9 +646,10 @@ footer{border-top:1px solid var(--line);padding-block:48px 0;display:grid;gap:26
     section(1,'Mi máquina hacia atrás','Meta, ticket y porcentajes');
     table(['Dato','Valor'],[
       ['Meta mensual',fmt(s.meta||0)],['Ticket promedio',fmt(s.ticket||0)],
-      ['% de cierre (propuesta > venta)',Math.round(pct(s.cierre)*100)+'%'],
+      ['% lead > oportunidad',Math.round(pct(s.leadOpp)*100)+'%'],
       ['% oportunidad > propuesta',Math.round(pct(s.propOpp)*100)+'%'],
-      ['% lead > oportunidad',Math.round(pct(s.leadOpp)*100)+'%']],[.7,.3]);
+      ['% de cierre (propuesta > venta)',Math.round(pct(s.cierre)*100)+'%'],
+      ['Conversión total (lead > venta)',(calc.tc*100).toFixed(1)+'%']],[.7,.3]);
     kpis([['Leads al mes',int(calc.leads)],['Oportunidades',int(calc.opp)],['Propuestas',int(calc.prop)],['Ventas',int(calc.ventas)]]);
     para(`Facturación proyectada: ${fmt(calc.fact)} al mes.`,11,'bold');
     y+=4;
@@ -608,8 +661,14 @@ footer{border-top:1px solid var(--line);padding-block:48px 0;display:grid;gap:26
     // 3. Semana
     section(3,'Mi semana','Lo que tengo que producir cada semana');
     kpis([['Leads / semana',weekShow(calc.leads)],['Conversaciones',weekShow(calc.opp)],['Propuestas',weekShow(calc.prop)],['Ventas',weekShow(calc.ventas)]]);
-    // 4. Proceso
-    section(4,'Mi proceso','De la atracción a la reactivación');
+    // 4. Adquisición
+    section(4,'Mi costo de adquisición','Cuánto me cuesta conseguir un cliente');
+    table(['Dato','Valor'],[['Inversión mensual',fmt(s.acq.aInv)],['Leads del mes',int(s.acq.aLeads)],['Clientes nuevos del mes',int(s.acq.aClientes)],['Compras por cliente',String(s.acq.aCompras)]],[.7,.3]);
+    kpis([['Costo por lead',s.acq.aLeads?fmt(calc.acq.cpl):'-'],['Costo por cliente',s.acq.aClientes?fmt(calc.acq.cac):'-'],['Me deja un cliente',fmt(calc.acq.ltv)],['Retorno',calc.acq.cac?calc.acq.ratio.toFixed(1)+'x':'-']]);
+    if(s.acq.aLeads)para(`Para mi meta necesito ${int(calc.leads)} leads: con mi costo por lead actual, una inversión de ${fmt(calc.acq.cpl*calc.leads)} al mes.`,10.5);
+    y+=2;
+    // 5. Proceso
+    section(5,'Mi proceso','De la atracción a la reactivación');
     PROC.forEach((p,i)=>{
       const ans=clean(s.proc[i].trim()); const lines=doc.splitTextToSize(ans||'Sin completar',CW);
       ensure(6+lines.length*LH+3);
@@ -617,20 +676,20 @@ footer{border-top:1px solid var(--line);padding-block:48px 0;display:grid;gap:26
       font(ans?'normal':'italic',10.5); color(ans?INK:GRAY); lines.forEach(l=>{doc.text(l,M,y); y+=LH;}); y+=3;
     });
     // 5. Conversión
-    section(5,'Mi conversión','Lo que me pasó vs. lo que necesito');
+    section(6,'Mi conversión','Lo que me pasó vs. lo que necesito');
     table(['Mes pasado','Cantidad'],[['Leads',int(s.diag.dLeads)],['Conversaciones',int(s.diag.dConv)],['Propuestas',int(s.diag.dProp)],['Ventas',int(s.diag.dVentas)]],[.7,.3]);
     table(['Etapa','Me pasó','Necesito'],diagState.stages.map(x=>[x.lbl,Math.round(x.real*100)+'%',Math.round(x.obj*100)+'%']),[.5,.25,.25]);
     if(diagState.worst===null)para('Mi conversión va en línea con lo que necesito. Mi reto es de volumen: más leads entrando por más canales.',10.5,'bold');
     else{para('Mira aquí primero: '+diagState.stages[diagState.worst].lbl,11,'bold',TEALD); para(strip(diagState.stages[diagState.worst].msg),10.5);}
     y+=4;
     // 6. Tablero
-    section(6,'Mi tablero semanal','7 números que mido cada semana');
+    section(7,'Mi tablero semanal','7 números que mido cada semana');
     table(['Número','Meta/sem','S1','S2','S3','S4','Total'],rows.map((r,i)=>{
       const g=calc[r[1]]/4; const cells=[r[0],r[1]==='fact'?fmt(g):int(Math.ceil(g))]; let t=0;
       for(let w=0;w<4;w++){const v=s.board[`b${i}_${w}`]; cells.push(v===undefined||v===''?'-':(r[1]==='fact'?fmt(+v):int(+v))); t+=Number(v)||0;}
       cells.push(r[1]==='fact'?fmt(t):int(t)); return cells;}),[.3,.14,.11,.11,.11,.11,.12]);
     // 7. Pitch
-    section(7,'Mi sistema en 60 segundos','Así lo explico');
+    section(8,'Mi sistema en 60 segundos','Así lo explico');
     font('normal',11.5); const pl=doc.splitTextToSize(clean(pitchText()),CW-12); ensure(pl.length*6+12);
     fill(SOFT); doc.roundedRect(M,y-4,CW,pl.length*6+10,2,2,'F'); color(INK); doc.text(pl,M+6,y+3); y+=pl.length*6+12;
     // Remate
@@ -662,6 +721,7 @@ footer{border-top:1px solid var(--line);padding-block:48px 0;display:grid;gap:26
     if(bad.length){showMsg('bad','Escribe tu nombre y tu WhatsApp para generar tu PDF.');$(bad[0]).focus();return;}
     if(!window.jspdf){showMsg('bad','No se pudo cargar el generador de PDF. Revisa tu conexión y recarga la página.');return;}
     pdfBtn.disabled=true;pdfBtn.textContent='Generando tu PDF…';
+    update();
     let blob;
     try{blob=makePDF();}catch(e){pdfBtn.disabled=false;pdfBtn.textContent='Descargar mi sistema en PDF';showMsg('bad','No se pudo generar el PDF. Intenta de nuevo.');return;}
     const filename='Sistema de Ventas - '+(clean(s.contact.nombre.trim()).replace(/[\\\/:*?"<>|]/g,'')||'LiderMente')+'.pdf';
