@@ -104,6 +104,7 @@ input,select{width:100%;padding:14px 16px;border:1px solid #bcd6d6;border-radius
 input:focus,select:focus{outline:2px solid var(--teal);border-color:transparent}
 form .btn{width:100%;margin-top:22px}
 .note{font-size:.82rem;color:var(--muted);margin-top:12px;text-align:center}
+.precio{background:var(--mint);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-top:14px;font-size:.92rem;color:var(--teal-d)}
 .ok{display:none;text-align:center;padding:30px}
 .ok h3{font-size:1.8rem;margin-bottom:8px}
 footer{background:linear-gradient(90deg,#0a5f66,#0e8a8f);color:#e9fbfa;text-align:center;padding:34px 20px;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase}
@@ -246,6 +247,7 @@ footer{background:linear-gradient(90deg,#0a5f66,#0e8a8f);color:#e9fbfa;text-alig
     <option>Sí, soy parte del equipo de Grupo Peninxula</option>
     <option>No, vengo por mi cuenta o de otra inmobiliaria</option>
    </select>
+   <p class="precio" id="precio" style="display:none"><b>Inversión: $1,500 MXN</b> por las 8 sesiones. Te enviamos el link de pago por WhatsApp para confirmar tu lugar.</p>
    <label for="inmo">Inmobiliaria o empresa</label>
    <input id="inmo" name="empresa" autocomplete="organization">
    <label for="exp">Tu experiencia en bienes raíces</label>
@@ -268,6 +270,9 @@ footer{background:linear-gradient(90deg,#0a5f66,#0e8a8f);color:#e9fbfa;text-alig
 var ENDPOINT = "https://script.google.com/macros/s/AKfycbzYMO8boVLWLw-nXf9eDYux653Kw19xX7SY5cnxUXjZma7djPWjP29g40LqyaTFNutoJw/exec";
 var q = new URLSearchParams(location.search);
 var f = document.getElementById('f');
+f.equipo_peninxula.addEventListener('change', function () {
+  document.getElementById('precio').style.display = this.value.indexOf('Sí') === 0 ? 'none' : 'block';
+});
 f.addEventListener('submit', function (e) {
   e.preventDefault();
   var err = document.getElementById('err');
