@@ -68,7 +68,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --black:#000;--white:#fff;--turquoise:#2AFAD2;--gray:#808285;--dark:#0a0a0a;--dark2:#111;--dark3:#1a1a1a;
+  --black:#000;--white:#fff;--turquoise:#2AFAD2;--gray:#9A9CA0;--dark:#0a0a0a;--dark2:#111;--dark3:#1a1a1a;--ink-on-tq:#00201A;
   --display:'League Spartan','Arial Black',system-ui,sans-serif;
   --cond:'Bebas Neue','Oswald','Impact',system-ui,sans-serif;
   --body:'Cabin',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
@@ -78,81 +78,76 @@ body{font-family:var(--body);color:var(--white);background:var(--black);line-hei
 img{max-width:100%;height:auto;display:block}
 a{color:var(--turquoise);text-decoration:none;transition:opacity .2s}
 a:hover{opacity:.85}
-.container{max-width:1100px;margin:0 auto;padding:0 24px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--turquoise);outline-offset:3px}
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
 
 /* ─── NAV ─── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(42,250,210,.12)}
 nav .container{display:flex;align-items:center;justify-content:space-between;height:64px}
-.nav-logo{font-family:var(--display);font-weight:800;font-size:1.15rem;color:var(--white);letter-spacing:-.02em}
+.nav-logo{font-family:var(--cond);font-size:1.6rem;color:var(--white);letter-spacing:.12em;line-height:1}
 .nav-logo span{color:var(--turquoise)}
-.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{color:var(--gray);font-size:.875rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;transition:color .2s}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{color:var(--gray);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;transition:color .2s}
 .nav-links a:hover,.nav-links a.active{color:var(--turquoise);opacity:1}
 .nav-cta{background:var(--turquoise);color:var(--black);padding:8px 20px;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:.03em;text-transform:uppercase}
-.nav-cta:hover{opacity:.9;transform:translateY(-1px)}
 .hamburger{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer}
 
-/* ─── HERO ─── */
-.hero{padding:120px 0 80px;background:linear-gradient(135deg,var(--black) 0%,#050f0d 50%,var(--black) 100%);position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(42,250,210,.06) 0%,transparent 70%);pointer-events:none}
-.hero .container{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.hero-text{max-width:540px}
-.hero-eyebrow{font-family:var(--cond);font-size:1.3rem;color:var(--turquoise);letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px}
-.hero h1{font-family:var(--display);font-size:clamp(2.2rem,5vw,3.4rem);font-weight:900;line-height:1.05;letter-spacing:-.03em;margin-bottom:20px}
-.hero h1 em{font-style:normal;color:var(--turquoise)}
-.hero-sub{font-size:1.1rem;color:var(--gray);line-height:1.7;margin-bottom:32px}
-.hero-sub strong{color:var(--white)}
-.hero-badges{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
-.badge{background:var(--dark3);border:1px solid rgba(42,250,210,.2);padding:6px 14px;border-radius:999px;font-size:.8rem;color:var(--turquoise);font-weight:600;letter-spacing:.03em}
-.btn-primary{display:inline-block;background:var(--turquoise);color:var(--black);padding:14px 32px;border-radius:8px;font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:.02em;text-transform:uppercase;transition:transform .2s,box-shadow .2s}
+/* ─── BOTONES ─── */
+.btn-primary{display:inline-block;background:var(--turquoise);color:var(--black);padding:15px 30px;border-radius:6px;font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:.03em;text-transform:uppercase;transition:transform .2s,box-shadow .2s}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(42,250,210,.25);opacity:1}
-.hero-img{position:relative;display:flex;justify-content:center}
-.hero-img img{max-height:520px;width:auto;border-radius:16px;filter:drop-shadow(0 24px 48px rgba(0,0,0,.5))}
+.btn-ghost{display:inline-block;border:2px solid rgba(255,255,255,.35);color:var(--white);padding:13px 28px;border-radius:6px;font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:.03em;text-transform:uppercase;transition:border-color .2s,color .2s}
+.btn-ghost:hover{border-color:var(--turquoise);color:var(--turquoise);opacity:1}
+.btn-dark{display:inline-block;background:var(--black);color:var(--turquoise);padding:15px 32px;border-radius:6px;font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:.03em;text-transform:uppercase;transition:transform .2s}
+.btn-dark:hover{transform:translateY(-2px);opacity:1}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
 
-/* ─── SECTION UTILITIES ─── */
-section{padding:80px 0}
-.section-dark{background:var(--dark)}
-.section-darker{background:var(--dark2)}
-.section-eyebrow{font-family:var(--cond);font-size:1.1rem;color:var(--turquoise);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px}
-.section-title{font-family:var(--display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px;text-wrap:balance}
-.section-sub{color:var(--gray);font-size:1.05rem;max-width:640px;line-height:1.7}
-.btn-link{display:inline-block;font-family:var(--display);font-weight:800;font-size:.95rem;color:var(--turquoise);letter-spacing:.02em;text-transform:uppercase;padding:10px 0;border-bottom:2px solid var(--turquoise);transition:padding-left .2s}
-.btn-link:hover{padding-left:8px;opacity:1}
+/* ─── TÍTULOS GRANDES (condensados, dos líneas) ─── */
+.big{font-family:var(--cond);font-weight:400;font-size:clamp(3rem,7.5vw,6rem);line-height:.92;letter-spacing:.01em;text-transform:uppercase;text-wrap:balance}
+.big .tq{color:var(--turquoise);display:block}
+.eyebrow{font-family:var(--cond);font-size:1.15rem;color:var(--turquoise);letter-spacing:.22em;text-transform:uppercase;margin-bottom:14px}
+.lead{font-size:1.15rem;color:#c9cbce;line-height:1.6;max-width:30ch;margin:22px 0 30px}
 
-/* ─── NÚMEROS (barra compacta) ─── */
-.numeros{border-top:1px solid rgba(42,250,210,.08);border-bottom:1px solid rgba(42,250,210,.08);padding:48px 0}
-.numeros-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
-.numero-item .num{font-family:var(--display);font-size:clamp(2.2rem,4vw,3rem);font-weight:900;color:var(--turquoise);line-height:1}
-.numero-item .num-label{font-size:.85rem;color:var(--gray);margin-top:6px;line-height:1.4}
+/* ─── HERO ─── */
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1.05fr 1fr;padding:0;background:var(--black)}
+.hero-text{display:flex;flex-direction:column;justify-content:center;padding:120px 48px 72px max(24px,calc((100vw - 1180px)/2 + 24px))}
+.hero-img{position:relative;overflow:hidden;background:#d9d9d9}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,transparent 22%)}
+.hero .big{font-size:clamp(3.4rem,8.4vw,7.2rem)}
 
-/* ─── TEASER CARDS ─── */
-.teasers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
-.teaser-card{background:var(--dark3);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:32px 28px;transition:border-color .3s,transform .3s}
-.teaser-card:hover{border-color:rgba(42,250,210,.3);transform:translateY(-4px)}
-.teaser-icon{font-size:2rem;margin-bottom:16px}
-.teaser-card h3{font-family:var(--display);font-size:1.15rem;font-weight:800;line-height:1.2;margin-bottom:8px}
-.teaser-card p{font-size:.9rem;color:var(--gray);line-height:1.6;margin-bottom:20px}
+/* ─── FRANJA DE NÚMEROS (bloque de color plano) ─── */
+.numeros{background:var(--turquoise);color:var(--ink-on-tq);padding:44px 0}
+.numeros-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.num{font-family:var(--cond);font-size:clamp(3rem,6vw,4.6rem);line-height:1;font-variant-numeric:tabular-nums}
+.num-label{font-family:var(--body);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-top:4px}
 
-/* ─── LIDERMENTE HIGHLIGHT ─── */
-.lm-highlight{background:linear-gradient(135deg,#050f0d 0%,var(--black) 50%,#0a0d0c 100%);border-top:2px solid var(--turquoise);position:relative;padding:80px 0}
-.lm-highlight .container{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.lm-highlight-text p{color:var(--gray);font-size:1.05rem;line-height:1.7;margin-bottom:24px}
-.lm-highlight-text p strong{color:var(--white)}
-.lm-details-mini{background:var(--dark3);border-radius:12px;padding:28px;border:1px solid rgba(42,250,210,.15)}
-.lm-detail-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
-.lm-detail-row:last-child{border-bottom:none}
-.lm-detail-icon{font-size:1.3rem;flex-shrink:0}
-.lm-detail-text{font-size:.95rem;line-height:1.5}
-.lm-detail-text strong{color:var(--turquoise)}
-.lm-price{font-family:var(--display);font-size:2rem;font-weight:900;color:var(--turquoise)}
+/* ─── BLOQUES FOTO + FRASE ─── */
+.split{display:grid;grid-template-columns:1fr 1fr;min-height:560px;padding:0}
+.split.rev .split-img{order:2}
+.split-img{position:relative;overflow:hidden;min-height:360px}
+.split-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.split-text{display:flex;flex-direction:column;justify-content:center;padding:72px 56px}
+.bg-dark{background:var(--dark)}
+.bg-dark2{background:var(--dark2)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 30px}
+.chip{border:1px solid rgba(42,250,210,.35);color:var(--white);padding:8px 14px;border-radius:999px;font-size:.9rem;font-weight:600}
+.chip b{color:var(--turquoise)}
+.chip.solid{background:var(--turquoise);color:var(--black);border-color:var(--turquoise)}
 
-/* ─── DIAGNÓSTICO CTA ─── */
-.diagnostico{background:var(--turquoise);color:var(--black);text-align:center;padding:64px 0}
-.diagnostico .section-eyebrow{color:rgba(0,0,0,.5)}
-.diagnostico .section-title{color:var(--black)}
-.diagnostico .section-sub{color:rgba(0,0,0,.7);margin:0 auto 32px}
-.btn-dark{display:inline-block;background:var(--black);color:var(--turquoise);padding:14px 32px;border-radius:8px;font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:.02em;text-transform:uppercase;transition:transform .2s,box-shadow .2s}
-.btn-dark:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.25);opacity:1}
+/* ─── PERSONALIDADES (franja de fotos) ─── */
+.pers{background:var(--black);padding:88px 0 72px}
+.pers-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.pers-row{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 max(24px,calc((100vw - 1180px)/2 + 24px)) 12px;scrollbar-width:thin;scrollbar-color:var(--turquoise) transparent}
+.pers-card{position:relative;flex:0 0 220px;aspect-ratio:3/4;border-radius:10px;overflow:hidden;scroll-snap-align:start;background:var(--dark3)}
+.pers-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.pers-card:hover img{transform:scale(1.05)}
+.pers-card p{position:absolute;left:0;right:0;bottom:0;padding:40px 14px 12px;background:linear-gradient(to top,rgba(0,0,0,.9),transparent);font-family:var(--cond);font-size:1.35rem;letter-spacing:.04em;line-height:1}
+
+/* ─── DIAGNÓSTICO ─── */
+.diagnostico{background:var(--turquoise);color:var(--black);text-align:center;padding:88px 0}
+.diagnostico .big .tq{color:var(--black);opacity:.55}
+.diagnostico .eyebrow{color:rgba(0,0,0,.55)}
+.diagnostico p.lead{color:rgba(0,0,0,.75);margin:18px auto 30px;max-width:none}
 
 /* ─── FOOTER ─── */
 footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:48px 0 32px}
@@ -171,25 +166,35 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
 .footer-socials a:hover{background:var(--turquoise);color:var(--black)}
 .footer-socials svg{width:20px;height:20px;fill:currentColor}
 
+/* ─── APARICIÓN AL HACER SCROLL ─── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.pers-card img,.btn-primary{transition:none}}
+
 /* ─── RESPONSIVE ─── */
-@media(max-width:900px){
-  .hero .container{grid-template-columns:1fr;text-align:center}
-  .hero-text{max-width:100%}
-  .hero-badges{justify-content:center}
-  .hero-img img{max-height:400px}
-  .teasers{grid-template-columns:1fr}
-  .numeros-grid{grid-template-columns:repeat(2,1fr)}
-  .lm-highlight .container{grid-template-columns:1fr}
+@media(max-width:960px){
+  .nav-links{display:none}
+  .nav-links.show{display:flex;flex-direction:column;gap:0;position:absolute;top:64px;left:0;right:0;background:rgba(0,0,0,.97);padding:8px 24px 16px;border-bottom:1px solid rgba(42,250,210,.15)}
+  .nav-links.show a{display:block;padding:12px 0}
+  .hamburger{display:block}
+  .nav-cta{display:none}
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero-img{order:-1;height:62svh;min-height:380px;margin-top:64px}
+  .hero-img::after{background:linear-gradient(0deg,rgba(0,0,0,.85) 0%,transparent 35%)}
+  .hero-text{padding:0 24px 64px;margin-top:-90px;position:relative;z-index:1}
+  .split{grid-template-columns:1fr;min-height:0}
+  .split.rev .split-img{order:0}
+  .split-img{min-height:0;aspect-ratio:4/3}
+  .split-text{padding:48px 24px 64px}
+  .numeros-grid{grid-template-columns:repeat(2,1fr);gap:28px 16px}
   .footer-grid{grid-template-columns:1fr;text-align:center}
   .footer-socials{justify-content:center}
   .footer-desc{max-width:100%;margin:0 auto}
   .footer-bottom{flex-direction:column;gap:12px}
 }
-@media(max-width:640px){
-  .nav-links{display:none}
-  .hamburger{display:block}
-  .numeros-grid{gap:20px}
-  section{padding:60px 0}
+@media(max-width:480px){
+  .pers-card{flex-basis:170px}
+  .btns a{flex:1 1 100%;text-align:center}
 }
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -217,118 +222,126 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
-  <div class="container">
-    <div class="hero-text">
-      <p class="hero-eyebrow">Coach y Mentora de Dueños de Negocio</p>
-      <h1>Tu negocio no necesita más horas tuyas.<br>Necesita que <em>tú crezcas.</em></h1>
-      <p class="hero-sub">Ayudo a dueños de negocio a dejar de ser el <strong>cuello de botella</strong> de su propia empresa. Formando líderes desde 2013.</p>
-      <div class="hero-badges">
-        <span class="badge">+500 coaches formados</span>
-        <span class="badge">27 países</span>
-        <span class="badge">+30K personas impactadas</span>
-      </div>
+  <div class="hero-text">
+    <p class="eyebrow">Coach y mentora de dueños de negocio · Cancún</p>
+    <h1 class="big"><span class="tq">Tu negocio</span>no necesita más horas tuyas</h1>
+    <p class="lead">Necesita que tú crezcas. Y que deje de depender de ti.</p>
+    <div class="btns">
       <a href="/diagnostico/" class="btn-primary">Descubre tu cuello de botella →</a>
+      <a href="/lidermente/" class="btn-ghost">LíderMente</a>
     </div>
-    <div class="hero-img">
-      <img src="img/leila-principal.jpg" alt="Leila Fittipaldi — Coach y Mentora de Dueños de Negocio" width="400" height="586" loading="eager">
-    </div>
+  </div>
+  <div class="hero-img">
+    <img src="img/leila-principal.jpg" alt="Leila Fittipaldi, coach y mentora de dueños de negocio" width="1000" height="1465" loading="eager" fetchpriority="high">
   </div>
 </section>
 
 <!-- ═══ NÚMEROS ═══ -->
-<section class="numeros section-dark">
+<section class="numeros">
   <div class="container">
     <div class="numeros-grid">
-      <div class="numero-item">
-        <p class="num">500+</p>
-        <p class="num-label">Coaches formados</p>
-      </div>
-      <div class="numero-item">
-        <p class="num">27</p>
-        <p class="num-label">Países</p>
-      </div>
-      <div class="numero-item">
-        <p class="num">30K+</p>
-        <p class="num-label">Personas impactadas</p>
-      </div>
-      <div class="numero-item">
-        <p class="num">2013</p>
-        <p class="num-label">Formando líderes desde</p>
-      </div>
+      <div><p class="num">500+</p><p class="num-label">Coaches formados</p></div>
+      <div><p class="num">27</p><p class="num-label">Países</p></div>
+      <div><p class="num">30K+</p><p class="num-label">Personas impactadas</p></div>
+      <div><p class="num">2013</p><p class="num-label">Formando líderes</p></div>
     </div>
   </div>
 </section>
 
-<!-- ═══ EXPLORA ═══ -->
-<section class="section-darker">
-  <div class="container">
-    <p class="section-eyebrow">Conoce más</p>
-    <h2 class="section-title">Todo lo que necesitas en un solo lugar</h2>
-    <div class="teasers">
-      <a href="/mi-historia/" class="teaser-card" style="color:inherit;text-decoration:none">
-        <div class="teaser-icon">📖</div>
-        <h3>Mi Historia</h3>
-        <p>De construir una inmobiliaria top 5 en Argentina a formar líderes en 27 países. Una trayectoria junto a Jürgen Klaric, Juan Diego Gómez y más.</p>
-        <span class="btn-link">Conocer mi historia →</span>
-      </a>
-      <a href="/casos/" class="teaser-card" style="color:inherit;text-decoration:none">
-        <div class="teaser-icon">🎬</div>
-        <h3>Casos de Éxito</h3>
-        <p>Dueños de negocio reales que cambiaron su forma de liderar. Resultados en video, sin guión y sin filtro.</p>
-        <span class="btn-link">Ver los casos →</span>
-      </a>
-      <a href="/lidermente/" class="teaser-card" style="color:inherit;text-decoration:none">
-        <div class="teaser-icon">🧠</div>
-        <h3>LíderMente</h3>
-        <p>La membresía presencial en Cancún donde dueños de negocio entrenan lo que nadie les enseñó. Cada miércoles.</p>
-        <span class="btn-link">Conocer LíderMente →</span>
-      </a>
+<!-- ═══ LÍDERMENTE ═══ -->
+<section class="split bg-dark">
+  <div class="split-img">
+    <img src="img/lidermente-sesion-gnius.jpg" alt="Grupo de dueños de negocio en una sesión de LíderMente en Gnius Cancún" width="980" height="518" loading="lazy">
+  </div>
+  <div class="split-text reveal">
+    <p class="eyebrow">Membresía presencial</p>
+    <h2 class="big"><span class="tq">LíderMente</span>cada miércoles</h2>
+    <div class="chips">
+      <span class="chip">📍 Gnius Cancún</span>
+      <span class="chip">🕢 7:30 – 9:30 pm</span>
+      <span class="chip">👥 <b>20</b> lugares</span>
+      <span class="chip"><b>$1,000</b> MXN / mes</span>
+      <span class="chip solid">1ª sesión gratis</span>
+    </div>
+    <div class="btns">
+      <a href="/lidermente/" class="btn-primary">Conocer LíderMente →</a>
     </div>
   </div>
 </section>
 
-<!-- ═══ LIDERMENTE HIGHLIGHT ═══ -->
-<section class="lm-highlight">
-  <div class="container">
-    <div class="lm-highlight-text">
-      <p class="section-eyebrow">Membresía de entrenamiento</p>
-      <h2 class="section-title">LíderMente</h2>
-      <p>Cada miércoles, un grupo de máximo <strong>20 dueños de negocio</strong> se reúne en Cancún para trabajar las 6 áreas que mueven una empresa: estrategia, ejecución, marketing, ventas, tecnología e IA, y administración.</p>
-      <p><strong>1ª sesión sin cargo</strong> — ven a conocernos.</p>
-      <a href="/lidermente/" class="btn-primary">Ver todos los detalles →</a>
+<!-- ═══ CONFERENCIAS ═══ -->
+<section class="split rev bg-dark2">
+  <div class="split-img">
+    <img src="img/conferencias/hero-escenario.jpg" alt="Leila Fittipaldi dando una conferencia en un escenario frente a una pantalla" width="1200" height="795" loading="lazy">
+  </div>
+  <div class="split-text reveal">
+    <p class="eyebrow">Conferencias y talleres</p>
+    <h2 class="big"><span class="tq">Liderazgo,</span>ventas e IA</h2>
+    <p class="lead">Para empresas y eventos en Cancún y Latinoamérica.</p>
+    <div class="btns">
+      <a href="/conferencias/" class="btn-primary">Ver conferencias →</a>
     </div>
-    <div class="lm-details-mini">
-      <div class="lm-detail-row">
-        <span class="lm-detail-icon">📍</span>
-        <p class="lm-detail-text">Gnius Cancún, <strong>Av. Fonatur 12</strong></p>
-      </div>
-      <div class="lm-detail-row">
-        <span class="lm-detail-icon">🕢</span>
-        <p class="lm-detail-text">Miércoles <strong>7:30 – 9:30 pm</strong></p>
-      </div>
-      <div class="lm-detail-row">
-        <span class="lm-detail-icon">👥</span>
-        <p class="lm-detail-text">Cupo máximo: <strong>20 personas</strong></p>
-      </div>
-      <div class="lm-detail-row" style="flex-direction:column;align-items:flex-start;gap:4px">
-        <p class="lm-price">$1,000 MXN<span style="font-size:.9rem;font-weight:400;color:var(--gray);font-family:var(--body)"> / mes</span></p>
-      </div>
-      <div style="margin-top:20px">
-        <a href="https://wa.me/522211229846?text=Hola%20Leila%2C%20quiero%20información%20de%20LIDERMENTE" class="btn-primary" style="display:block;text-align:center;width:100%">Escríbeme LIDERMENTE →</a>
-      </div>
+  </div>
+</section>
+
+<!-- ═══ PERSONALIDADES ═══ -->
+<section class="pers">
+  <div class="container pers-head reveal">
+    <div>
+      <p class="eyebrow">Trayectoria</p>
+      <h2 class="big"><span class="tq">Escenarios</span>y eventos con</h2>
+    </div>
+    <a href="/mi-historia/" class="btn-ghost">Mi historia →</a>
+  </div>
+  <div class="pers-row" tabindex="0" aria-label="Personalidades con las que Leila compartió escenarios y eventos">
+    <figure class="pers-card"><img src="img/personalidades/robin-sharma.jpg" alt="Leila Fittipaldi con Robin Sharma" loading="lazy" width="600" height="800"><p>Robin Sharma</p></figure>
+    <figure class="pers-card"><img src="img/personalidades/vishen-lakhiani.jpg" alt="Leila Fittipaldi con Vishen Lakhiani" loading="lazy" width="600" height="800"><p>Vishen Lakhiani</p></figure>
+    <figure class="pers-card"><img src="img/personalidades/jurgen-klaric.jpg" alt="Leila Fittipaldi con Jürgen Klaric" loading="lazy"><p>Jürgen Klaric</p></figure>
+    <figure class="pers-card"><img src="img/personalidades/juan-diego-gomez.jpg" alt="Leila Fittipaldi con Juan Diego Gómez" loading="lazy"><p>Juan Diego Gómez</p></figure>
+    <figure class="pers-card"><img src="img/personalidades/mauricio-benoist-legendarios.jpg" alt="Leila Fittipaldi con Mauricio Benoist en Personas Legendarias 2024" loading="lazy"><p>Mauricio Benoist</p></figure>
+    <figure class="pers-card"><img src="img/personalidades/margarita-pasos.jpg" alt="Leila Fittipaldi con Margarita Pasos" loading="lazy" width="600" height="800"><p>Margarita Pasos</p></figure>
+    <figure class="pers-card"><img src="img/personalidades/jorge-serratos.jpg" alt="Leila Fittipaldi con Jorge Serratos" loading="lazy" width="600" height="800"><p>Jorge Serratos</p></figure>
+    <figure class="pers-card"><img src="img/personalidades/titto-galvez.jpg" alt="Leila Fittipaldi con Titto Gálvez" loading="lazy"><p>Titto Gálvez</p></figure>
+    <figure class="pers-card"><img src="img/personalidades/fer-anzures.jpg" alt="Leila Fittipaldi con Fer Anzures" loading="lazy" width="600" height="800"><p>Fer Anzures</p></figure>
+    <figure class="pers-card"><img src="img/personalidades/crucero-dreyfus-lozano.jpg" alt="Leila Fittipaldi con Diego Dreyfus y César Lozano" loading="lazy"><p>Dreyfus · Lozano</p></figure>
+    <figure class="pers-card"><img src="img/personalidades/teo-y-tino.jpg" alt="Leila Fittipaldi con Teo y Tino" loading="lazy" width="600" height="800"><p>Teo y Tino</p></figure>
+  </div>
+</section>
+
+<!-- ═══ HISTORIA ═══ -->
+<section class="split bg-dark">
+  <div class="split-img">
+    <img src="img/leila-hero.jpg" alt="Leila Fittipaldi, fundadora de La Academia del Coach" width="1000" height="1499" loading="lazy" style="object-position:50% 20%">
+  </div>
+  <div class="split-text reveal">
+    <p class="eyebrow">Fundadora de La Academia del Coach</p>
+    <h2 class="big"><span class="tq">Primero</span>me formé yo</h2>
+    <p class="lead">Ser coach hizo crecer mi inmobiliaria al top 5 de Mar del Plata. Desde 2013 enseño a otros a hacerlo.</p>
+    <div class="btns">
+      <a href="/mi-historia/" class="btn-primary">Mi historia →</a>
+      <a href="/casos/" class="btn-ghost">Casos de éxito</a>
     </div>
   </div>
 </section>
 
 <!-- ═══ DIAGNÓSTICO ═══ -->
 <section class="diagnostico">
-  <div class="container">
-    <p class="section-eyebrow">Herramienta gratuita</p>
-    <h2 class="section-title">¿Eres el cuello de botella de tu negocio?</h2>
-    <p class="section-sub">Responde 7 preguntas y descubre qué área de tu negocio te tiene atrapado. Sin costo, sin compromiso.</p>
-    <a href="/diagnostico/" class="btn-dark">Hacer mi diagnóstico gratis →</a>
+  <div class="container reveal">
+    <p class="eyebrow">Herramienta gratuita</p>
+    <h2 class="big"><span class="tq">¿Eres el cuello</span>de botella?</h2>
+    <p class="lead">7 preguntas. 3 minutos. Sin costo.</p>
+    <a href="/diagnostico/" class="btn-dark">Hacer mi diagnóstico →</a>
   </div>
 </section>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{threshold:.15});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
 
 <!-- ═══ FOOTER ═══ -->
 <footer>
