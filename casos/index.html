@@ -76,6 +76,19 @@ section{padding:80px 0}
 .caso-info{padding:16px 20px}
 .caso-info h3{font-family:var(--display);font-size:1.05rem;font-weight:700;line-height:1.3;margin-bottom:4px}
 .caso-info p{font-size:.85rem;color:var(--gray)}
+.casos-grid.main{grid-template-columns:repeat(3,1fr)}
+.casos-sub{font-family:var(--cond);font-size:1.1rem;color:var(--turquoise);letter-spacing:.2em;text-transform:uppercase;margin:64px 0 0}
+.caso-thumb .yt-poster{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;cursor:pointer;background:#111 center/cover no-repeat}
+.caso-thumb .yt-poster::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.45) 100%)}
+.caso-thumb .yt-poster::after{content:'';position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:var(--turquoise) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6.5v11l9-5.5z' fill='%23000'/%3E%3C/svg%3E") center/32px no-repeat;box-shadow:0 8px 28px rgba(0,0,0,.45);transition:transform .2s}
+.caso-thumb .yt-poster:hover::after,.caso-thumb .yt-poster:focus-visible::after{transform:scale(1.1)}
+.caso-who{font-family:var(--cond);font-size:.85rem;color:var(--turquoise);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+.caso-ficha{margin:12px 0 0;display:grid;gap:10px}
+.caso-ficha p{font-size:.9rem;color:var(--gray);line-height:1.5}
+.caso-ficha b{display:block;font-family:var(--cond);font-size:.78rem;font-weight:400;color:var(--turquoise);letter-spacing:.14em;text-transform:uppercase;margin-bottom:2px}
+.caso-quote{margin:14px 0 0;padding-left:12px;border-left:2px solid var(--turquoise);font-style:italic;font-size:.9rem;color:#fff;line-height:1.5}
+.caso-yt{display:inline-block;margin-top:12px;font-size:.8rem;color:var(--gray);text-decoration:underline}
+.caso-yt:hover{color:var(--turquoise)}
 
 /* ─── CTA ─── */
 .cta-section{background:var(--turquoise);color:var(--black);text-align:center;padding:64px 0}
@@ -104,7 +117,7 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:900px){
-  .casos-grid{grid-template-columns:1fr}
+  .casos-grid,.casos-grid.main{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr;text-align:center}
   .footer-socials{justify-content:center}
   .footer-desc{max-width:100%;margin:0 auto}
@@ -151,41 +164,76 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
 <!-- ═══ CASOS ═══ -->
 <section class="section-dark">
   <div class="container">
+    <div class="casos-grid main">
+      <div class="caso-card">
+        <div class="caso-thumb">
+          <button type="button" class="yt-poster" data-yt="ahY3CDlHelg" aria-label="Reproducir video: Fabi, 16 años con su salón de belleza" style="background-image:url(https://i.ytimg.com/vi/ahY3CDlHelg/hqdefault.jpg)"></button>
+        </div>
+        <div class="caso-info">
+          <p class="caso-who">Fabi · Salón de belleza · 16 años</p>
+          <h3>Dejó de sostenerlo todo sola</h3>
+          <div class="caso-ficha">
+            <p><b>Antes</b>Sostenía el negocio casi sola y se frustraba porque su gente no tomaba iniciativa.</p>
+            <p><b>El momento de quiebre</b>Una crisis fuerte de dinero y deudas le hizo entender que no podía seguir cargándolo todo.</p>
+            <p><b>Después</b>Lidera sin cargar con todo lo emocional, ya no retiene a su equipo por miedo y se muestra frente a la cámara.</p>
+          </div>
+          <p class="caso-quote">“Tengo que soltar porque me estoy enfermando.”</p>
+          <a class="caso-yt" href="https://www.youtube.com/watch?v=ahY3CDlHelg" target="_blank" rel="noopener">Ver el video en YouTube</a>
+        </div>
+      </div>
+      <div class="caso-card">
+        <div class="caso-thumb">
+          <button type="button" class="yt-poster" data-yt="Rf9nxsaqn30" aria-label="Reproducir video: Brújula del Cuestionador: Manuel" style="background-image:url(https://i.ytimg.com/vi/Rf9nxsaqn30/hqdefault.jpg)"></button>
+        </div>
+        <div class="caso-info">
+          <p class="caso-who">Manuel · Empresa de tecnología</p>
+          <h3>Un negocio que dependía de él</h3>
+          <div class="caso-ficha">
+            <p><b>Antes</b>Autoempleado: si él no estaba, el negocio no funcionaba. Decidía desde el enojo y le costaba cobrar lo que valía.</p>
+            <p><b>El momento de quiebre</b>Tomaba curso tras curso sin aplicar nada, hasta entender que el obstáculo no eran las herramientas sino algo dentro de él.</p>
+            <p><b>Después</b>Gestiona sus emociones, negocia con seguridad y hoy busca líderes para cada línea de su empresa.</p>
+          </div>
+          <p class="caso-quote">“Cuesta más pensarlo que hacerlo.”</p>
+          <a class="caso-yt" href="https://www.youtube.com/watch?v=Rf9nxsaqn30" target="_blank" rel="noopener">Ver el video en YouTube</a>
+        </div>
+      </div>
+      <div class="caso-card">
+        <div class="caso-thumb">
+          <button type="button" class="yt-poster" data-yt="73GT-X-KUEM" aria-label="Reproducir video: Carlos, odontólogo" style="background-image:url(https://i.ytimg.com/vi/73GT-X-KUEM/hqdefault.jpg)"></button>
+        </div>
+        <div class="caso-info">
+          <p class="caso-who">Carlos · Odontólogo · Ciudad de México</p>
+          <h3>Del querer al hacer</h3>
+          <div class="caso-ficha">
+            <p><b>Antes</b>Ganaba bien, pero se quedaba en el querer: tenía ganas de hacer cosas distintas y nunca las ponía en acción.</p>
+            <p><b>El momento de quiebre</b>Un taller le voló la cabeza: pasó de sentirse víctima a hacerse responsable de su propia vida.</p>
+            <p><b>Después</b>Mejoró la comunicación con su esposa, disfruta más a sus hijas y llevó lo aprendido a sus clínicas.</p>
+          </div>
+          <p class="caso-quote">“Me sirvió para sacar el líder que tenía adentro.”</p>
+          <a class="caso-yt" href="https://www.youtube.com/watch?v=73GT-X-KUEM" target="_blank" rel="noopener">Ver el video en YouTube</a>
+        </div>
+      </div>
+    </div>
+    <p class="casos-sub">Más historias</p>
     <div class="casos-grid">
       <div class="caso-card">
         <div class="caso-thumb">
-          <iframe src="https://www.youtube.com/embed/63nh-ggPhiA" title="De La Adversidad Al Éxito" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <button type="button" class="yt-poster" data-yt="63nh-ggPhiA" aria-label="Reproducir video: De la adversidad al éxito" style="background-image:url(https://i.ytimg.com/vi/63nh-ggPhiA/hqdefault.jpg)"></button>
         </div>
         <div class="caso-info">
           <h3>De La Adversidad Al Éxito</h3>
           <p>Cuando todo parece perdido, un cambio de mentalidad lo transforma todo.</p>
+          <a class="caso-yt" href="https://www.youtube.com/watch?v=63nh-ggPhiA" target="_blank" rel="noopener">Ver el video en YouTube</a>
         </div>
       </div>
       <div class="caso-card">
         <div class="caso-thumb">
-          <iframe src="https://www.youtube.com/embed/Qr2N4p74MWY" title="¿Qué pasa cuando aprendes a conversar de manera efectiva?" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <button type="button" class="yt-poster" data-yt="Qr2N4p74MWY" aria-label="Reproducir video: Conversaciones que transforman negocios" style="background-image:url(https://i.ytimg.com/vi/Qr2N4p74MWY/hqdefault.jpg)"></button>
         </div>
         <div class="caso-info">
           <h3>Conversaciones que transforman negocios</h3>
           <p>La comunicación efectiva como herramienta de liderazgo y ventas.</p>
-        </div>
-      </div>
-      <div class="caso-card">
-        <div class="caso-thumb">
-          <iframe src="https://www.youtube.com/embed/73GT-X-KUEM" title="¿Cuánto Dinero Gana un Odontólogo que Escaló su Negocio?" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="caso-info">
-          <h3>Un odontólogo que escaló su negocio</h3>
-          <p>De atender todo solo a tener un sistema que funciona sin él.</p>
-        </div>
-      </div>
-      <div class="caso-card">
-        <div class="caso-thumb">
-          <iframe src="https://www.youtube.com/embed/Rf9nxsaqn30" title="Brújula del Cuestionador Manuel" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="caso-info">
-          <h3>Brújula del Cuestionador</h3>
-          <p>El método que destrabó a Manuel de su propio negocio.</p>
+          <a class="caso-yt" href="https://www.youtube.com/watch?v=Qr2N4p74MWY" target="_blank" rel="noopener">Ver el video en YouTube</a>
         </div>
       </div>
     </div>
@@ -2471,6 +2519,22 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
       (document.head || document.documentElement).appendChild(s);
     } catch (e) {}
   }
+})();
+</script>
+<script>
+(function(){
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('.yt-poster'); if(!b) return;
+    var id=b.getAttribute('data-yt'); if(!id) return;
+    var f=document.createElement('iframe');
+    f.src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&enablejsapi=1';
+    f.title=b.getAttribute('aria-label')||'Video';
+    f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    f.referrerPolicy='strict-origin-when-cross-origin';
+    f.setAttribute('allowfullscreen','');
+    f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';
+    b.parentNode.replaceChild(f,b);
+  });
 })();
 </script>
 </body>
