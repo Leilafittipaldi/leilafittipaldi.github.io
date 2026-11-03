@@ -284,6 +284,17 @@
       // Envío directo a Google Sheet (Apps Script)
       fetch("https://script.google.com/macros/s/AKfycbzEiGt-3gkg-id3Hz7swF8qzWmODHz8xC5GhczKKCZohBX6Qq-0gjFfCi65edy1gVWC/exec",{method:"POST",mode:"no-cors",body:JSON.stringify(data)}).catch(function(){});
     }catch(e){}
+    // Entrada al CRM de MaKo: el Pixel solo captura formularios reales (evento submit),
+    // y este diagnóstico usa botones. Se arma un formulario oculto y se envía para que MaKo lo registre.
+    try{
+      var hf=document.createElement("form"); hf.style.display="none"; hf.setAttribute("aria-hidden","true");
+      var add=function(nm,val,tp){ var x=document.createElement("input"); x.type=tp||"text"; x.name=nm; x.value=val||""; hf.appendChild(x); };
+      add("nombre",(n+" "+a).trim()); add("whatsapp",w,"tel");
+      add("pilar",P[top]); add("etapa_actual",qual.negocio); add("ubicacion",qual.ubicacion);
+      add("equipo",qual.equipo); add("facturacion",qual.facturacion); add("urgencia",qual.urgencia);
+      hf.addEventListener("submit",function(ev){ ev.preventDefault(); });
+      document.body.appendChild(hf); hf.requestSubmit(); document.body.removeChild(hf);
+    }catch(e){}
     var msg=encodeURIComponent("Hola Leila, soy "+n+". Hice el diagnóstico y mi cuello de botella es "+P[top]+". QUIERO MI GUÍA 🙌");
     el("walink").href="https://wa.me/"+WA_NUM+"?text="+msg;
     renderResult();
