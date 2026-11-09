@@ -75,6 +75,9 @@ section{padding:80px 0}
 .about-intro p strong{color:var(--turquoise)}
 .btn-copiar{margin-top:8px;background:var(--turquoise);color:#041513;border:0;border-radius:10px;padding:12px 22px;font-family:var(--display);font-weight:800;cursor:pointer}
 .btn-copiar:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.kit-botones{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.kit-botones .btn-copiar{margin-top:0;text-decoration:none;display:inline-block;font-size:.95rem}
+.btn-sec{background:transparent!important;color:var(--turquoise)!important;border:2px solid var(--turquoise)!important}
 .copiar-nota{font-size:.85rem!important;color:rgba(255,255,255,.55)!important;margin-top:8px}
 .about-intro .highlight{border-left:3px solid var(--turquoise);padding-left:20px;margin:24px 0;font-size:1.1rem;font-style:italic;color:var(--white)}
 
@@ -149,6 +152,23 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
   section{padding:60px 0}
   .timeline{padding-left:28px}
 }
+/* --- Unificacion con Mi historia (nov-2026) --- */
+.historia-txt{max-width:720px}
+.historia-txt p{font-size:1.1rem;color:rgba(255,255,255,.85);line-height:1.8;margin-bottom:18px}
+.historia-txt p strong{color:var(--turquoise)}
+.historia-txt .highlight{border-left:3px solid var(--turquoise);padding-left:20px;margin:28px 0;font-size:1.15rem;font-style:italic;color:var(--white)}
+.pers-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:40px}
+.pers-card{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:3/4;background:#111}
+.pers-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.pers-card:hover img{transform:scale(1.04)}
+.pers-card .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,transparent 50%);display:flex;align-items:flex-end;padding:14px}
+.pers-card .pers-name{font-family:var(--display);font-size:.98rem;font-weight:800;letter-spacing:-.01em;margin:0}
+.pers-card .pers-role{font-size:.75rem;color:var(--turquoise);margin:2px 0 0}
+.pers-card.wide{grid-column:span 4;aspect-ratio:auto}
+.pers-card.wide img{object-position:center 30%}
+@media(max-width:900px){.pers-grid{grid-template-columns:repeat(3,1fr)}.pers-card.wide{grid-column:1/-1;aspect-ratio:820/312}}
+@media(max-width:640px){.pers-grid{grid-template-columns:repeat(2,1fr)}}
+@media (prefers-reduced-motion:reduce){.pers-card img{transition:none}}
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -161,7 +181,6 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
   <div class="container">
     <a href="/" class="nav-logo">LEILA <span>FITTIPALDI</span></a>
     <ul class="nav-links">
-      <li><a href="/mi-historia/">Mi Historia</a></li>
       <li><a href="/casos/">Casos de Éxito</a></li>
       <li><a href="/conferencias/">Conferencias</a></li>
       <li><a href="/lidermente/">LíderMente</a></li>
@@ -188,8 +207,27 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
       <p>Fue socia de Mauricio Benoist con su marca personal, con quien fue reconocida como Persona Legendaria en 2024. Ha compartido escenarios y eventos con Jürgen Klaric, Juan Diego Gómez, César Lozano y Diego Dreyfus, y ha sido speaker en It's Workshop (Lima, CDMX y Quito), la EBC y el CRIT Teletón Quintana Roo, entre muchos otros escenarios, empresas y talleres.</p>
       <p>Hoy es Directora de Comunicación y Promoción de Sindemex y creadora de LíderMente, la membresía para dueños de negocio que quieren dejar de ser el cuello de botella de su empresa.</p>
       </div>
-      <button type="button" class="btn-copiar" id="copiarSemblanza">Copiar semblanza</button>
+      <div class="kit-botones">
+        <button type="button" class="btn-copiar" id="descargarSemblanza">Descargar semblanza</button>
+        <a class="btn-copiar btn-sec" href="/img/leila-fittipaldi-foto-oficial.png" download="Leila-Fittipaldi-foto-oficial.png">Descargar foto</a>
+        <button type="button" class="btn-copiar btn-sec" id="copiarSemblanza">Copiar texto</button>
+      </div>
       <p class="copiar-nota">Para presentaciones en conferencias y eventos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MI HISTORIA ═══ -->
+<section class="section-darker" id="historia">
+  <div class="container">
+    <p class="section-eyebrow">Mi historia</p>
+    <h2 class="section-title">De construir una inmobiliaria top 5<br>a formar líderes en 27 países</h2>
+    <div class="historia-txt">
+      <p>Construí una inmobiliaria en Mar del Plata, Argentina. En menos de 3 años llegó al <strong>top 5 de la ciudad</strong>, vendiendo más de 15 propiedades al mes con un marketing disruptivo y un equipo de 9 colaboradores. Formarme como coach fue lo que la hizo crecer.</p>
+      <p>Pero yo era el motor, y cuando paraba, todo se frenaba. Esa experiencia me cambió la forma de ver los negocios: <strong>el problema nunca era el negocio. Era yo.</strong></p>
+      <p>Por eso fundé <strong>La Academia del Coach</strong> y formé a más de 500 coaches en 27 países. Fui socia de Mauricio Benoist con mi marca personal. Compartí escenario con Juan Diego Gómez y Jürgen Klaric. Navegué con Diego Dreyfus y César Lozano. Entrevisté a Jorge Serratos y a Titto Gálvez.</p>
+      <div class="highlight">"Si tu negocio depende 100% de ti, no tienes un negocio. Tienes un empleo que tú misma te creaste."</div>
+      <p>Hoy soy Directora de Comunicación y Promoción de Sindemex, y todo lo que aprendí lo aplico en <strong>La Academia del Coach</strong> y en <strong>LíderMente</strong>. Pero nada de eso importa si tú sigues abriendo y cerrando tu negocio todos los días.</p>
     </div>
   </div>
 </section>
@@ -231,6 +269,95 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
         <p>Todo lo aprendido, llevado a una membresía donde los dueños de negocio aprenden a ganar más trabajando menos. En línea, con una noche al mes en Cancún.</p>
       </li>
     </ul>
+  </div>
+</section>
+
+<!-- ═══ PERSONALIDADES ═══ -->
+<section class="section-dark">
+  <div class="container">
+    <p class="section-eyebrow">En el camino</p>
+    <h2 class="section-title">Escenarios, eventos y entrevistas</h2>
+    <div class="pers-grid">
+      <div class="pers-card">
+        <img src="/img/personalidades/jurgen-klaric.jpg" alt="Leila Fittipaldi con Jürgen Klaric" loading="lazy">
+        <div class="overlay"><div>
+            <p class="pers-name">Jürgen Klaric</p>
+            <p class="pers-role">Experto en Neuroventas</p>
+        </div></div>
+      </div>
+      <div class="pers-card">
+        <img src="/img/personalidades/juan-diego-gomez.jpg" alt="Leila Fittipaldi con Juan Diego Gómez" loading="lazy">
+        <div class="overlay"><div>
+            <p class="pers-name">Juan Diego Gómez</p>
+            <p class="pers-role">Educador Financiero</p>
+        </div></div>
+      </div>
+      <div class="pers-card">
+        <img src="/img/personalidades/mauricio-benoist-legendarios.jpg" alt="Leila Fittipaldi con Mauricio Benoist" loading="lazy">
+        <div class="overlay"><div>
+            <p class="pers-name">Mauricio Benoist</p>
+            <p class="pers-role">Personas Legendarias 2024</p>
+        </div></div>
+      </div>
+      <div class="pers-card">
+        <img src="/img/personalidades/robin-sharma.jpg" alt="Leila Fittipaldi con Robin Sharma" loading="lazy">
+        <div class="overlay"><div>
+            <p class="pers-name">Robin Sharma</p>
+        </div></div>
+      </div>
+      <div class="pers-card">
+        <img src="/img/personalidades/vishen-lakhiani.jpg" alt="Leila Fittipaldi con Vishen Lakhiani" loading="lazy">
+        <div class="overlay"><div>
+            <p class="pers-name">Vishen Lakhiani</p>
+        </div></div>
+      </div>
+      <div class="pers-card">
+        <img src="/img/personalidades/margarita-pasos.jpg" alt="Leila Fittipaldi con Margarita Pasos" loading="lazy">
+        <div class="overlay"><div>
+            <p class="pers-name">Margarita Pasos</p>
+        </div></div>
+      </div>
+      <div class="pers-card">
+        <img src="/img/personalidades/jorge-serratos.jpg" alt="Leila Fittipaldi con Jorge Serratos" loading="lazy">
+        <div class="overlay"><div>
+            <p class="pers-name">Jorge Serratos</p>
+            <p class="pers-role">Lo entrevisté</p>
+        </div></div>
+      </div>
+      <div class="pers-card">
+        <img src="/img/personalidades/titto-galvez.jpg" alt="Leila Fittipaldi con Titto Gálvez" loading="lazy">
+        <div class="overlay"><div>
+            <p class="pers-name">Titto Gálvez</p>
+            <p class="pers-role">Lo entrevisté</p>
+        </div></div>
+      </div>
+      <div class="pers-card">
+        <img src="/img/personalidades/fer-anzures.jpg" alt="Leila Fittipaldi con Fer Anzures" loading="lazy">
+        <div class="overlay"><div>
+            <p class="pers-name">Fer Anzures</p>
+        </div></div>
+      </div>
+      <div class="pers-card">
+        <img src="/img/personalidades/teo-y-tino.jpg" alt="Leila Fittipaldi con Teo y Tino" loading="lazy">
+        <div class="overlay"><div>
+            <p class="pers-name">Teo y Tino</p>
+        </div></div>
+      </div>
+      <div class="pers-card">
+        <img src="/img/personalidades/crucero-dreyfus-lozano.jpg" alt="Leila Fittipaldi con Diego Dreyfus y César Lozano" loading="lazy">
+        <div class="overlay"><div>
+            <p class="pers-name">Diego Dreyfus · César Lozano</p>
+            <p class="pers-role">Crucero de Líderes</p>
+        </div></div>
+      </div>
+      <div class="pers-card wide">
+        <img src="/img/personalidades/its-workshop.jpg" alt="Leila Fittipaldi speaker en It's Workshop Emprendimiento y Cambio con Mauricio Benoist, Juan Diego Gómez y Ricardo Perret — Lima, CDMX y Quito" loading="lazy">
+        <div class="overlay"><div>
+            <p class="pers-name">It's Workshop · Emprendimiento y Cambio</p>
+            <p class="pers-role">Speaker en Lima, CDMX y Quito</p>
+        </div></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -331,7 +458,6 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
       <div>
         <p class="footer-heading">Navegación</p>
         <ul class="footer-links">
-          <li><a href="/mi-historia/">Mi Historia</a></li>
           <li><a href="/casos/">Casos de Éxito</a></li>
           <li><a href="/servicios/">Servicios</a></li>
           <li><a href="/conferencias/">Conferencias</a></li>
@@ -2584,14 +2710,23 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
 })();
 </script>
 <script>
-document.getElementById('copiarSemblanza').addEventListener('click',function(){
-  var t=[...document.querySelectorAll('#semblanza p')].map(p=>p.innerText.trim()).join('
-
-');
-  var b=this;function ok(){b.textContent='Copiada ✓';setTimeout(function(){b.textContent='Copiar semblanza'},2000)}
-  if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok,function(){fallback()})}else fallback();
-  function fallback(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){}a.remove()}
-});
+(function(){
+  function texto(){
+    var ps=[].slice.call(document.querySelectorAll('#semblanza p')).map(function(p){return p.innerText.trim()});
+    return 'Semblanza — Leila Fittipaldi\n\n'+ps.join('\n\n')+'\n\nleilafittipaldi.com';
+  }
+  document.getElementById('descargarSemblanza').addEventListener('click',function(){
+    var b=new Blob(['\ufeff'+texto()],{type:'text/plain;charset=utf-8'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='Semblanza-Leila-Fittipaldi.txt';
+    document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href)},1500);
+  });
+  document.getElementById('copiarSemblanza').addEventListener('click',function(){
+    var btn=this,t=texto();
+    function ok(){btn.textContent='Copiado ✓';setTimeout(function(){btn.textContent='Copiar texto'},2000)}
+    function fallback(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){}a.remove()}
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(ok,fallback)}else fallback();
+  });
+})();
 </script>
 </body>
 </html>
