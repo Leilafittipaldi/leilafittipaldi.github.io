@@ -73,6 +73,9 @@ section{padding:80px 0}
 .about-intro h1 em{font-style:normal;color:var(--turquoise)}
 .about-intro p{font-size:1.05rem;color:rgba(255,255,255,.85);line-height:1.8;margin-bottom:16px}
 .about-intro p strong{color:var(--turquoise)}
+.btn-copiar{margin-top:8px;background:var(--turquoise);color:#041513;border:0;border-radius:10px;padding:12px 22px;font-family:var(--display);font-weight:800;cursor:pointer}
+.btn-copiar:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.copiar-nota{font-size:.85rem!important;color:rgba(255,255,255,.55)!important;margin-top:8px}
 .about-intro .highlight{border-left:3px solid var(--turquoise);padding-left:20px;margin:24px 0;font-size:1.1rem;font-style:italic;color:var(--white)}
 
 /* ─── TIMELINE ─── */
@@ -177,12 +180,16 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
       <img src="/img/leila-principal.jpg" alt="Leila Fittipaldi — Coach y Mentora de Dueños de Negocio" width="400" height="600" loading="eager">
     </div>
     <div class="about-intro">
-      <p class="section-eyebrow">Sobre mí</p>
-      <h1>Soy <em>Leila Fittipaldi</em></h1>
-      <p>Coach y Mentora de Dueños de Negocio. Argentina de nacimiento, cancunense por elección.</p>
-      <p>Construí una inmobiliaria que llegó al <strong>top 5 de Mar del Plata</strong> en menos de 3 años — 15 propiedades al mes, marketing disruptivo, 9 colaboradores. Pero yo era el motor. Y cuando paraba, todo se frenaba.</p>
-      <p>Esa experiencia me cambió la forma de ver los negocios. <strong>El problema nunca era el negocio. Era yo.</strong></p>
-      <div class="highlight">"Si tu negocio depende 100% de ti, no tienes un negocio. Tienes un empleo que tú misma te creaste."</div>
+      <p class="section-eyebrow">Semblanza</p>
+      <h1><em>Leila Fittipaldi</em></h1>
+      <div id="semblanza">
+      <p>Leila Fittipaldi es coach empresarial, conferencista y mentora de dueños de negocio. Argentina de nacimiento, vive en Cancún, México. <strong>Entrena a dueños de negocio a ganar más trabajando menos.</strong></p>
+      <p>En 2013 comenzó su formación como coach y lo aplicó primero en su propio negocio: llevó su inmobiliaria al top 5 de Mar del Plata. En 2020 fundó La Academia del Coach, desde donde ha formado a más de 500 coaches en 27 países e impactado a más de 30 mil personas.</p>
+      <p>Fue socia de Mauricio Benoist con su marca personal, con quien fue reconocida como Persona Legendaria en 2024. Ha compartido escenarios y eventos con Jürgen Klaric, Juan Diego Gómez, César Lozano y Diego Dreyfus, y ha sido speaker en It's Workshop (Lima, CDMX y Quito), la EBC y el CRIT Teletón Quintana Roo.</p>
+      <p>Hoy es Directora de Comunicación y Promoción de Sindemex y creadora de LíderMente, la membresía para dueños de negocio que quieren dejar de ser el cuello de botella de su empresa.</p>
+      </div>
+      <button type="button" class="btn-copiar" id="copiarSemblanza">Copiar semblanza</button>
+      <p class="copiar-nota">Para presentaciones en conferencias y eventos.</p>
     </div>
   </div>
 </section>
@@ -2575,6 +2582,16 @@ footer{background:var(--dark);border-top:1px solid rgba(42,250,210,.08);padding:
     } catch (e) {}
   }
 })();
+</script>
+<script>
+document.getElementById('copiarSemblanza').addEventListener('click',function(){
+  var t=[...document.querySelectorAll('#semblanza p')].map(p=>p.innerText.trim()).join('
+
+');
+  var b=this;function ok(){b.textContent='Copiada ✓';setTimeout(function(){b.textContent='Copiar semblanza'},2000)}
+  if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok,function(){fallback()})}else fallback();
+  function fallback(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){}a.remove()}
+});
 </script>
 </body>
 </html>
