@@ -273,6 +273,25 @@
   .cmsg.thinking .body{color:var(--ink-faint);font-style:italic}
   .crow{display:flex;flex-direction:column;gap:2px}
 
+  /* accesos rápidos + prompts */
+  .quick{display:flex;flex-wrap:wrap;align-items:center;gap:7px;border-top:1px solid var(--rule-soft);padding-top:12px}
+  .quick .qlabel{
+    font-family:"League Spartan","Cabin",sans-serif;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-faint);margin-right:4px;
+  }
+  .qlink{
+    font-family:"League Spartan","Cabin",Arial,sans-serif;font-weight:600;font-size:12.5px;
+    padding:6px 12px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);
+    border-radius:999px;text-decoration:none;
+  }
+  .qlink:hover{background:var(--accent);border-color:var(--accent);color:#06201F}
+  .pgroup{
+    font-family:"League Spartan","Cabin",sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--signal);font-weight:600;margin:22px 0 4px;
+  }
+  .pnote{font-size:14.5px;color:var(--ink-soft);margin:0 0 12px}
+  .pnote b{color:var(--ink)}
+  .pbtns{display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 4px}
   footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:22px;color:var(--ink-faint);font-size:14px;max-width:70ch}
   footer p{margin:0 0 10px}
   .copybtn{
@@ -315,6 +334,9 @@
     <button class="copybtn" id="copyprompt" type="button">Copiar prompt para IA</button>
   </div>
   <div class="chips" id="cats" role="group" aria-label="Filtrar por área"></div>
+  <div class="quick" id="quick" aria-label="Accesos rápidos a IA">
+    <span class="qlabel">Abrir una IA</span>
+  </div>
   <div class="toolbar">
     <div class="count" id="count"></div>
   </div>
@@ -1964,7 +1986,7 @@ const out = document.getElementById("out");
 const chipsBox = document.getElementById("cats");
 const countEl = document.getElementById("count");
 
-CATS.forEach(c=>{
+CATS.concat(["Prompts IA"]).forEach(c=>{
   const b=document.createElement("button");
   b.className="chip";b.type="button";b.textContent=c;b.setAttribute("aria-pressed","false");
   b.addEventListener("click",()=>{
@@ -2015,14 +2037,129 @@ function matches(p){
   });
 }
 
-function render(){
-  const list = PLAYS.filter(matches);
-  out.innerHTML="";
-  countEl.textContent = list.length===PLAYS.length
-    ? PLAYS.length+" playbooks"
-    : list.length+" de "+PLAYS.length+" playbooks";
 
-  if(!list.length){
+/* ---------- Prompts y accesos rápidos para IA ---------- */
+const PCAT = "Prompts IA";
+const AI_LINKS = [
+  {n:"Claude", u:"https://claude.ai"},
+  {n:"ChatGPT", u:"https://chatgpt.com"},
+  {n:"Gemini", u:"https://gemini.google.com"},
+  {n:"Perplexity", u:"https://www.perplexity.ai"},
+  {n:"NotebookLM", u:"https://notebooklm.google.com"},
+  {n:"Gamma", u:"https://gamma.app"},
+  {n:"Canva", u:"https://www.canva.com"},
+  {n:"Higgsfield", u:"https://higgsfield.ai"},
+  {n:"HeyGen", u:"https://www.heygen.com"},
+  {n:"Submagic", u:"https://www.submagic.co"}
+];
+const AI_PROMPTS = [
+  {group:"Mi arsenal", title:"Pregúntale al Arsenal: tu consultor de negocio en cualquier IA",
+   when:"Pégalo al inicio de un chat con cualquier IA y escribe tu caso al final. Te hace las preguntas antes de recomendar y cierra con una sola acción para esta semana.",
+   how:"Pégalo y termina la frase «Mi caso es:» con tu situación.",
+   get:()=>PROMPT},
+  {group:"Foto con IA", title:"Retrato de LinkedIn sin estudio ni fotógrafo",
+   when:"Tienes una foto decente y necesitas que parezca hecha por un profesional.",
+   how:"Sube tu foto primero y pega el prompt. Funciona con ChatGPT (imágenes) o Gemini.",
+   text:"Retrato corporativo pulido para LinkedIn desde la imagen base. Preservación perfecta de identidad. Composición: cabeza y hombros, regla de tercios. Fondo: bokeh suave, gris neutro/azul/carbón, efecto de lente 85mm f/2.0. Iluminación: esquema de estudio de 3 puntos, luz principal suave y luz de contorno. Vestimenta formal, pose acorde, maquillaje suave. Resultado: estilo fotográfico profesional de alta gama."},
+  {group:"Foto con IA", title:"Foto de producto de estudio, lista para vender",
+   when:"Vendes algo físico y tus fotos con el celular no se ven premium.",
+   how:"Sube la foto del producto y pega el prompt. Revisa que marca, color y forma no cambien.",
+   text:"Fotografía profesional de producto para e-commerce. Precisión total en marca, color, forma y detalles. Superficie: mesa minimalista blanca o de mármol claro. Fondo: blanco limpio o degradado suave. Iluminación: luz principal suave a 45 grados, luz de relleno y contraluz sutil. Resultado: alta definición, calidad comercial y estética premium."},
+  {group:"Foto con IA", title:"Quita ojeras y bolsas sin verte operada",
+   when:"La foto es buena pero el cansancio se nota en los ojos.",
+   how:"Sube la foto y pega el prompt. Está pensado para corregir solo la zona de los ojos.",
+   text:"Reducción sutil de ojeras y bolsas desde la foto base. Aclarar pigmentación, suavizar hinchazón leve y atenuar sombras. Mezclar tono de ojeras naturalmente con las mejillas. Mantener pliegue natural del ojo, estructura ósea y líneas de expresión. Corregir solo oscuridad e inflamación. Sin filtros de belleza generales. Resultado: ojos brillantes, descansados y naturales."},
+  {group:"Foto con IA", title:"Cambia el color de una prenda sin que se note",
+   when:"Te gusta la foto pero no el color del atuendo.",
+   how:"Cambia [ACTUAL] y [OBJETIVO] por los colores, por ejemplo «azul marino» y «blanco».",
+   text:"Cambiar color del atuendo de [ACTUAL] a [OBJETIVO]. Preservación del 100% de elementos ajenos a la ropa: rostro, piel, pelo, accesorios y ambiente. Identificación precisa de los bordes de la tela. Interacción de luz: mantener rango tonal, brillos, sombras y textura (denim, seda, algodón). Arrugas y caída sin cambios. Sin sangrado de color en la piel. Resultado: fotorrealista e indetectable."},
+  {group:"Foto con IA", title:"De selfie en el espejo a retrato profesional",
+   when:"Solo tienes una selfie frente al espejo y la necesitas para tu perfil o tu web.",
+   how:"Sube la selfie y pega el prompt. Revisa que la cara y el cuerpo sigan siendo los tuyos.",
+   text:"Transformar selfie de espejo en retrato profesional como si fuera tomado por otra persona. Preservación total de rostro y cuerpo. Eliminar marco del espejo, teléfono y reflejos del entorno. Ajustar brazo a posición relajada natural. Fondo: entorno estético limpio con bokeh suave. Perspectiva corregida, no reflectante. Resultado: retrato espontáneo, pulido y bien compuesto."},
+  {group:"Foto con IA", title:"Rescata una foto con mala luz o flash de celular",
+   when:"La foto es de un momento bueno pero salió oscura, naranja o con sombras duras.",
+   how:"Sube la foto y pega el prompt. Funciona mejor con fotos donde la cara se vea.",
+   text:"Corrección precisa de iluminación deficiente. Preservar rostro y esencia de la escena. Corregir sombras duras en ojos/nariz/mentón con luz de flash de celular. Neutralizar dominantes de color (naranja/verde/azul) para tonos de piel precisos. Iluminar áreas subexpuestas. Imagen final: foto con luz de flash tomada de noche, textura de piel realista e intacta, edición invisible."}
+];
+const promptText = p => p.get ? p.get() : p.text;
+const escH = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+function promptMatches(p){
+  if(active && active!==PCAT) return false;
+  if(!query) return true;
+  const hay = norm(p.title+" "+p.when+" "+p.group+" "+(p.text||"")+" prompt prompts ia");
+  return tokens(query).every(t=>hay.includes(t.length>=5 ? t.slice(0,t.length-1) : t));
+}
+
+function renderPrompts(plist){
+  if(!plist.length) return;
+  const h=document.createElement("h2");
+  h.className="sect";
+  h.id="prompts-ia";
+  h.innerHTML = "Prompts y accesos rápidos para IA <span>"+plist.length+"</span>";
+  out.appendChild(h);
+  if(!query){
+    const n=document.createElement("p");
+    n.className="sectnote";
+    n.textContent="Prompts listos para copiar y pegar en tu IA favorita, y los enlaces para abrirla. Copia, sube tu foto o escribe tu caso, y listo.";
+    out.appendChild(n);
+  }
+  const g=document.createElement("div");g.className="grid";
+  plist.forEach(p=>{
+    const i = AI_PROMPTS.indexOf(p);
+    const d=document.createElement("details");
+    d.className="play";
+    if(query) d.open = true;
+    d.innerHTML =
+      '<summary><span class="ptitle">'+p.title+'</span>'+
+      '<span class="psrc">'+p.group+'</span>'+
+      '<p class="pwhen">'+p.when+'</p></summary>'+
+      '<div class="body">'+
+        '<h4>Cómo usarlo</h4><p class="pnote">'+p.how+'</p>'+
+        '<h4>Prompt</h4><div class="tmpl">'+escH(promptText(p))+'</div>'+
+        '<div class="pbtns"><button class="copybtn pcopy" type="button" data-i="'+i+'">Copiar prompt</button></div>'+
+      '</div>';
+    g.appendChild(d);
+  });
+  out.appendChild(g);
+}
+
+(function mountQuick(){
+  const box=document.getElementById("quick");
+  AI_LINKS.forEach(l=>{
+    const a=document.createElement("a");
+    a.className="qlink";a.href=l.u;a.target="_blank";a.rel="noopener noreferrer";a.textContent=l.n;
+    box.appendChild(a);
+  });
+})();
+
+out.addEventListener("click", async e=>{
+  const b=e.target.closest(".pcopy");
+  if(!b) return;
+  const txt=promptText(AI_PROMPTS[+b.dataset.i]);
+  try{ await navigator.clipboard.writeText(txt); b.textContent="Copiado ✓"; }
+  catch(err){
+    try{
+      const ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";
+      document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();
+      b.textContent="Copiado ✓";
+    }catch(e2){ console.log(txt); b.textContent="Copia manual: ver consola"; }
+  }
+  setTimeout(()=>{b.textContent="Copiar prompt";},2200);
+});
+
+function render(){
+  const list = active===PCAT ? [] : PLAYS.filter(matches);
+  const plist = AI_PROMPTS.filter(promptMatches);
+  out.innerHTML="";
+  countEl.textContent = active===PCAT
+    ? plist.length+(plist.length===1?" prompt":" prompts")
+    : (list.length===PLAYS.length
+        ? PLAYS.length+" playbooks"
+        : list.length+" de "+PLAYS.length+" playbooks") + " · "+plist.length+(plist.length===1?" prompt":" prompts");
+
+  if(!list.length && !plist.length){
     const d=document.createElement("p");
     d.className="empty";
     d.textContent="Nada con esas palabras. Prueba con: precio, historias, contratar, anuncios, IA, socios, emociones.";
@@ -2056,6 +2193,7 @@ function render(){
     });
     out.appendChild(g);
   });
+  renderPrompts(plist);
   mountIdeator();
   mountHirer();
   mountPCN();
